@@ -1,0 +1,63 @@
+:root {
+    --color-border-divider: #0d15261a;
+    --color-border-secondary: #00000026;
+
+    --color-text-primary: #000000E5;
+    --color-text-seconary: #00000099;
+
+    --color-special-accient: linear-gradient(180deg, #E3ECF7 0%, #EDF2F3 100%);
+
+    --color-surface-0: #F2F2F2;
+    --color-surface-100: #fff;
+
+    --color-link: #4996ff;
+    --color-link-hover: #196ee5;
+
+    --color-green-100: #12A17D1A;
+    --color-green-900: #1E7660;
+
+    --color-orange-100: #FF77331A;
+    --color-orange-900: #A35229;
+
+    --color-purple-100: #9A5EED1A;
+    --color-purple-900: #7637CD;
+
+    --color-blue-100: #4389EA1A;
+    --color-blue-900: #2B61AB;
+
+    --color-control-primary: #22292F;
+    --text-inverse-secondary: #FFFFFF99;
+    --color-spectre-purple-100: #F3EEFD;
+
+    // Geometry:
+    --height-navbar: 72px;
+
+    //--font-family-golos: "Golos", sans-serif;
+    //--font-family-golos-ui: "GolosUI", sans-serif;
+    //--font-family-roboto-mono: RobotoMono, monospace;
+    //
+    //--font-heading-h1: 700 40px / 48px var(--font-family-golos);
+    //--font-heading-h2: 600 32px / 40px var(--font-family-golos);
+    //--font-heading-h3: 600 28px / 32px var(--font-family-golos);
+    //
+    //--font-heading-h4: 700 24px / 28px var(--font-family-golos-ui);
+    //--font-heading-h5: 500 16px / 24px var(--font-family-golos-ui);
+    //--font-heading-h6: 500 14px / 20px var(--font-family-golos-ui);
+    //--font-heading-h7: 500 12px / 16px var(--font-family-golos-ui);
+    //
+    //--font-body-regular: 400 14px / 20px var(--font-family-golos-ui);
+    //--font-body-small: 400 12px / 16px var(--font-family-golos-ui);
+    //--font-body-button: 500 14px / 20px var(--font-family-golos-ui);
+    //--font-body-mono: 400 14px / 20px var(--font-family-roboto-mono);
+    //--font-body-small-mono: 400 12px / 16px var(--font-family-roboto-mono);
+    //
+    //--side-page-z-index: 100;
+}
+
+body[data-theme="light"] {
+
+}
+
+body[data-theme="dark"] {
+
+}
