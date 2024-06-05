@@ -2,4 +2,5 @@
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: content-box;
+  height: 100%; /* Если мешает, то вынести в boolean */
 }

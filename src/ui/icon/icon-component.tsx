@@ -6,8 +6,7 @@ import { type IconProps } from './icon-types'
 export const IconComponent: React.FC<IconProps> = ({
   name,
   className,
-  width = 24,
-  height = 24,
+  size = 24,
   color
 }) => {
   const SelectedIcon = icons[name]
@@ -15,8 +14,8 @@ export const IconComponent: React.FC<IconProps> = ({
   return (
     <SelectedIcon
       className={className}
-      width={width}
-      height={height}
+      width={size}
+      height={size}
       style={{ color }}
     />
   )

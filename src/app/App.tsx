@@ -16,8 +16,10 @@ export const App: FC = () => {
 
   const dispatch = useAppDispatch()
 
+  console.log(data)
+
   useEffect(() => {
-    if (data) {
+    if (data !== undefined) {
       dispatch(userActions.setUserInfo(data))
       setFirstLoading(false)
     }

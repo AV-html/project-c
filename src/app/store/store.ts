@@ -1,6 +1,7 @@
 import { combineReducers, configureStore, type Middleware } from '@reduxjs/toolkit'
 
 import { rtkQueryApi } from 'core/api/rtk-query-api'
+import { rtkQueryErrorMiddleware } from 'core/api/rtk-query-middleware'
 import { userReducer } from 'core/user/user-slice'
 
 import { type TRootState } from './store-types'
@@ -12,7 +13,8 @@ export const rootReducer = combineReducers({
 
 export const createReduxStore = (initialState?: TRootState) => {
   const backApi: Middleware[] = [
-    rtkQueryApi.middleware
+    rtkQueryApi.middleware,
+    rtkQueryErrorMiddleware
   ]
 
   return configureStore({

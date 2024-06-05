@@ -5,7 +5,6 @@ export type TIconName = keyof typeof icons
 export interface IconProps {
   name: TIconName
   className?: string
-  width?: number | string
-  height?: number | string
+  size?: number | string
   color?: string
 }

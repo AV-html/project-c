@@ -3,19 +3,19 @@ import { type FC, useMemo } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
 import { useAppSelector } from 'core/hooks/rtk'
-import { getUserArrayPermissionsSelector, getUserInfoSelector } from 'core/user/user-selectors'
+import { getUserInfo, getUserPermissions } from 'core/user/user-selectors'
 
 import type { IRequireAuthComponentProps } from './protect-route-types'
-import { goToForbiddenRoute, goToLoginRoute } from '../app-router-configs'
+import { goToAuthRoute, goToForbiddenRoute } from '../app-router-configs'
 
 export const ProtectRouteComponent: FC<IRequireAuthComponentProps> = ({
   children,
   routePermissions
 }) => {
   const location = useLocation()
-  const userInfo = useAppSelector(getUserInfoSelector)
+  const userInfo = useAppSelector(getUserInfo)
 
-  const userPermissions = useAppSelector(getUserArrayPermissionsSelector)
+  const userPermissions = useAppSelector(getUserPermissions)
 
   const hasRequiredRoles = useMemo(() => {
     if (!routePermissions) {
@@ -30,7 +30,7 @@ export const ProtectRouteComponent: FC<IRequireAuthComponentProps> = ({
   if (!userInfo) {
     return (
       <Navigate
-        to={goToLoginRoute()}
+        to={goToAuthRoute()}
         state={{ from: location }}
         replace
       />

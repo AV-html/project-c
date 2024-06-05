@@ -1,26 +1,38 @@
 
-import { type IUser } from './user-types'
+import { userActions } from './user-slice'
+import type { IUserInfo } from './user-types'
 import { rtkQueryApi } from '../api/rtk-query-api'
-import type { IResult, IResultWithoutData } from '../types/main'
+import { removeUserToken } from '../api/rtk-query-utils'
 
 export const userApi = rtkQueryApi
   .enhanceEndpoints({ addTagTypes: ['user'] })
   .injectEndpoints({
     endpoints: (builder) => ({
-      authMe: builder.query<IUser, void>({
+      authMe: builder.query<IUserInfo | null, void>({
         query: () => ({
-          url: 'users/info',
+          url: '/auth/me',
           method: 'GET'
         }),
-        transformResponse: (result: IResult<IUser>) => result.data,
+        onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
+          const { data } = await queryFulfilled
+          if (data === null) {
+            dispatch(userActions.setUserInfo(null))
+            removeUserToken()
+          }
+        },
         providesTags: ['user']
       }),
 
-      logout: builder.query<IResultWithoutData, void>({
+      logout: builder.query<void, void>({
         query: () => ({
-          url: 'logout',
-          method: 'GET'
-        })
+          url: '/auth/logout',
+          method: 'DELETE'
+        }),
+        onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
+          await queryFulfilled
+          dispatch(userActions.setUserInfo(null))
+          removeUserToken()
+        }
       })
     })
   })

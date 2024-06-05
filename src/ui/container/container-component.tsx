@@ -10,7 +10,7 @@ export const ContainerComponent: FC<IContainerProps> = ({
   children,
   className,
   style,
-  maxWidth = 960
+  maxWidth = 1232
 }) => {
   const settings: CSSProperties = { ...style, maxWidth }
   return (

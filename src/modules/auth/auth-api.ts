@@ -1,27 +1,39 @@
 
 import { rtkQueryApi } from 'core/api/rtk-query-api'
-import type { IResult } from 'core/types/main'
+import { setUserToken } from 'core/api/rtk-query-utils'
+import { userActions } from 'core/user/user-slice'
 
-import type { ILoginResponse } from './auth-types'
-import type { ILoginForm } from './login-form/login-form-types'
+import type { ILoginRequest, ILoginResponse, IRegRequest } from './auth-types'
 
 export const authApi = rtkQueryApi.injectEndpoints({
-  endpoints: (build) => ({
-    login: build.query<ILoginResponse, ILoginForm>({
-      query: ({
-        login,
-        password,
-        isLdap
-      }) => ({
-        url: 'login',
+  endpoints: (builder) => ({
+    login: builder.query<ILoginResponse, ILoginRequest>({
+      query: (body) => ({
+        url: '/auth/login',
         method: 'POST',
-        body: {
-          login,
-          password,
-          is_ldap: isLdap
-        }
+        body
       }),
-      transformResponse: (result: IResult<ILoginResponse>) => result.data
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        try {
+          const { data } = await queryFulfilled
+
+          if (data) {
+            const { token, ...userInfo } = data
+
+            dispatch(userActions.setUserInfo(userInfo))
+            setUserToken(data.token)
+          }
+        } catch (e) {}
+      }
+    }),
+
+    registration: builder.query<void, IRegRequest>({
+      query: (body) => ({
+        url: '/auth/registration',
+        method: 'POST',
+        body
+      })
     })
+    // TODO: Подумать, как авторизовать пользователя
   })
 })
