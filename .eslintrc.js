@@ -29,8 +29,7 @@ module.exports = {
     'import'
   ],
   rules: {
-    indent: [2, 2],
-    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/indent': ['error', 2, { SwitchCase: 1 }],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',

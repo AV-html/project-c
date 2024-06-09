@@ -1,5 +1,7 @@
 import { combineReducers, configureStore, type Middleware } from '@reduxjs/toolkit'
 
+import { agataInterviewReducer } from 'modules/agata/agata-interview-slice'
+
 import { rtkQueryApi } from 'core/api/rtk-query-api'
 import { rtkQueryErrorMiddleware } from 'core/api/rtk-query-middleware'
 import { userReducer } from 'core/user/user-slice'
@@ -7,6 +9,7 @@ import { userReducer } from 'core/user/user-slice'
 import { type TRootState } from './store-types'
 
 export const rootReducer = combineReducers({
+  agata: agataInterviewReducer,
   user: userReducer,
   [rtkQueryApi.reducerPath]: rtkQueryApi.reducer
 })

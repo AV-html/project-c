@@ -21,7 +21,7 @@ export const authApi = rtkQueryApi.injectEndpoints({
             const { token, ...userInfo } = data
 
             dispatch(userActions.setUserInfo(userInfo))
-            setUserToken(data.token)
+            setUserToken(token)
           }
         } catch (e) {}
       }

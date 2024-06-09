@@ -1,0 +1,44 @@
+.userHelp {
+  padding: 24px;
+  width: 608px;
+  height: 236px;
+  border-radius: 40px;
+  display: flex;
+}
+
+.avatarOne {
+  width: 64px;
+  height: 64px;
+  border-radius: 50px;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.userPosition {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.subscribe {
+  width: 120px;
+  height: 40px;
+  background-color: #22292F;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.test {
+  font-size: 100px;
+  margin-right: 16px;
+}

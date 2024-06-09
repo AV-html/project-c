@@ -1,0 +1,37 @@
+.avatar {
+    flex: 0 0 40px;
+    height: 40px;
+    background-color: var(--color-surface-0);
+    border-radius: 50%;
+}
+
+.message {
+    min-width: 300px;
+    background-color: var(--color-surface-0);
+    border-radius: 24px;
+    padding: 16px 24px;
+}
+
+.message.user {
+    background-color: var(--color-spectre-purple-100)
+}
+
+.name {
+    flex: 1 1 auto;
+}
+.date {
+    color: var(--color-text-seconary);
+    font-size: 14px;
+    line-height: 16px;
+}
+.question {
+    color: var(--color-text-seconary);
+    font-size: 14px;
+    line-height: 20px;
+}
+.body {
+
+}
+.video {
+
+}

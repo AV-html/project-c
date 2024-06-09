@@ -1,0 +1,35 @@
+.filter {
+  background-color: #1A1A1A0D;
+  padding: 12px 24px;
+  margin-right: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+
+}
+
+.filter:focus {
+  background-color: #292929;
+  color: #fff;
+}
+
+.active {
+  background-color: #292929;
+  color: #fff;
+}
+
+.tag {
+  padding: 10px 20px;
+  font-weight: 400;
+  border-radius: 20px;
+  color: white;
+}
+
+.tagWrap {
+  gap: 10px;
+}
+
+.h2 {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 32px;
+}

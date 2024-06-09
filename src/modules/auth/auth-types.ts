@@ -17,7 +17,6 @@ export interface ILoginResponse extends IUserInfo {
 }
 
 export interface IRegRequest {
-  fml: string
   email: string
   password: string
   role: TRoleType

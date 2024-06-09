@@ -12,5 +12,3 @@ interface errorsMessages {
   field: string
   message: string
 }
-
-export type TAvatar = string | null

@@ -2,10 +2,9 @@ import {
   type BaseQueryApi, createApi, type FetchArgs, fetchBaseQuery
 } from '@reduxjs/toolkit/query/react'
 
-import { goToAuthRoute } from 'app/app-router/app-router-configs'
-
 import { API_URL } from './rtk-query-constants'
 import { getUserToken, removeUserToken } from './rtk-query-utils'
+import { userActions } from '../user/user-slice'
 
 export const baseQuery = async (
   args: FetchArgs,
@@ -25,7 +24,7 @@ export const baseQuery = async (
 
   if (query.error?.status === 401) {
     removeUserToken()
-    window.location.replace(`${window.location.origin}/${goToAuthRoute()}`)
+    api.dispatch(userActions.setUserInfo(null))
     // TODO: Возможно достаточно удалить userInfo. Подумать
   }
 

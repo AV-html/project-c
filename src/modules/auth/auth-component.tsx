@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { Navigate, useLocation } from 'react-router-dom'
 
-import { goToMainRoute } from 'app/app-router/app-router-configs'
+import { goToNewsRoute } from 'app/app-router/app-router-configs'
 
 import { useAppSelector } from 'core/hooks/rtk'
 import { getUserInfo } from 'core/user/user-selectors'
@@ -27,7 +27,7 @@ export const AuthComponent: FC = () => {
 
   if (userInfo) {
     const path: string = location.state?.from?.pathname
-    return <Navigate to={path ? `${path}` : `${goToMainRoute()}`}/>
+    return <Navigate to={path ? `${path}` : `${goToNewsRoute()}`}/>
   }
 
   return (

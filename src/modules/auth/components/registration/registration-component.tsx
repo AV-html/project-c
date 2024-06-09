@@ -10,11 +10,11 @@ import { EMPTY_SYMBOL } from 'core/constants/main'
 import { validateEmail } from 'core/utils/validators'
 
 import { roleOptions } from './registration-confiig'
-import { type IRegFormValues } from './registration-types'
+import { type IRegForm } from './registration-types'
 import { authApi } from '../../auth-api'
 
 export const RegistrationComponent: FC = () => {
-  const [form] = Form.useForm<IRegFormValues>()
+  const [form] = Form.useForm<IRegForm>()
 
   const [registration] = authApi.useLazyRegistrationQuery()
 
@@ -30,7 +30,7 @@ export const RegistrationComponent: FC = () => {
     })
   }
 
-  const handleReg = (values: IRegFormValues): void => {
+  const handleReg = (values: IRegForm): void => {
     // eslint-disable-next-line unused-imports/no-unused-vars
     const { confirmPassword, ...data } = values
     void registration(data)
@@ -57,20 +57,6 @@ export const RegistrationComponent: FC = () => {
               autoComplete="username"
               size="large"
               placeholder="E-mail"
-            />
-          </Form.Item>
-
-          <Form.Item
-            label={'ФИО'}
-            name={'fml'}
-            rules={[{
-              required: true,
-              message: 'Пожалуйста, введите ФИО'
-            }]}
-          >
-            <Input
-              size={'large'}
-              placeholder={'Фамилия Имя Отчество'}
             />
           </Form.Item>
 

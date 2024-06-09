@@ -2,11 +2,14 @@ import { type FC, useEffect, useState } from 'react'
 
 import { Layout } from 'antd'
 
+import { Content } from 'ui/content'
+
 import { useAppDispatch } from 'core/hooks/rtk'
 import { userApi } from 'core/user/user-api'
 import { userActions } from 'core/user/user-slice'
 
 import { AppRouter } from './app-router'
+import { Navbar } from './navbar'
 
 import './styles/index.scss'
 
@@ -15,8 +18,6 @@ export const App: FC = () => {
   const { data } = userApi.useAuthMeQuery()
 
   const dispatch = useAppDispatch()
-
-  console.log(data)
 
   useEffect(() => {
     if (data !== undefined) {
@@ -31,7 +32,12 @@ export const App: FC = () => {
         minHeight: '100vh',
         background: '#fff'
       }}>
-        {!firstLoading && <AppRouter/>}
+        <Navbar/>
+        {
+          !firstLoading && <Content>
+            <AppRouter/>
+          </Content>
+        }
       </Layout>
     </div>
   )
