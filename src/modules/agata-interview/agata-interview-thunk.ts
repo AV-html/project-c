@@ -13,7 +13,7 @@ import {
 } from './agata-interview-types'
 
 export const createDialogs = createAsyncThunk<string, string>(
-  'agata/createDialogs',
+  'agata-interview/createDialogs',
   async (companyId) => {
     try {
       const res = await agataInterviewApi.createDialogs(companyId)
@@ -26,7 +26,7 @@ export const createDialogs = createAsyncThunk<string, string>(
 )
 
 export const getAllDialogs = createAsyncThunk<IDialog[]>(
-  'agata/getAllDialogs',
+  'agata-interview/getAllDialogs',
   async (_) => {
     try {
       const res = await agataInterviewApi.getAllDialogs()
@@ -39,7 +39,7 @@ export const getAllDialogs = createAsyncThunk<IDialog[]>(
 )
 
 export const getDialogInfoById = createAsyncThunk<IResDataGetDialogInfoById, string>(
-  'agata/getDialogInfoById',
+  'agata-interview/getDialogInfoById',
   async (dialogId) => {
     try {
       const res = await agataInterviewApi.getDialogInfoById(dialogId)
@@ -52,7 +52,7 @@ export const getDialogInfoById = createAsyncThunk<IResDataGetDialogInfoById, str
 )
 
 export const startInterview = createAsyncThunk<string, string>(
-  'agata/startInterview',
+  'agata-interview/startInterview',
   async (dialogId, thunkAPI) => {
     try {
       const res = await agataInterviewApi.startInterview(dialogId)
@@ -66,7 +66,7 @@ export const startInterview = createAsyncThunk<string, string>(
 )
 
 export const getNextQuestion = createAsyncThunk<IResDataNextQuestion, string>(
-  'agata/getNextQuestion',
+  'agata-interview/getNextQuestion',
   async (dialogId) => {
     try {
       const res = await agataInterviewApi.getNextQuestion(dialogId)
@@ -79,7 +79,7 @@ export const getNextQuestion = createAsyncThunk<IResDataNextQuestion, string>(
 )
 
 export const getDialogHistoryById = createAsyncThunk<TResDataGetDialogHistoryById, string>(
-  'agata/getDialogHistoryById',
+  'agata-interview/getDialogHistoryById',
   async (dialogId) => {
     try {
       const res = await agataInterviewApi.getDialogHistoryById(dialogId)
@@ -96,7 +96,7 @@ export const sendVideoAnswer = createAsyncThunk<IDialogMessage, {
   formData: FormData
   questionIndex: number
 }>(
-  'agata/sendVideoAnswer',
+  'agata-interview/sendVideoAnswer',
   async ({
     dialogId,
     formData,
@@ -121,7 +121,7 @@ export const sendVideoAnswer = createAsyncThunk<IDialogMessage, {
 )
 
 export const finishInterview = createAsyncThunk<unknown, { dialogId: string, feedback?: string }>(
-  'agata/finishInterview',
+  'agata-interview/finishInterview',
   async ({ dialogId, feedback }) => {
     try {
       await agataInterviewApi.finishInterview(dialogId, feedback)
@@ -133,7 +133,7 @@ export const finishInterview = createAsyncThunk<unknown, { dialogId: string, fee
 )
 
 export const getReportById = createAsyncThunk<IResDataReportById, string>(
-  'agata/getReportById',
+  'agata-interview/getReportById',
   async (dialogId) => {
     try {
       const res = await agataInterviewApi.getReportById(dialogId)

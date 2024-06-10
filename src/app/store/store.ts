@@ -1,6 +1,6 @@
 import { combineReducers, configureStore, type Middleware } from '@reduxjs/toolkit'
 
-import { agataInterviewReducer } from 'modules/agata/agata-interview-slice'
+import { agataInterviewReducer } from 'modules/agata-interview/agata-interview-slice'
 
 import { rtkQueryApi } from 'core/api/rtk-query-api'
 import { rtkQueryErrorMiddleware } from 'core/api/rtk-query-middleware'

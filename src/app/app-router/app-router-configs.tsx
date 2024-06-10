@@ -1,9 +1,19 @@
+import { AgataInterviewListPage } from 'pages/agata-interview-list-page'
 import { AgataInterviewPage } from 'pages/agata-interview-page'
 import { ArticlePage } from 'pages/article-page'
 import { AuthPage } from 'pages/auth-page'
 import { CommunityPage } from 'pages/community-page'
+import { EventsConferencePage } from 'pages/events-conference-page'
+import { EventsHackathonPage } from 'pages/events-hackathon-page'
+import { EventsPage } from 'pages/events-page'
+import { ForbiddenPage } from 'pages/forbidden-page'
 import { NewsPage } from 'pages/news-page'
 import { NotFoundPage } from 'pages/not-found-page'
+import { ProfilePage } from 'pages/profile-page'
+import { ProfileSkillsPage } from 'pages/profile-skills-page'
+import { TalentsPage } from 'pages/talents-page'
+import { VacanciesPage } from 'pages/vacancies-page'
+import { VacancyPage } from 'pages/vacancy-page'
 
 import { type RouteConfig } from './app-router-types'
 
@@ -16,6 +26,11 @@ export enum AppRoutes {
   EVENTS_HACKATHON = 'events-hackathon',
   ARTICLE = 'article',
   COMMUNITY = 'community',
+  VACANCIES = 'vacancies',
+  VACANCY = 'vacancy',
+  TALENTS = 'talents',
+  PROFILE = 'profile',
+  PROFILE_SKILLS = 'profile-skills',
 
   AGATA_INTERVIEW_LIST = 'agata-interview-list',
   AGATA_INTERVIEW = 'agata-interview',
@@ -61,6 +76,11 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ARTICLE]: goToArticleByIdRoute(':articleId'),
 
   [AppRoutes.COMMUNITY]: goToCommunityRoute(),
+  [AppRoutes.VACANCIES]: goToVacanciesRoute(),
+  [AppRoutes.VACANCY]: goToVacancyRoute(':vacancyId'),
+  [AppRoutes.TALENTS]: goToTalentsRoute(),
+  [AppRoutes.PROFILE]: goToProfileRoute(':profileId'),
+  [AppRoutes.PROFILE_SKILLS]: goToProfileSkillsRoute(':skillId:'),
 
   [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
   [AppRoutes.AGATA_INTERVIEW]: goToAgataInterviewByIdRoute(':dialogId'),
@@ -83,17 +103,17 @@ export const routes: RouteConfig[] = [
   {
     name: AppRoutes.EVENTS,
     path: RoutePath.events,
-    element: <div>События</div>
+    element: <EventsPage/>
   },
   {
     name: AppRoutes.EVENTS_CONFERENCE,
     path: RoutePath['events-conference'],
-    element: <div>События conference</div>
+    element: <EventsConferencePage/>
   },
   {
     name: AppRoutes.EVENTS_HACKATHON,
     path: RoutePath['events-hackathon'],
-    element: <div>События hackathon</div>
+    element: <EventsHackathonPage/>
   },
   {
     name: AppRoutes.ARTICLE,
@@ -109,7 +129,7 @@ export const routes: RouteConfig[] = [
   {
     name: AppRoutes.AGATA_INTERVIEW_LIST,
     path: RoutePath['agata-interview-list'],
-    element: <div>agata-interview-list</div>
+    element: <AgataInterviewListPage/>
   },
   {
     name: AppRoutes.AGATA_INTERVIEW,
@@ -123,8 +143,33 @@ export const routes: RouteConfig[] = [
     element: <NotFoundPage/>
   },
   {
-    name: AppRoutes.FORBIDDEN, // TODO: Сделать 403 page
+    name: AppRoutes.FORBIDDEN,
     path: RoutePath.forbidden,
-    element: <div>Доступ запрещён</div>
+    element: <ForbiddenPage/>
+  },
+  {
+    name: AppRoutes.VACANCIES,
+    path: RoutePath.vacancies,
+    element: <VacanciesPage/>
+  },
+  {
+    name: AppRoutes.VACANCY,
+    path: RoutePath.vacancy,
+    element: <VacancyPage/>
+  },
+  {
+    name: AppRoutes.TALENTS,
+    path: RoutePath.talents,
+    element: <TalentsPage/>
+  },
+  {
+    name: AppRoutes.PROFILE,
+    path: RoutePath.profile,
+    element: <ProfilePage/>
+  },
+  {
+    name: AppRoutes.PROFILE_SKILLS,
+    path: RoutePath['profile-skills'],
+    element: <ProfileSkillsPage/>
   }
 ]
