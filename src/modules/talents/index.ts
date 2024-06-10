@@ -1,1 +1,1 @@
-export {TalentsComponent as Talents} from './talents-component'
+export { TalentsComponent as Talents } from './talents-component'

@@ -1,14 +1,9 @@
-import {FC} from 'react'
-
-import styles from './vacancies.module.scss'
+import { type FC } from 'react'
 
 export const VacanciesComponent: FC = (props) => {
-
   return (
     <>
       Vacancies
     </>
   )
 }
-
-

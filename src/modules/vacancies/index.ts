@@ -1,1 +1,1 @@
-export {VacanciesComponent as Vacancies} from './vacancies-component'
+export { VacanciesComponent as Vacancies } from './vacancies-component'

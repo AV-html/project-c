@@ -1,6 +1,4 @@
-import {FC} from 'react'
-
-import styles from './forbidden.module.scss'
+import { type FC } from 'react'
 
 export interface IForbiddenProps {
 }
@@ -14,5 +12,3 @@ export const ForbiddenComponent: FC<IForbiddenProps> = (props) => {
     </>
   )
 }
-
-

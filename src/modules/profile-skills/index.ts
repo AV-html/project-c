@@ -1,1 +1,1 @@
-export {ProfileSkillsComponent as ProfileSkills} from './profile-skills-component'
+export { ProfileSkillsComponent as ProfileSkills } from './profile-skills-component'

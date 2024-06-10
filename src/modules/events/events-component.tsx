@@ -1,14 +1,9 @@
-import {FC} from 'react'
-
-import styles from './events.module.scss'
+import { type FC } from 'react'
 
 export const EventsComponent: FC = (props) => {
-
   return (
     <>
       Events
     </>
   )
 }
-
-

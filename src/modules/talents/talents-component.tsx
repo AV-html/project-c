@@ -1,14 +1,9 @@
-import {FC} from 'react'
-
-import styles from './talents.module.scss'
+import { type FC } from 'react'
 
 export const TalentsComponent: FC = (props) => {
-
   return (
     <>
       Talents
     </>
   )
 }
-
-

@@ -1,14 +1,9 @@
-import {FC} from 'react'
-
-import styles from './events-hackathon.module.scss'
+import { type FC } from 'react'
 
 export const EventsHackathonComponent: FC = (props) => {
-
   return (
     <>
       EventsHackathon
     </>
   )
 }
-
-

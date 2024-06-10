@@ -51,20 +51,20 @@ export const agataInterviewSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(createDialogs.pending.type, (state) => {
       state.isLoadingCreateDialogs = true
-    });
+    })
 
     builder.addCase(createDialogs.fulfilled.type, (state, action: PayloadAction<string>) => {
       state.isLoadingCreateDialogs = false
       state.createdDialogId = action.payload
-    });
+    })
 
     builder.addCase(createDialogs.rejected.type, (state) => {
       state.isLoadingCreateDialogs = false
-    });
+    })
 
     builder.addCase(getAllDialogs.pending.type, (state) => {
       state.isLoadingGetAllDialogs = true
-    });
+    })
 
     builder.addCase(
       getAllDialogs.fulfilled.type,
@@ -72,15 +72,15 @@ export const agataInterviewSlice = createSlice({
         state.isLoadingGetAllDialogs = false
         state.dialogsList = action.payload
       }
-    );
+    )
 
     builder.addCase(getAllDialogs.rejected.type, (state) => {
       state.isLoadingGetAllDialogs = false
-    });
+    })
 
     builder.addCase(getDialogInfoById.pending.type, (state) => {
       state.isLoadingInfo = true
-    });
+    })
 
     builder.addCase(
       getDialogInfoById.fulfilled.type,
@@ -88,15 +88,15 @@ export const agataInterviewSlice = createSlice({
         state.isLoadingInfo = false
         state.dialogInfo = action.payload
       }
-    );
+    )
 
     builder.addCase(getDialogInfoById.rejected.type, (state) => {
       state.isLoadingInfo = false
-    });
+    })
 
     builder.addCase(startInterview.pending.type, (state) => {
       state.isLoading = true
-    });
+    })
 
     builder.addCase(startInterview.fulfilled.type, (state, action: PayloadAction<string>) => {
       state.isLoading = false
@@ -104,15 +104,15 @@ export const agataInterviewSlice = createSlice({
         state.dialogInfo.startDate = action.payload
         state.dialogInfo.status = 'WAITING'
       }
-    });
+    })
 
     builder.addCase(startInterview.rejected.type, (state) => {
       state.isLoading = false
-    });
+    })
 
     builder.addCase(getNextQuestion.pending.type, (state) => {
       state.isLoading = true
-    });
+    })
 
     builder.addCase(
       getNextQuestion.fulfilled.type,
@@ -120,15 +120,15 @@ export const agataInterviewSlice = createSlice({
         state.isLoading = false
         state.dialogHistory.push(action.payload)
       }
-    );
+    )
 
     builder.addCase(getNextQuestion.rejected.type, (state) => {
       state.isLoading = false
-    });
+    })
 
     builder.addCase(getDialogHistoryById.pending.type, (state) => {
       state.isLoadingHistory = true
-    });
+    })
 
     builder.addCase(
       getDialogHistoryById.fulfilled.type,
@@ -136,15 +136,15 @@ export const agataInterviewSlice = createSlice({
         state.isLoadingHistory = false
         state.dialogHistory = action.payload
       }
-    );
+    )
 
     builder.addCase(getDialogHistoryById.rejected.type, (state) => {
       state.isLoadingHistory = false
-    });
+    })
 
     builder.addCase(sendVideoAnswer.pending.type, (state) => {
       state.isLoading = true
-    });
+    })
 
     builder.addCase(
       sendVideoAnswer.fulfilled.type,
@@ -156,30 +156,30 @@ export const agataInterviewSlice = createSlice({
           state.dialogInfo.questions.current++
         }
       }
-    );
+    )
 
     builder.addCase(sendVideoAnswer.rejected.type, (state) => {
       state.isLoading = false
-    });
+    })
 
     builder.addCase(finishInterview.pending.type, (state) => {
       state.isLoading = true
-    });
+    })
 
     builder.addCase(finishInterview.fulfilled.type, (state) => {
       state.isLoading = false
       if (state.dialogInfo) {
         state.dialogInfo.status = 'COMPLETED'
       }
-    });
+    })
 
     builder.addCase(finishInterview.rejected.type, (state) => {
       state.isLoading = false
-    });
+    })
 
     builder.addCase(getReportById.pending.type, (state) => {
       state.isLoadingReport = true
-    });
+    })
 
     builder.addCase(
       getReportById.fulfilled.type,
@@ -187,11 +187,11 @@ export const agataInterviewSlice = createSlice({
         state.isLoadingReport = false
         state.report = action.payload
       }
-    );
+    )
 
     builder.addCase(getReportById.rejected.type, (state) => {
       state.isLoadingReport = false
-    });
+    })
   }
 })
 

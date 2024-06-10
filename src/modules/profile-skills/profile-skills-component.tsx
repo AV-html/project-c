@@ -1,14 +1,9 @@
-import { FC } from 'react'
-
-import styles from './profile-skills.module.scss'
+import { type FC } from 'react'
 
 export const ProfileSkillsComponent: FC = (props) => {
-
   return (
     <>
       ProfileSkills
     </>
   )
 }
-
-
