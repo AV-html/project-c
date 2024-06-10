@@ -41,119 +41,157 @@ export const initialState: IAgataState = {
 export const agataInterviewSlice = createSlice({
   name: 'agataInterviewSlice',
   initialState,
+
   reducers: {
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload
     }
   },
-  extraReducers: {
-    [createDialogs.pending.type]: (state) => {
+
+  extraReducers: (builder) => {
+    builder.addCase(createDialogs.pending.type, (state) => {
       state.isLoadingCreateDialogs = true
-    },
-    [createDialogs.fulfilled.type]: (state, action: PayloadAction<string>) => {
+    });
+
+    builder.addCase(createDialogs.fulfilled.type, (state, action: PayloadAction<string>) => {
       state.isLoadingCreateDialogs = false
       state.createdDialogId = action.payload
-    },
-    [createDialogs.rejected.type]: (state) => {
+    });
+
+    builder.addCase(createDialogs.rejected.type, (state) => {
       state.isLoadingCreateDialogs = false
-    },
+    });
 
-    [getAllDialogs.pending.type]: (state) => {
+    builder.addCase(getAllDialogs.pending.type, (state) => {
       state.isLoadingGetAllDialogs = true
-    },
-    [getAllDialogs.fulfilled.type]: (state, action: PayloadAction<IDialog[]>) => {
-      state.isLoadingGetAllDialogs = false
-      state.dialogsList = action.payload
-    },
-    [getAllDialogs.rejected.type]: (state) => {
-      state.isLoadingGetAllDialogs = false
-    },
+    });
 
-    [getDialogInfoById.pending.type]: (state) => {
+    builder.addCase(
+      getAllDialogs.fulfilled.type,
+      (state, action: PayloadAction<IDialog[]>) => {
+        state.isLoadingGetAllDialogs = false
+        state.dialogsList = action.payload
+      }
+    );
+
+    builder.addCase(getAllDialogs.rejected.type, (state) => {
+      state.isLoadingGetAllDialogs = false
+    });
+
+    builder.addCase(getDialogInfoById.pending.type, (state) => {
       state.isLoadingInfo = true
-    },
-    [getDialogInfoById.fulfilled.type]: (state, action: PayloadAction<IResDataGetDialogInfoById>) => {
-      state.isLoadingInfo = false
-      state.dialogInfo = action.payload
-    },
-    [getDialogInfoById.rejected.type]: (state) => {
-      state.isLoadingInfo = false
-    },
+    });
 
-    [startInterview.pending.type]: (state) => {
+    builder.addCase(
+      getDialogInfoById.fulfilled.type,
+      (state, action: PayloadAction<IResDataGetDialogInfoById>) => {
+        state.isLoadingInfo = false
+        state.dialogInfo = action.payload
+      }
+    );
+
+    builder.addCase(getDialogInfoById.rejected.type, (state) => {
+      state.isLoadingInfo = false
+    });
+
+    builder.addCase(startInterview.pending.type, (state) => {
       state.isLoading = true
-    },
-    [startInterview.fulfilled.type]: (state, action: PayloadAction<string>) => {
+    });
+
+    builder.addCase(startInterview.fulfilled.type, (state, action: PayloadAction<string>) => {
       state.isLoading = false
       if (state.dialogInfo) {
         state.dialogInfo.startDate = action.payload
         state.dialogInfo.status = 'WAITING'
       }
-    },
-    [startInterview.rejected.type]: (state) => {
-      state.isLoading = false
-    },
+    });
 
-    [getNextQuestion.pending.type]: (state) => {
+    builder.addCase(startInterview.rejected.type, (state) => {
+      state.isLoading = false
+    });
+
+    builder.addCase(getNextQuestion.pending.type, (state) => {
       state.isLoading = true
-    },
-    [getNextQuestion.fulfilled.type]: (state, action: PayloadAction<IResDataNextQuestion>) => {
-      state.isLoading = false
-      state.dialogHistory.push(action.payload)
-    },
-    [getNextQuestion.rejected.type]: (state) => {
-      state.isLoading = false
-    },
+    });
 
-    [getDialogHistoryById.pending.type]: (state) => {
-      state.isLoadingHistory = true
-    },
-    [getDialogHistoryById.fulfilled.type]: (state, action: PayloadAction<IDialogMessage[]>) => {
-      state.isLoadingHistory = false
-      state.dialogHistory = action.payload
-    },
-    [getDialogHistoryById.rejected.type]: (state) => {
-      state.isLoadingHistory = false
-    },
-
-    [sendVideoAnswer.pending.type]: (state) => {
-      state.isLoading = true
-    },
-    [sendVideoAnswer.fulfilled.type]: (state, action: PayloadAction<IDialogMessage>) => {
-      state.isLoading = false
-      state.dialogHistory.push(action.payload)
-      if (state.dialogInfo) {
-        state.dialogInfo.questions.completed++
-        state.dialogInfo.questions.current++
+    builder.addCase(
+      getNextQuestion.fulfilled.type,
+      (state, action: PayloadAction<IResDataNextQuestion>) => {
+        state.isLoading = false
+        state.dialogHistory.push(action.payload)
       }
-    },
-    [sendVideoAnswer.rejected.type]: (state) => {
-      state.isLoading = false
-    },
+    );
 
-    [finishInterview.pending.type]: (state) => {
+    builder.addCase(getNextQuestion.rejected.type, (state) => {
+      state.isLoading = false
+    });
+
+    builder.addCase(getDialogHistoryById.pending.type, (state) => {
+      state.isLoadingHistory = true
+    });
+
+    builder.addCase(
+      getDialogHistoryById.fulfilled.type,
+      (state, action: PayloadAction<IDialogMessage[]>) => {
+        state.isLoadingHistory = false
+        state.dialogHistory = action.payload
+      }
+    );
+
+    builder.addCase(getDialogHistoryById.rejected.type, (state) => {
+      state.isLoadingHistory = false
+    });
+
+    builder.addCase(sendVideoAnswer.pending.type, (state) => {
       state.isLoading = true
-    },
-    [finishInterview.fulfilled.type]: (state) => {
+    });
+
+    builder.addCase(
+      sendVideoAnswer.fulfilled.type,
+      (state, action: PayloadAction<IDialogMessage>) => {
+        state.isLoading = false
+        state.dialogHistory.push(action.payload)
+        if (state.dialogInfo) {
+          state.dialogInfo.questions.completed++
+          state.dialogInfo.questions.current++
+        }
+      }
+    );
+
+    builder.addCase(sendVideoAnswer.rejected.type, (state) => {
+      state.isLoading = false
+    });
+
+    builder.addCase(finishInterview.pending.type, (state) => {
+      state.isLoading = true
+    });
+
+    builder.addCase(finishInterview.fulfilled.type, (state) => {
       state.isLoading = false
       if (state.dialogInfo) {
         state.dialogInfo.status = 'COMPLETED'
       }
-    },
-    [finishInterview.rejected.type]: (state) => {
-      state.isLoading = false
-    },
+    });
 
-    [getReportById.pending.type]: (state) => {
+    builder.addCase(finishInterview.rejected.type, (state) => {
+      state.isLoading = false
+    });
+
+    builder.addCase(getReportById.pending.type, (state) => {
       state.isLoadingReport = true
-    },
-    [getReportById.fulfilled.type]: (state, action: PayloadAction<IResDataReportById>) => {
+    });
+
+    builder.addCase(
+      getReportById.fulfilled.type,
+      (state, action: PayloadAction<IResDataReportById>) => {
+        state.isLoadingReport = false
+        state.report = action.payload
+      }
+    );
+
+    builder.addCase(getReportById.rejected.type, (state) => {
       state.isLoadingReport = false
-      state.report = action.payload
-    },
-    [getReportById.rejected.type]: (state) => {
-      state.isLoadingReport = false
-    }
+    });
   }
 })
 

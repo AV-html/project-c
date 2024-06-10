@@ -11,6 +11,9 @@ export enum AppRoutes {
   AUTH = 'auth',
 
   NEWS = 'news',
+  EVENTS = 'events',
+  EVENTS_CONFERENCE = 'events-conference',
+  EVENTS_HACKATHON = 'events-hackathon',
   ARTICLE = 'article',
   COMMUNITY = 'community',
 
@@ -34,6 +37,8 @@ export const goToTalentsRoute = () => '/talents'
 export const goToAiHrRoute = () => '/ai-hr'
 
 export const goToEventsRoute = () => '/events'
+export const goToEventsConferenceRoute = () => '/events/conference'
+export const goToEventsHackathonRoute = () => '/events/hackathon'
 
 export const goToCoffeeRoute = () => '/coffee'
 
@@ -50,6 +55,11 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.AUTH]: goToAuthRoute(),
 
   [AppRoutes.NEWS]: goToNewsRoute(),
+
+  [AppRoutes.EVENTS]: goToEventsRoute(),
+  [AppRoutes.EVENTS_CONFERENCE]: goToEventsConferenceRoute(),
+  [AppRoutes.EVENTS_HACKATHON]: goToEventsHackathonRoute(),
+
   [AppRoutes.ARTICLE]: goToArticleByIdRoute(':articleId'),
 
   [AppRoutes.COMMUNITY]: goToCommunityRoute(),
@@ -71,6 +81,21 @@ export const routes: RouteConfig[] = [
     name: AppRoutes.NEWS,
     path: RoutePath.news,
     element: <NewsPage/>
+  },
+  {
+    name: AppRoutes.EVENTS,
+    path: RoutePath.events,
+    element: <div>События</div>
+  },
+  {
+    name: AppRoutes.EVENTS_CONFERENCE,
+    path: RoutePath['events-conference'],
+    element: <div>События conference</div>
+  },
+  {
+    name: AppRoutes.EVENTS_HACKATHON,
+    path: RoutePath['events-hackathon'],
+    element: <div>События hackathon</div>
   },
   {
     name: AppRoutes.ARTICLE,
