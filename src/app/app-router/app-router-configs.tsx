@@ -40,8 +40,6 @@ export const goToEventsRoute = () => '/events'
 export const goToEventsConferenceRoute = () => '/events/conference'
 export const goToEventsHackathonRoute = () => '/events/hackathon'
 
-export const goToCoffeeRoute = () => '/coffee'
-
 export const goToProfileRoute = (id: string) => `/profile/${id}`
 export const goToProfileSkillsRoute = (id: string) => `/profile/${id}/skills`
 

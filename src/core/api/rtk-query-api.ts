@@ -1,6 +1,6 @@
 import {
   type BaseQueryApi, createApi, type FetchArgs, fetchBaseQuery
-} from '@reduxjs/toolkit/query/react'
+} from '@reduxjs/toolkit/dist/query/react'
 
 import { API_URL } from './rtk-query-constants'
 import { getUserToken, removeUserToken } from './rtk-query-utils'

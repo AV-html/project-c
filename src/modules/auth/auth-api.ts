@@ -1,4 +1,3 @@
-
 import { rtkQueryApi } from 'core/api/rtk-query-api'
 import { setUserToken } from 'core/api/rtk-query-utils'
 import { userActions } from 'core/user/user-slice'
@@ -7,7 +6,7 @@ import type { ILoginRequest, ILoginResponse, IRegRequest } from './auth-types'
 
 export const authApi = rtkQueryApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.query<ILoginResponse, ILoginRequest>({
+    login: builder.mutation<ILoginResponse, ILoginRequest>({
       query: (body) => ({
         url: '/auth/login',
         method: 'POST',
@@ -27,7 +26,7 @@ export const authApi = rtkQueryApi.injectEndpoints({
       }
     }),
 
-    registration: builder.query<void, IRegRequest>({
+    registration: builder.mutation<void, IRegRequest>({
       query: (body) => ({
         url: '/auth/registration',
         method: 'POST',
