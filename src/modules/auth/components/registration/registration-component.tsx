@@ -16,7 +16,7 @@ import { authApi } from '../../auth-api'
 export const RegistrationComponent: FC = () => {
   const [form] = Form.useForm<IRegForm>()
 
-  const [registration] = authApi.useLazyRegistrationMutation()
+  const [registration] = authApi.useRegistrationMutation()
 
   const comparePassword = async (): Promise<void> => {
     await new Promise((resolve, reject) => {
