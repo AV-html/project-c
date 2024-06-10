@@ -13,7 +13,7 @@ import { iconRender } from '../../auth-utils'
 
 export const LoginComponent: FC = () => {
   const [form] = Form.useForm<ILoginForm>()
-  const [login] = authApi.useLazyLoginQuery()
+  const [login] = authApi.useLoginMutation()
 
   const handleLogin = (values: ILoginForm): void => {
     void login(values)
