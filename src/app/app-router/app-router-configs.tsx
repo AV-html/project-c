@@ -39,8 +39,8 @@ export enum AppRoutes {
   FORBIDDEN = 'forbidden' // 403
 }
 
+export const goToNewsRoute = () => '/'
 export const goToAuthRoute = () => '/auth'
-export const goToNewsRoute = () => '/news'
 export const goToArticleByIdRoute = (id: string) => `/article/${id}`
 export const goToCommunityRoute = () => '/community'
 
@@ -128,12 +128,14 @@ export const routes: RouteConfig[] = [
   {
     name: AppRoutes.AGATA_INTERVIEW_LIST,
     path: RoutePath['agata-interview-list'],
-    element: <AgataInterviewListPage/>
+    element: <AgataInterviewListPage/>,
+    authOnly: true
   },
   {
     name: AppRoutes.AGATA_INTERVIEW,
     path: RoutePath['agata-interview'],
-    element: <AgataInterviewPage/>
+    element: <AgataInterviewPage/>,
+    authOnly: true
   },
   {
     name: AppRoutes.NOT_FOUND,

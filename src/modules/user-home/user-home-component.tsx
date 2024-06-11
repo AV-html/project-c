@@ -5,7 +5,7 @@ import { Flex } from 'antd'
 import { Container } from 'ui/container'
 
 import oneFrame from 'core/assets/images/oneFrame.png'
-import reksoft from 'core/assets/images/reksoft.png'
+import ReksoftLogo from 'core/assets/images/reksoft-logo.svg'
 import stars from 'core/assets/images/stars.png'
 import threeFrame from 'core/assets/images/threeFrame.png'
 import twoFrame from 'core/assets/images/twoFrame.jpg'
@@ -58,8 +58,7 @@ export const UserHomeComponent: FC = () => {
             <Flex align={'center'}>
               <div className={styles.tag}>Фронт</div>
               <div className={styles.img}>
-                <img src={reksoft}
-                  alt=""/>
+                {<ReksoftLogo/>}
               </div>
             </Flex>
           </div>
@@ -119,8 +118,7 @@ export const UserHomeComponent: FC = () => {
             <Flex align={'center'}>
               <div className={styles.tag2}>Бэк</div>
               <div className={styles.img}>
-                <img src={reksoft}
-                  alt=""/>
+                {<ReksoftLogo/>}
               </div>
             </Flex>
           </div>

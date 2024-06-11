@@ -7,6 +7,7 @@ export const segmentOptions: ITab[] = [
   },
   {
     value: 'reg',
-    label: 'Регистрация'
+    label: 'Регистрация',
+    disabled: true
   }
 ]

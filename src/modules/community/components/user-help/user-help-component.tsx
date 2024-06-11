@@ -2,7 +2,7 @@ import React, { type FC } from 'react'
 
 import { Flex } from 'antd'
 
-import avatarOne from 'core/assets/images/avatar1.png'
+import avatarOne from 'core/assets/images/avatar1.jpg'
 
 import styles from './user-help.module.css'
 
@@ -36,7 +36,7 @@ export const UserHelpComponent: FC<IUserHelpProps> = ({ hex }) => {
               </div>
             </Flex>
           </Flex>
-          <button className={styles.subscribe}>Подписаться</button>
+          <button className={styles.subscribe} disabled={true}>Подписаться</button>
         </Flex>
       </div>
     </div>

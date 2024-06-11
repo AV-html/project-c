@@ -12,3 +12,5 @@ interface errorsMessages {
   field: string
   message: string
 }
+
+export type TDialogStatus = 'NOT_STARTED' | 'WAITING' | 'ANALYSIS' | 'COMPLETED'

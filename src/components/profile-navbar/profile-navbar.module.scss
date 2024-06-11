@@ -1,0 +1,49 @@
+.button {
+  &:not(.ai) {
+    background-color: var(--color-control-secondary);
+    color: var(--color-text-primary);
+
+    &:hover {
+      background-color: var(--color-control-primary) !important;
+      color: var(--text-inverse-primary) !important;
+    }
+
+    &.active {
+      background-color: var(--color-control-primary) !important;
+      color: var(--text-inverse-primary) !important;
+    }
+  }
+}
+
+.ai {
+  cursor: pointer;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+  transition: all 0.3s ease-in-out;
+  color: var(--color-text-primary);
+
+  &:hover {
+    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
+    color: var(--text-inverse-primary) !important;
+  }
+
+  &.active {
+    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%);
+    color: var(--text-inverse-primary);
+  }
+}

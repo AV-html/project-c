@@ -8,7 +8,7 @@
   width: 750px;
   height: 632px;
   border-radius: 40px;
-  cursor: pointer;
+  position: relative;
 }
 
 .subArticle {
@@ -35,13 +35,13 @@
 .imgText {
   position: absolute;
   bottom: 50px;
-  left: 200px;
+  right: 40px;
 
   font-size: 70px;
   font-weight: bold;
   line-height: 80px;
   text-align: left;
-  color: white;
+  color: #fff;
 }
 
 .eventsCard {
@@ -71,6 +71,11 @@
   margin-right: 20px;
   border-radius: 20px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--color-control-primary);
+    color: #fff;
+  }
 }
 
 .filter:focus {
@@ -81,4 +86,5 @@
 .active {
   background-color: #292929;
   color: #fff;
+  cursor: default;
 }

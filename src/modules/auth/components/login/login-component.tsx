@@ -9,7 +9,6 @@ import { validateEmail } from 'core/utils/validators'
 
 import { type ILoginForm } from './login-types'
 import { authApi } from '../../auth-api'
-import { iconRender } from '../../auth-utils'
 
 export const LoginComponent: FC = () => {
   const [form] = Form.useForm<ILoginForm>()
@@ -56,7 +55,6 @@ export const LoginComponent: FC = () => {
           autoComplete="current-password"
           size={'large'}
           placeholder={'Пароль'}
-          iconRender={iconRender}
         />
       </Form.Item>
 

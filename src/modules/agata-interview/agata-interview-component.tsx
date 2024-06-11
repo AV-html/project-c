@@ -2,17 +2,27 @@ import {
   useCallback, useEffect, useRef, useState
 } from 'react'
 
-import { Card, Flex, Typography } from 'antd'
+import {
+  Button,
+  Card, Flex, Modal, Typography
+} from 'antd'
 import { useParams } from 'react-router-dom'
 import Webcam from 'react-webcam'
 
 import { Container } from 'ui/container'
+import { Icon } from 'ui/icon'
+import { Stopwatch } from 'ui/stopwatch'
 
 import { useAppDispatch, useAppSelector } from 'core/hooks/rtk'
 import { useDevice } from 'core/providers/device-provider/device-hook'
 
-import { mimeType } from './agata-interview-constants'
-import { getCurrentNumberQuestion, getDialogHistory, getDialogInfo } from './agata-interview-selectors'
+import { LAST_MESSAGE, mimeType } from './agata-interview-constants'
+import {
+  getCurrentNumberQuestion,
+  getDialogHistory,
+  getDialogInfo,
+  getIsBeforeFinishInterview
+} from './agata-interview-selectors'
 import { getDialogHistoryById, getDialogInfoById, sendVideoAnswer } from './agata-interview-thunk'
 import { DialogBottomMenu } from './dialog-bottom-menu'
 import { Message } from './message'
@@ -38,6 +48,7 @@ export const AgataInterviewComponent = () => {
   const dialogInfo = useAppSelector(getDialogInfo)
   const dialogHistory = useAppSelector(getDialogHistory)
   const currentNumberQuestion = useAppSelector(getCurrentNumberQuestion)
+  const isBeforeFinishInterview = useAppSelector(getIsBeforeFinishInterview)
 
   const webcamRef = useRef<any>(null)
   const mediaRecorderRef = useRef<any>(null)
@@ -60,7 +71,6 @@ export const AgataInterviewComponent = () => {
 
   const handleStopCaptureClick = useCallback(async () => {
     setRec(false)
-    setEnable(false)
     await mediaRecorderRef.current.stop()
   }, [mediaRecorderRef, webcamRef, setRec])
 
@@ -68,26 +78,26 @@ export const AgataInterviewComponent = () => {
     setEnable(true)
   }, [])
 
-  const handleDownload = useCallback(() => {
-    if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, { type: mimeType })
-
-      console.log(blob)
-
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      document.body.appendChild(a)
-      a.hidden = true
-      a.href = url
-      a.download = 'react-webcam-stream-capture.webm'
-      a.click()
-      window.URL.revokeObjectURL(url)
-
-      setRecordedChunks([])
-    }
-  }, [recordedChunks])
+  // const handleDownload = useCallback(() => {
+  //   if (recordedChunks.length) {
+  //     const blob = new Blob(recordedChunks, { type: mimeType })
+  //
+  //     const url = URL.createObjectURL(blob)
+  //     const a = document.createElement('a')
+  //     document.body.appendChild(a)
+  //     a.hidden = true
+  //     a.href = url
+  //     a.download = 'react-webcam-stream-capture.webm'
+  //     a.click()
+  //     window.URL.revokeObjectURL(url)
+  //
+  //     setRecordedChunks([])
+  //   }
+  // }, [recordedChunks])
 
   const uploadVideo = () => {
+    setEnable(false)
+
     const blob = new Blob(recordedChunks, { type: mimeType })
 
     const formData = new FormData()
@@ -102,6 +112,13 @@ export const AgataInterviewComponent = () => {
     }
     setRecordedChunks([])
   }
+
+  const handleResetRec = () => {
+    setEnable(false)
+    setRecordedChunks([])
+  }
+
+  const lastQuestions = dialogHistory[dialogHistory.length - 1]?.message ?? ''
 
   return (
     <Container>
@@ -141,6 +158,7 @@ export const AgataInterviewComponent = () => {
               dialogHistory?.map((history) => {
                 return <Message
                   key={history.messageId}
+                  totalQuestions={dialogInfo?.questions.total}
                   author={history.author}
                   message={history.message}
                   createdDate={history.createdDate}
@@ -149,56 +167,103 @@ export const AgataInterviewComponent = () => {
                 />
               })
             }
+            {
+              isBeforeFinishInterview && <Message
+                author={'agata'}
+                message={LAST_MESSAGE}
+              />
+            }
           </Flex>
-          <DialogBottomMenu
-            handleStopCaptureClick={() => {
-              void handleStopCaptureClick()
-            }}
-            handleEnableWebcam={handleEnableWebcam}
-            rec={rec}
-          />
+          <DialogBottomMenu handleEnableWebcam={handleEnableWebcam}/>
 
           <Flex
             vertical
             gap={16}
           >
             {
-              enable && <div className={styles.wrapWebcam}>
-                <Webcam
-                  mirrored
-                  audio={true}
-                  muted={true}
-                  ref={webcamRef}
-                  className={styles.webcam}
-                  audioConstraints={{
-                    deviceId: activeMicrophone,
-                    noiseSuppression: true,
-                    echoCancellation: true
-                  }}
-                  videoConstraints={{
-                    deviceId: activeWebcam,
-                    height: 420,
-                    width: 640
+              enable &&
+                <Modal
+                  maskClosable={false}
+                  open={enable}
+                  title={<Typography.Title level={4} className={styles.title}>{lastQuestions}</Typography.Title>}
+                  onCancel={handleResetRec}
+                  width={800}
+                  footer={() => (
+                    <Flex
+                      justify={'space-between'}
+                      align={'center'}
+                      className={styles.footer}
+                    >
+                      <Stopwatch isRunning={rec}/>
+                      <Flex gap={8}>
+                        <Button
+                          icon={<Icon name={'play'} size={16}/>}
+                          type={'default'}
+                          size={'large'}
+                          shape={'circle'}
+                          onClick={handleStartCaptureClick}
+                          disabled={rec}
+                          className={styles.btn}
+                        />
+                        <Button
+                          icon={<Icon name={'stop'} size={16}/>}
+                          type={'default'}
+                          size={'large'}
+                          shape={'circle'}
+                          onClick={() => {
+                            void handleStopCaptureClick()
+                          }}
+                          disabled={!rec}
+                          className={styles.btn}
+                        />
+                      </Flex>
+                      <Button
+                        type={'primary'}
+                        size={'large'}
+                        shape={'round'}
+                        className={styles.playBtn}
+                        onClick={uploadVideo}
+                        disabled={!recordedChunks.length}
+                      >
+                          Отправить ответ
+                      </Button>
+                    </Flex>
+                  )}
+                >
+                  <div className={styles.wrapWebcam}>
+                    <Webcam
+                      mirrored
+                      audio={true}
+                      muted={true}
+                      ref={webcamRef}
+                      className={styles.webcam}
+                      audioConstraints={{
+                        deviceId: activeMicrophone,
+                        noiseSuppression: true,
+                        echoCancellation: true
+                      }}
+                      videoConstraints={{
+                        deviceId: activeWebcam,
+                        height: 420,
+                        width: 640
 
-                    // facingMode: "user" // Для мобильной фронталки
-                  }}
-                  onUserMedia={handleStartCaptureClick}
-                  // onUserMedia={handleUserMedia}
-                />
-                {rec && <div className={styles.rec}/>}
-              </div>
+                        // facingMode: "user" // Для мобильной фронталки
+                      }}
+                      // onUserMedia={handleStartCaptureClick}
+                    />
+                    {rec && <div className={styles.rec}/>}
+                  </div>
+                </Modal>
             }
-            {
-              recordedChunks.length > 0 && <>
-                <button onClick={handleDownload}>Download</button>
-                {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-                <button onClick={uploadVideo}>Upload to server</button>
-              </>
-            }
+            {/* { */}
+            {/*  recordedChunks.length > 0 && <> */}
+            {/*    <button onClick={handleDownload}>Download</button> */}
+            {/*    <button onClick={uploadVideo}>Upload to server</button> */}
+            {/*  </> */}
+            {/* } */}
           </Flex>
         </Card>
       </Flex>
-
     </Container>
   )
 }

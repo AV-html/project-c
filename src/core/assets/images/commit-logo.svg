@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 161 36">
+    <path fill="#000" fill-opacity=".9"
+          d="M4.5 27v-1.5H3V24H1.5V13.5H3V12h1.5v-1.5h9V12H15v1.5h1.5v3h-3V15H12v-1.5H6V15H4.5v7.5H6V24h6v-1.5h1.5V21h3v3H15v1.5h-1.5V27h-9zm27.9-3v-1.5h1.5V15h-1.5v-1.5h-6V15h-1.5v7.5h1.5V24h6zm-7.5 3v-1.5h-1.5V24h-1.5V13.5h1.5V12h1.5v-1.5h9V12h1.5v1.5h1.5V24h-1.5v1.5h-1.5V27h-9zm17.4 0V10.5h3V12h1.5v-1.5h3V12h1.5v-1.5h3V12h1.5v1.5h1.5V27h-3V15h-1.5v-1.5h-1.5V27h-3V13.5h-1.5V15h-1.5v12h-3zm20.4 0V10.5h3V12h1.5v-1.5h3V12h1.5v-1.5h3V12h1.5v1.5h1.5V27h-3V15h-1.5v-1.5h-1.5V27h-3V13.5h-1.5V15h-1.5v12h-3z"/>
+    <path fill="url(#a)"
+          d="M82.5 27v-3h3V13.5h-3v-3h6V24h3v3h-9zm3-18V6h3v3h-3zm15.6 18v-1.5h-1.5V24h-1.5V13.5h-3v-3h3V6h3v4.5h4.5v3h-4.5v9h1.5V24h3v-1.5h1.5V21h3v3h-1.5v1.5h-1.5V27h-6zm15.6 0v-3h3v3h-3zm20.1-3v-1.5h1.5V15h-1.5v-1.5h-6V15h-1.5v7.5h1.5V24h6zm-7.5 3v-1.5h-1.5V24h-1.5V13.5h1.5V12h1.5v-1.5h7.5V12h1.5v-1.5h3V27h-3v-1.5h-1.5V27h-7.5zm18 0v-3h3V13.5h-3v-3h6V24h3v3h-9zm3-18V6h3v3h-3z"/>
+    <defs>
+        <linearGradient id="a" x1="75.293" x2="161" y1="18" y2="18" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AF35FF"/>
+            <stop offset=".485" stop-color="#FF5AB6"/>
+            <stop offset="1" stop-color="#FEA597"/>
+        </linearGradient>
+    </defs>
+</svg>

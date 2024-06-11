@@ -4,8 +4,10 @@ import { Flex, Input } from 'antd'
 
 import { dataArticle } from 'ui/configs/news-configs'
 import { Container } from 'ui/container/'
+import { Icon } from 'ui/icon'
 
-import laptopDeskImage from './../../core/assets/images/laptop-desk.jpeg'
+import laptopDeskImage from 'core/assets/images/laptop-desk.jpg'
+
 import { EventsComponent } from './components/events/events-component'
 import { PreviewArticle } from './components/preview-article'
 import { TwitArticleComponent } from './components/twit-article/twit-article-component'
@@ -170,6 +172,7 @@ export const NewsComponent = () => {
           <Input
             className={styles.inputSearch}
             placeholder="Найти все про IT"
+            prefix={<Icon name={'search'}/>}
             style={{
               borderRadius: '100px',
               outline: 'none',
@@ -221,12 +224,14 @@ export const NewsComponent = () => {
         </Flex>
         <h2 className={styles.eventTitle}>Ближайшие события</h2>
       </Container>
-      <Flex className={styles.eventsCard}>
-        <EventsComponent/>
-        <EventsComponent/>
-        <EventsComponent/>
-        <EventsComponent/>
-      </Flex>
+      <Container maxWidth={1440}>
+        <Flex className={styles.eventsCard}>
+          <EventsComponent/>
+          <EventsComponent/>
+          <EventsComponent/>
+          <EventsComponent/>
+        </Flex>
+      </Container>
       <Container>
         <h2 className={styles.eventTitle}>Лента новостей</h2>
         <Flex style={{ marginBottom: '40px' }}>

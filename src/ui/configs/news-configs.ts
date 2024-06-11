@@ -1,13 +1,13 @@
-import img0 from './../../core/assets/images/0-img.png'
-import img2 from './../../core/assets/images/2-img.png'
-import avatar2 from './../../core/assets/images/avatar2.png'
-import avatar4 from './../../core/assets/images/avatar4.png'
-import backImg from './../../core/assets/images/backImg.png'
-import desImg from './../../core/assets/images/desImg.png'
-import avatar3 from './../../core/assets/images/hrAvatar.png'
-import imgYan from './../../core/assets/images/imgYan.png'
-import js from './../../core/assets/images/js.png'
-import maryUser from './../../core/assets/images/maryUser.jpg'
+import img0 from 'core/assets/images/0-img.png'
+import img2 from 'core/assets/images/2-img.png'
+import avatar2 from 'core/assets/images/avatar2.png'
+import avatar4 from 'core/assets/images/avatar4.png'
+import backImg from 'core/assets/images/backImg.png'
+import desImg from 'core/assets/images/desImg.png'
+import avatar3 from 'core/assets/images/hrAvatar.png'
+import imgYan from 'core/assets/images/imgYan.jpg'
+import js from 'core/assets/images/js.jpg'
+import maryUser from 'core/assets/images/maryUser.jpg'
 
 interface articleType {
   id: number
