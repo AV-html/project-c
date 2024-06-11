@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Flex } from 'antd'
+import { Flex, Typography } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 import { goToArticleByIdRoute } from 'app/app-router/app-router-configs'
@@ -44,8 +44,7 @@ export const PreviewArticleComponent: FC<ArticleProps> = ({
   }
 
   return (
-    <div className={styles.wrapArticle}
-      onClick={handleOpenArticle}>
+    <div className={styles.wrapArticle}>
       <Flex justify={'space-between'}>
         <Flex>
           <div>
@@ -61,16 +60,16 @@ export const PreviewArticleComponent: FC<ArticleProps> = ({
             </div>
           </Flex>
         </Flex>
-        <button className={styles.subscribe}>Подписаться</button>
+        <button className={styles.subscribe} disabled={true}>Подписаться</button>
       </Flex>
-      <h1>{title}</h1>
+      <Typography.Title level={2} className={styles.title} onClick={handleOpenArticle}>{title}</Typography.Title>
       <Flex className={styles.tagWrap}>
         <div className={styles.tag}
           style={{ backgroundColor: colorTag }}>{tag}</div>
       </Flex>
-      <h2>
+      <Typography.Text>
         {content}
-      </h2>
+      </Typography.Text>
       {
         showImg
           ? <div>

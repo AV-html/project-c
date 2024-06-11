@@ -36,7 +36,7 @@ export const UserHelpComponent: FC<IUserHelpProps> = ({ hex }) => {
               </div>
             </Flex>
           </Flex>
-          <button className={styles.subscribe}>Подписаться</button>
+          <button className={styles.subscribe} disabled={true}>Подписаться</button>
         </Flex>
       </div>
     </div>

@@ -39,8 +39,8 @@ export enum AppRoutes {
   FORBIDDEN = 'forbidden' // 403
 }
 
+export const goToNewsRoute = () => '/'
 export const goToAuthRoute = () => '/auth'
-export const goToNewsRoute = () => '/news'
 export const goToArticleByIdRoute = (id: string) => `/article/${id}`
 export const goToCommunityRoute = () => '/community'
 

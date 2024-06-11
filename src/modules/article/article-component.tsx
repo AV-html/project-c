@@ -49,7 +49,7 @@ export const ArticleComponent: FC = () => {
           >
             <Icon name={'arrowShortLeft'}/>
           </button>
-          <button className={styles.subscribe}>Подписаться</button>
+          <button className={styles.subscribe} disabled={true}>Подписаться</button>
         </Flex>
         <h1>
           {currentArticle.article.title}

@@ -17,6 +17,12 @@
   border: 1px solid #000;
   border-radius: 100px;
   margin-left: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color:  var(--color-link-hover);
+    border-color: var(--color-link-hover);
+  }
 }
 
 .tag {
@@ -24,4 +30,5 @@
   font-weight: 400;
   border-radius: 20px;
   color: white;
+
 }
