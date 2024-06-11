@@ -129,12 +129,14 @@ export const routes: RouteConfig[] = [
   {
     name: AppRoutes.AGATA_INTERVIEW_LIST,
     path: RoutePath['agata-interview-list'],
-    element: <AgataInterviewListPage/>
+    element: <AgataInterviewListPage/>,
+    authOnly: true
   },
   {
     name: AppRoutes.AGATA_INTERVIEW,
     path: RoutePath['agata-interview'],
-    element: <AgataInterviewPage/>
+    element: <AgataInterviewPage/>,
+    authOnly: true
   },
 
   {

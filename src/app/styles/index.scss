@@ -26,6 +26,9 @@
         background-color: var(--color-control-primary);
         color: var(--text-inverse-secondary);
       }
+      &:disabled {
+        color: var(--text-inverse-secondary);
+      }
     }
   }
   .ant-collapse-item {
@@ -91,7 +94,8 @@
 }
 
 .ant-modal-content {
-  border-radius: 12px !important;
+  padding: 24px !important;
+  border-radius: 24px !important;
 
   input {
     height: 40px !important;
@@ -100,7 +104,20 @@
   }
   button {
     font-size: 14px !important;
-    border-radius: 12px !important;
+
+    &.ant-btn-default {
+      border: none;
+    }
+    &.ant-btn-primary {
+      background-color: var(--color-control-primary);
+      &:hover {
+        background-color: var(--color-control-primary) !important;
+        color: var(--text-inverse-secondary) !important;
+      }
+      &:disabled {
+        color: var(--text-inverse-secondary);
+      }
+    }
   }
 }
 
@@ -123,7 +140,7 @@
   margin: 0 !important;
   line-height: 143%;
   word-break: initial;
-  color: var(--color-text-primary);
+  color: var(--color-text-primary-);
   &-secondary {
     color: var(--color-text-seconary);
   }
