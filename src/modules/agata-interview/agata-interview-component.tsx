@@ -168,7 +168,7 @@ export const AgataInterviewComponent = () => {
               })
             }
             {
-              isBeforeFinishInterview && <Message
+              dialogInfo?.status !== 'COMPLETED' && isBeforeFinishInterview && <Message
                 author={'agata'}
                 message={LAST_MESSAGE}
               />

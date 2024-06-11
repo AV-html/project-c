@@ -106,7 +106,7 @@ export const sendVideoAnswer = createAsyncThunk<IDialogMessage, {
       const res = await agataInterviewApi.sendVideoAnswer(dialogId, formData, questionIndex)
       const state = thunkAPI.getState()
       const totalQuestion = getTotalQuestion(state as TRootState) as number
-      if (questionIndex <= totalQuestion - 1) {
+      if (questionIndex < totalQuestion - 1) {
         void thunkAPI.dispatch(getNextQuestion(dialogId))
       }
       return res.data

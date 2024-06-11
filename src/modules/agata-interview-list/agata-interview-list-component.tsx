@@ -28,7 +28,7 @@ export const AgataInterviewListComponent: FC = () => {
     status
   }) => {
     const handleGoToInterview = () => {
-      navigation(goToAgataInterviewByIdRoute(companyId))
+      navigation(goToAgataInterviewByIdRoute(dialogId))
     }
     return (
       <Flex className={styles.card} gap={40} key={dialogId}>
@@ -38,7 +38,7 @@ export const AgataInterviewListComponent: FC = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <Flex vertical gap={16}>
+          <Flex vertical gap={16} className={styles.wrap}>
             <Flex justify={'space-between'} align={'center'}>
               <Flex gap={8} align={'center'}>
                 {
@@ -52,26 +52,37 @@ export const AgataInterviewListComponent: FC = () => {
                   {companyName}
                 </Typography.Text>
               </Flex>
-              <Flex gap={8} style={{ background: statusToColor[status] }} className={styles.status}>
-                {statusToText[status]}
+              <Flex gap={8} >
+                <div style={{ background: statusToColor[status] }} className={styles.status}>
+                  {statusToText[status]}
+                </div>
+                <Flex gap={4} className={styles.aihr} align={'center'}>
+                  <Icon name={'stars'} size={16}/>
+                  AI HR
+                </Flex>
               </Flex>
             </Flex>
-            <Flex gap={24} align={'center'}>
+            <Flex gap={24} align={'center'} className={styles.body}>
               <div className={styles.tag}>
                 Фронт-енд
               </div>
               <Typography.Text strong>
-                Lead Frontend-разработчик (react.js)
+                Frontend-разработчик
               </Typography.Text>
             </Flex>
-            <Button
-              size={'large'}
-              shape={'round'}
-              type={'primary'}
-              onClick={handleGoToInterview}
-            >
-              {statusToBtnText[status]}
-            </Button>
+            <Flex align={'end'} justify={'space-between'} gap={16}>
+              <div>
+
+              </div>
+              <Button
+                size={'large'}
+                shape={'round'}
+                type={'primary'}
+                onClick={handleGoToInterview}
+              >
+                {statusToBtnText[status]}
+              </Button>
+            </Flex>
           </Flex>
         </div>
       </Flex>
