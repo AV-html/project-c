@@ -1,6 +1,9 @@
 import { type FC } from 'react'
 
-import { Avatar, Flex } from 'antd'
+import {
+  Avatar, Dropdown, Flex, type MenuProps
+} from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
@@ -8,19 +11,50 @@ import { Logo } from 'ui/logo'
 import { NavLink } from 'ui/nav-link'
 
 import { useAppSelector } from 'core/hooks/rtk'
+import { userApi } from 'core/user/user-api'
 import { getUserInfo } from 'core/user/user-selectors'
 
 import { type INavbarProps } from './navbar-types'
 import {
   goToAiHrRoute, goToAuthRoute, goToCommunityRoute,
   goToEventsRoute,
-  goToNewsRoute, goToTalentsRoute, goToVacanciesRoute
+  goToNewsRoute, goToProfileRoute, goToTalentsRoute, goToVacanciesRoute
 } from '../app-router/app-router-configs'
 
 import styles from './navbar.module.css'
 
 export const NavbarComponent: FC<INavbarProps> = () => {
   const userInfo = useAppSelector(getUserInfo)
+
+  const navigation = useNavigate()
+
+  const [logout] = userApi.useLazyLogoutQuery()
+
+  const handleGoToProfile = () => {
+    navigation(goToProfileRoute('me'))
+  }
+
+  const handleLogout = () => {
+    void logout()
+    navigation(goToNewsRoute())
+  }
+
+  const items: MenuProps['items'] = [
+    {
+      label: 'Профиль',
+      key: '0',
+      icon: <Icon name={'profile'} size={16}/>,
+      onClick: handleGoToProfile
+    },
+    { type: 'divider' },
+    {
+      label: 'Выход',
+      key: '3',
+      icon: <Icon name={'logOut'} size={16}/>,
+      onClick: handleLogout
+    }
+  ]
+
   return (
     <div className={styles.navbar}>
       <Container className={styles.content}>
@@ -42,7 +76,7 @@ export const NavbarComponent: FC<INavbarProps> = () => {
             События
           </NavLink>
           <NavLink to={goToCommunityRoute()}>
-            Кофе
+            Комьюнити
           </NavLink>
         </Flex>
         {
@@ -54,11 +88,18 @@ export const NavbarComponent: FC<INavbarProps> = () => {
             >
               Войти
             </NavLink>
-            : <Avatar
-              size={40}
-              src={userInfo.avatar}
-              icon={<Icon name={'profile'} size={16} color={'#000'}/>}
-            />
+            : <Dropdown
+              menu={{ items }}
+              trigger={['click']}
+              placement={'bottomRight'}
+            >
+              <Avatar
+                size={40}
+                src={userInfo.avatar}
+                className={styles.extra}
+                icon={<Icon name={'profile'} size={16} color={'#000'}/>}
+              />
+            </Dropdown>
         }
       </Container>
     </div>

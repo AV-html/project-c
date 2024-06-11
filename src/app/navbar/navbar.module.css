@@ -18,8 +18,8 @@
 }
 
 .extra {
+    cursor: pointer;
     position: relative;
-    padding: 15px 20px;
 
     &::before {
         content: "";
