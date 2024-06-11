@@ -51,9 +51,9 @@ export const goToTalentsRoute = () => '/talents'
 
 export const goToAiHrRoute = () => '/ai-hr'
 
-export const goToEventsRoute = () => '/events'
-export const goToEventsConferenceRoute = () => '/events/conference'
-export const goToEventsHackathonRoute = () => '/events/hackathon'
+export const goToEventsRoute = () => '/conference'
+export const goToEventsConferenceRoute = () => '/conference/conference'
+export const goToEventsHackathonRoute = () => '/conference/hackathon'
 
 export const goToProfileRoute = (id: string) => `/profile/${id}`
 export const goToProfileSkillsRoute = (id: string) => `/profile/${id}/skills`
@@ -125,7 +125,6 @@ export const routes: RouteConfig[] = [
     path: RoutePath.community,
     element: <CommunityPage/>
   },
-
   {
     name: AppRoutes.AGATA_INTERVIEW_LIST,
     path: RoutePath['agata-interview-list'],
@@ -136,7 +135,6 @@ export const routes: RouteConfig[] = [
     path: RoutePath['agata-interview'],
     element: <AgataInterviewPage/>
   },
-
   {
     name: AppRoutes.NOT_FOUND,
     path: RoutePath['not-found'],
