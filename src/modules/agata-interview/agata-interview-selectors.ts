@@ -28,7 +28,7 @@ export const getHasHistory = createSelector(
 
 export const getCurrentNumberQuestion = createSelector(
   getAgataSelector,
-  (agata) => agata?.dialogInfo?.questions.current
+  (agata) => agata?.dialogInfo?.questions?.current
 )
 
 export const getIsBeforeFinishInterview = createSelector(
