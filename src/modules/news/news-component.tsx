@@ -5,7 +5,8 @@ import { Flex, Input } from 'antd'
 import { dataArticle } from 'ui/configs/news-configs'
 import { Container } from 'ui/container/'
 
-import laptopDeskImage from './../../core/assets/images/laptop-desk.jpeg'
+import laptopDeskImage from 'core/assets/images/laptop-desk.jpg'
+
 import { EventsComponent } from './components/events/events-component'
 import { PreviewArticle } from './components/preview-article'
 import { TwitArticleComponent } from './components/twit-article/twit-article-component'

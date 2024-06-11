@@ -2,6 +2,7 @@ import { type FC } from 'react'
 
 import { Flex, Typography } from 'antd'
 
+import agataAvatar from 'core/assets/images/agata-avatar.png'
 import { useAppSelector } from 'core/hooks/rtk'
 import { getUserInfo } from 'core/user/user-selectors'
 import { cn } from 'core/utils/class-names'
@@ -29,7 +30,7 @@ export const MessageComponent: FC<IMessageProps> = ({
 
   const avatar = isUser
     ? userInfo?.avatar
-    : null
+    : agataAvatar
 
   const isQuestionNumber = questionIndex !== null && questionIndex !== undefined
 

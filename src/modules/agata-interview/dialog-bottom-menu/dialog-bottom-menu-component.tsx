@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from 'core/hooks/rtk'
 
 import { type IDialogBottomMenuProps } from './dialog-bottom-menu-types'
 import {
+  getHasHistory,
   getIsBeforeFinishInterview,
   getStatusDialog
 } from '../agata-interview-selectors'
@@ -23,6 +24,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
   const { dialogId } = useParams()
   const status = useAppSelector(getStatusDialog)
   const isBeforeFinishInterview = useAppSelector(getIsBeforeFinishInterview)
+  const hasHistory = useAppSelector(getHasHistory)
   const dispatch = useAppDispatch()
 
   const [feedback, setFeedback] = useState('')
@@ -67,7 +69,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
   return (
     <div className={styles.dialogMenu}>
       {
-        isBeforeFinishInterview && <Input.TextArea
+        isBeforeFinishInterview && hasHistory && <Input.TextArea
           showCount
           maxLength={500}
           value={feedback}

@@ -2,7 +2,7 @@ import React, { type FC } from 'react'
 
 import { Flex } from 'antd'
 
-import avatarOne from 'core/assets/images/avatar1.png'
+import avatarOne from 'core/assets/images/avatar1.jpg'
 
 import styles from './user-card.module.css'
 

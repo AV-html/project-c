@@ -21,6 +21,11 @@ export const getDialogHistory = createSelector(
   (agata) => agata?.dialogHistory
 )
 
+export const getHasHistory = createSelector(
+  getAgataSelector,
+  (agata) => agata?.dialogHistory.length > 0
+)
+
 export const getCurrentNumberQuestion = createSelector(
   getAgataSelector,
   (agata) => agata?.dialogInfo?.questions.current
