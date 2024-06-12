@@ -2,8 +2,8 @@ import { type FC } from 'react'
 
 import { VacanciesSteps } from 'modules/vacancies-steps'
 
-const VacanciesStepsComponent: FC = () => {
+const VacanciesStepsPageComponent: FC = () => {
   return <VacanciesSteps/>
 }
 
-export default VacanciesStepsComponent
+export default VacanciesStepsPageComponent
