@@ -1,0 +1,72 @@
+.wrapHeader {
+  position: relative;
+}
+
+.roundButton {
+  position: absolute;
+  left: -110px;
+  top: 5px;
+
+  width: 80px;
+  height: 80px;
+  border: 1px solid #000;
+  border-radius: 100px;
+}
+
+.wrapSkills {
+  border: 1px solid gainsboro;
+  border-radius: 40px;
+  padding: 26px;
+}
+
+.avatar {
+  width: 146px;
+  height: 146px;
+  border-radius: 50%;
+}
+
+.skillBorder{
+  border-right: 1px solid gainsboro;
+  border-left: 1px solid gainsboro;
+  padding: 0 10px;
+}
+
+.wrapJun {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  border-radius: 40px;
+  width: 400px;
+}
+
+.wrapButton {
+  position: relative;
+}
+
+.buttonSkill {
+  color: black;
+  border-radius: 20px;
+  background-color: #1A1A1A0D;
+  padding: 10px 36px 10px 16px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.active.buttonSkill,
+.hover.buttonSkill:hover {
+  background-color: #71CB3E;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buttonSkill:hover .icon {
+  color: white;
+}
+
+.icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

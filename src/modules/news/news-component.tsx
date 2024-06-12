@@ -1,16 +1,19 @@
 import { useState } from 'react'
 
 import { Flex, Input } from 'antd'
+import { useNavigate } from 'react-router-dom'
+
+import { goToAiHrRoute } from 'app/app-router/app-router-configs'
 
 import { dataArticle } from 'ui/configs/news-configs'
 import { Container } from 'ui/container/'
 import { Icon } from 'ui/icon'
 
-import laptopDeskImage from 'core/assets/images/laptop-desk.jpg'
+import HRImage from 'core/assets/images/hr-background.svg'
 
-import { EventsComponent } from './components/events/events-component'
 import { PreviewArticle } from './components/preview-article'
 import { TwitArticleComponent } from './components/twit-article/twit-article-component'
+import { Hackathon } from '../events/components/hackathon'
 
 import styles from './news.module.css'
 
@@ -19,6 +22,11 @@ export const NewsComponent = () => {
 
   const filterButtonHandler = (filter: string) => {
     setFilter(filter)
+  }
+
+  const navigation = useNavigate()
+  const onClickChangePage = () => {
+    navigation(goToAiHrRoute())
   }
 
   const articlesList = () => {
@@ -185,13 +193,11 @@ export const NewsComponent = () => {
           <Flex gap={16}>
             <div className={styles.mainArticle}>
               <div className={styles.wrapImage}>
-                <img
-                  className={styles.laptopDeskImage}
-                  src={laptopDeskImage}
-                  alt={''}
-                />
+                <HRImage className={styles.laptopDeskImage}/>
               </div>
-              <h2 className={styles.imgText}>Как<br/>подготовиться к<br/>собеседованию</h2>
+              <div className={styles.imgText} onClick={onClickChangePage}>
+                Как AI HR <br/> помогает<br/>улучшить найм
+              </div>
             </div>
             <Flex gap={16}
               vertical>
@@ -224,12 +230,9 @@ export const NewsComponent = () => {
         </Flex>
         <h2 className={styles.eventTitle}>Ближайшие события</h2>
       </Container>
-      <Container maxWidth={1440}>
+      <Container>
         <Flex className={styles.eventsCard}>
-          <EventsComponent/>
-          <EventsComponent/>
-          <EventsComponent/>
-          <EventsComponent/>
+          <Hackathon/>
         </Flex>
       </Container>
       <Container>

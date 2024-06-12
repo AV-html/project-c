@@ -56,7 +56,7 @@ export const goToEventsConferenceRoute = () => '/conference/conference'
 export const goToEventsHackathonRoute = () => '/conference/hackathon'
 
 export const goToProfileRoute = (id: string) => `/profile/${id}`
-export const goToProfileSkillsRoute = (id: string) => `/profile/${id}/skills`
+export const goToSkillsMapRoute = (id: string) => `/skills-map/${id}`
 
 export const goToAgataInterviewListRoute = () => '/interview'
 export const goToAgataInterviewByIdRoute = (id: string) => `/interview/${id}`
@@ -80,7 +80,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.VACANCY]: goToVacancyRoute(':vacancyId'),
   [AppRoutes.TALENTS]: goToTalentsRoute(),
   [AppRoutes.PROFILE]: goToProfileRoute(':profileId'),
-  [AppRoutes.PROFILE_SKILLS]: goToProfileSkillsRoute(':skillId:'),
+  [AppRoutes.PROFILE_SKILLS]: goToSkillsMapRoute(':userId'),
 
   [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
   [AppRoutes.AGATA_INTERVIEW]: goToAgataInterviewByIdRoute(':dialogId'),
