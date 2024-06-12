@@ -1,5 +1,6 @@
 .button {
   &:not(.ai) {
+    transition: all 0.3s ease-in-out;
     background-color: var(--color-control-secondary);
     color: var(--color-text-primary);
 
@@ -18,6 +19,9 @@
 .ai {
   cursor: pointer;
   position: relative;
+  transition: all 0.3s ease-in-out;
+  background: transparent;
+  color: darkslategrey;
 
   &::before {
     content: "";
@@ -34,8 +38,6 @@
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
   }
-  transition: all 0.3s ease-in-out;
-  color: var(--color-text-primary);
 
   &:hover {
     background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
@@ -43,7 +45,7 @@
   }
 
   &.active {
-    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%);
+    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
     color: var(--text-inverse-primary);
   }
 }

@@ -1,0 +1,63 @@
+.report {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.backBtn {
+  position: absolute;
+  left: calc(-80px - 36px);
+}
+
+.card {
+  border: 1px solid #00000026;
+  height: 254px;
+  width: 100%;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.wrapVideo {
+  height: 252px;
+  width: 359px;
+  flex: 0 0 359px;
+}
+
+.body {
+  padding: 24px;
+  flex: 1 1 auto;
+}
+.mb {
+  margin-bottom: 12px !important;
+}
+
+.bodyCard {
+  width: 100%;
+  height: 132px;
+  overflow: hidden;
+  padding: 16px 0 16px 16px;
+
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+}
+
+.scroll {
+  height: 100%;
+  overflow: auto;
+}

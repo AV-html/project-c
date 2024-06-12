@@ -15,6 +15,7 @@ export const NavLinkComponent: FC<INavLinkProps> = ({
   type = 'default',
   children,
   className,
+  activeClassName = '',
   ...restProps
 }) => {
   const match = useMatch(to)
@@ -22,7 +23,10 @@ export const NavLinkComponent: FC<INavLinkProps> = ({
   const tabLinkClass = cn(
     styles.link,
     [className],
-    { [styles.active]: !!match }
+    {
+      [styles.active]: !!match,
+      [activeClassName]: !!match && activeClassName
+    }
   )
 
   const isActive = !!match

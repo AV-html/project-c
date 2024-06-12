@@ -16,9 +16,10 @@ import { getUserInfo } from 'core/user/user-selectors'
 
 import { type INavbarProps } from './navbar-types'
 import {
+  goToAgataInterviewListRoute,
   goToAiHrRoute, goToAuthRoute, goToCommunityRoute,
   goToEventsRoute,
-  goToNewsRoute, goToProfileRoute, goToTalentsRoute, goToVacanciesRoute
+  goToNewsRoute, goToProfileRoute, goToTalentsRoute, goToVacanciesRoute, goToVacanciesStepsRoute
 } from '../app-router/app-router-configs'
 
 import styles from './navbar.module.css'
@@ -29,6 +30,14 @@ export const NavbarComponent: FC<INavbarProps> = () => {
   const navigation = useNavigate()
 
   const [logout] = userApi.useLazyLogoutQuery()
+
+  const handleGoToVacanciesSteps = () => {
+    navigation(goToVacanciesStepsRoute())
+  }
+
+  const handleGoToInterviewList = () => {
+    navigation(goToAgataInterviewListRoute())
+  }
 
   const handleGoToProfile = () => {
     navigation(goToProfileRoute('me'))
@@ -41,15 +50,27 @@ export const NavbarComponent: FC<INavbarProps> = () => {
 
   const items: MenuProps['items'] = [
     {
+      label: 'Мои вакансии',
+      key: '1',
+      icon: <Icon name={'textFormattingList'} size={16}/>,
+      onClick: handleGoToVacanciesSteps
+    },
+    {
+      label: 'Интервью',
+      key: '2',
+      icon: <Icon name={'chat'} size={16}/>,
+      onClick: handleGoToInterviewList
+    },
+    {
       label: 'Профиль',
-      key: '0',
+      key: '3',
       icon: <Icon name={'profile'} size={16}/>,
       onClick: handleGoToProfile
     },
     { type: 'divider' },
     {
       label: 'Выход',
-      key: '3',
+      key: '4',
       icon: <Icon name={'logOut'} size={16}/>,
       onClick: handleLogout
     }
@@ -69,7 +90,7 @@ export const NavbarComponent: FC<INavbarProps> = () => {
           <NavLink to={goToTalentsRoute()}>
             Таланты
           </NavLink>
-          <NavLink to={goToAiHrRoute()} className={styles.extra}>
+          <NavLink to={goToAiHrRoute()} className={styles.extra} activeClassName={styles.bg}>
             AI HR
           </NavLink>
           <NavLink to={goToEventsRoute()}>

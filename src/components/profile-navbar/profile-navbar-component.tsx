@@ -3,7 +3,11 @@ import { type FC } from 'react'
 import { Button, Flex } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { goToAgataInterviewListRoute, goToProfileRoute, goToVacanciesRoute } from 'app/app-router/app-router-configs'
+import {
+  goToAgataInterviewListRoute,
+  goToProfileRoute,
+  goToVacanciesStepsRoute
+} from 'app/app-router/app-router-configs'
 
 import { Icon } from 'ui/icon'
 
@@ -15,7 +19,7 @@ export const ProfileNavbarComponent: FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const handleGoToVacancies = () => {
-    navigate(goToVacanciesRoute())
+    navigate(goToVacanciesStepsRoute())
   }
   const handleGoToInterview = () => {
     navigate(goToAgataInterviewListRoute())
@@ -24,7 +28,7 @@ export const ProfileNavbarComponent: FC = () => {
     navigate(goToProfileRoute('me'))
   }
 
-  const isVacancies = location.pathname.includes('vacancies')
+  const isVacancies = location.pathname.includes('vacancies-steps')
   const isInterview = location.pathname.includes('interview')
   const isProfile = location.pathname.includes('profile')
 

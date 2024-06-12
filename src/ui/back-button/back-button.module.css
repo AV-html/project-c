@@ -1,0 +1,9 @@
+.button {
+    height: 80px;
+    width: 80px !important;
+    border: 2px solid #000000E5 !important;
+
+    &:hover {
+        border: 2px solid var(--color-link-hover) !important;
+    }
+}

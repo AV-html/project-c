@@ -3,7 +3,9 @@ import { type ChangeEvent, type FC, useState } from 'react'
 import {
   Button, Input, Modal, notification, Popover
 } from 'antd'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import { goToAgataInterviewListRoute } from 'app/app-router/app-router-configs'
 
 import { Icon } from 'ui/icon'
 
@@ -26,6 +28,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
   const isBeforeFinishInterview = useAppSelector(getIsBeforeFinishInterview)
   const hasHistory = useAppSelector(getHasHistory)
   const dispatch = useAppDispatch()
+  const navigation = useNavigate()
 
   const [feedback, setFeedback] = useState('')
 
@@ -50,26 +53,35 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
   const handleFinishInterview = () => {
     if (dialogId) {
       if (isBeforeFinishInterview) {
-        void dispatch(finishInterview({ dialogId }))
+        void dispatch(finishInterview({ dialogId, feedback }))
+        navigation(goToAgataInterviewListRoute())
+      } else {
+        Modal.confirm({
+          width: 450,
+          title: 'Вы уверены, что хотите завершить интервью?',
+          icon: <span className={styles.warn}><Icon name={'error'} size={24}/></span>,
+          content: 'Оставшиеся вопросы будут оценены в 0 баллов',
+          cancelText: 'Отмена',
+          okText: 'Заверишть',
+          onOk: () => {
+            void dispatch(finishInterview({ dialogId }))
+            navigation(goToAgataInterviewListRoute())
+          }
+        })
       }
-      Modal.confirm({
-        width: 450,
-        title: 'Вы уверены, что хотите завершить интервью?',
-        icon: <span className={styles.warn}><Icon name={'error'} size={24}/></span>,
-        content: 'Оставшиеся вопросы будут оценены в 0 баллов',
-        cancelText: 'Отмена',
-        okText: 'Заверишть',
-        onOk: () => {
-          void dispatch(finishInterview({ dialogId, feedback }))
-        }
-      })
     }
+  }
+
+  const isCompleted = status === 'COMPLETED'
+
+  const handleGoToBack = () => {
+    navigation(goToAgataInterviewListRoute())
   }
 
   return (
     <div className={styles.dialogMenu}>
       {
-        isBeforeFinishInterview && hasHistory && <Input.TextArea
+        !isCompleted && isBeforeFinishInterview && hasHistory && <Input.TextArea
           showCount
           maxLength={500}
           value={feedback}
@@ -112,7 +124,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
           type={'primary'}
           size={'large'}
           shape={'round'}
-          onClick={handleStartInterview}
+          onClick={() => { void handleStartInterview() }}
         >
               Начать интервью
         </Button>
@@ -125,6 +137,16 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
           onClick={handleFinishInterview}
         >
               Завершить интервью
+        </Button>
+      }
+      {
+        isCompleted && <Button
+          type={'primary'}
+          size={'large'}
+          shape={'round'}
+          onClick={handleGoToBack}
+        >
+              К списку интервью
         </Button>
       }
     </div>

@@ -9,6 +9,9 @@ import {
 import { useParams } from 'react-router-dom'
 import Webcam from 'react-webcam'
 
+import { goToAgataInterviewListRoute } from 'app/app-router/app-router-configs'
+
+import { BackButton } from 'ui/back-button'
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
 import { Stopwatch } from 'ui/stopwatch'
@@ -127,25 +130,29 @@ export const AgataInterviewComponent = () => {
         gap={24}
         style={{ height: '100%' }}
       >
-        <Flex
-          vertical
-          gap={8}
-        >
-          <Flex>
-            <Typography.Title
-              level={3}
-              style={{ padding: '8px 0' }}
-            >
-              AI Интервью
-            </Typography.Title>
-          </Flex>
-          <Flex>
-            <Typography.Text
-              strong
-              style={{ padding: '3.5px 0' }}
-            >
-              {dialogInfo?.company.name}
-            </Typography.Text>
+
+        <Flex gap={24}>
+          <BackButton path={goToAgataInterviewListRoute()}/>
+          <Flex
+            vertical
+            gap={8}
+          >
+            <Flex>
+              <Typography.Title
+                level={3}
+                style={{ padding: '8px 0' }}
+              >
+                AI Интервью
+              </Typography.Title>
+            </Flex>
+            <Flex>
+              <Typography.Text
+                strong
+                style={{ padding: '3.5px 0' }}
+              >
+                {dialogInfo?.company.name}
+              </Typography.Text>
+            </Flex>
           </Flex>
         </Flex>
         <Card className={styles.card}>
@@ -168,7 +175,7 @@ export const AgataInterviewComponent = () => {
               })
             }
             {
-              isBeforeFinishInterview && <Message
+              dialogInfo?.status !== 'COMPLETED' && isBeforeFinishInterview && <Message
                 author={'agata'}
                 message={LAST_MESSAGE}
               />
