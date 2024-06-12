@@ -1,6 +1,7 @@
 import { type FC, useEffect, useState } from 'react'
 
 import { Layout } from 'antd'
+import dayjs from 'dayjs'
 
 import { Content } from 'ui/content'
 
@@ -12,6 +13,9 @@ import { AppRouter } from './app-router'
 import { Navbar } from './navbar'
 
 import './styles/index.scss'
+import 'dayjs/locale/ru'
+
+dayjs.locale('ru')
 
 export const App: FC = () => {
   const [firstLoading, setFirstLoading] = useState(true)

@@ -6,7 +6,14 @@
   flex-direction: column;
   gap: 20px;
   margin-bottom: 20px;
+}
+
+.mb {
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: var(--color-link-hover)
+  }
 }
 
 .avatarOne {

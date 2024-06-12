@@ -1,0 +1,70 @@
+.card {
+  width: 100%;
+  height: 200px;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 40px;
+}
+
+.status {
+  padding: 6px 16px;
+  border-radius: 16px;
+}
+
+.preview {
+  flex: 0 0 359px;
+  width: 359px;
+  height: 100%;
+  border-radius: 39px;
+  color: var(--text-inverse-primary);
+  background-color: var(--color-border-secondary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .play {
+    background-color: var(--color-control-primary);
+    height: 64px;
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.right {
+  padding: 24px;
+  width: 100%;
+}
+.emptyLogo {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: var(--color-border-secondary);
+  color: var(--color-control-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tag {
+  padding: 6px 16px;
+  background-color: #31BBF2;
+  color: #FFFFFF;
+  border-radius: 16px;
+}
+.wrap {
+  height: 100%;
+}
+.body {
+  flex: 1 1 auto;
+}
+
+.aihr {
+  color: #fff;
+  background:  linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%);
+  padding: 4px 12px;
+  border-radius: 20px;
+}

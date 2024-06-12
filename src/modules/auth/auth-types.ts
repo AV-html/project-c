@@ -5,6 +5,7 @@ export type TValue = string | number
 export interface ITab {
   label: string
   value: TValue
+  disabled?: boolean
 }
 
 export interface ILoginRequest {

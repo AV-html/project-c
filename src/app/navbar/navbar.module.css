@@ -1,12 +1,43 @@
 .navbar {
-    display: flex;
-    gap: 16px;
-
-    border: 1px solid #000;
+    background: #fff;
     height: 72px;
 
     position: fixed;
+    z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+}
+
+.bg {
+    background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
+    border: none;
+}
+
+.extra {
+    cursor: pointer;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50px;
+        border: 2px solid transparent;
+        background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+    }
 }

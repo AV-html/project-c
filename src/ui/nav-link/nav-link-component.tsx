@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { Button, Tooltip } from 'antd'
+import { Button } from 'antd'
 import { Link, useMatch } from 'react-router-dom'
 
 import { cn } from 'core/utils/class-names'
@@ -11,40 +11,42 @@ import styles from './nav-link.module.scss'
 
 export const NavLinkComponent: FC<INavLinkProps> = ({
   icon,
-  title,
   to,
   type = 'default',
-  className,
   children,
+  className,
+  activeClassName = '',
   ...restProps
 }) => {
   const match = useMatch(to)
 
   const tabLinkClass = cn(
     styles.link,
-    [],
-    { [styles.active]: !!match }
+    [className],
+    {
+      [styles.active]: !!match,
+      [activeClassName]: !!match && activeClassName
+    }
   )
 
+  const isActive = !!match
+
   return (
-    <Tooltip
-      placement={'right'}
-      title={title}
-      className={className}
+    <Link
+      {...restProps}
+      to={to}
+      className={cn({ [styles.active]: !!match })}
     >
-      <Link
-        to={to}
-        {...restProps}
+      <Button
+        className={tabLinkClass}
+        type={isActive ? 'primary' : type }
+        size={'large'}
+        shape={'round'}
+        icon={icon}
+        iconPosition={'end'}
       >
-        <Button
-          className={tabLinkClass}
-          type={type}
-          size={'large'}
-          icon={icon}
-        >
-          {children}
-        </Button>
-      </Link>
-    </Tooltip>
+        {children}
+      </Button>
+    </Link>
   )
 }

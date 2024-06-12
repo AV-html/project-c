@@ -108,15 +108,17 @@ export const RegistrationComponent: FC = () => {
               placeholder="Пароль"/>
           </Form.Item>
 
-          <Form.Item label={EMPTY_SYMBOL}>
-            <SubmitButton
-              block
-              form={form}
-            >
-              Зарегистрироваться
-            </SubmitButton>
-          </Form.Item>
         </Col>
+      </Row>
+      <Row>
+        <Form.Item label={EMPTY_SYMBOL} style={{ width: '100%' }}>
+          <SubmitButton
+            block
+            form={form}
+          >
+            Зарегистрироваться
+          </SubmitButton>
+        </Form.Item>
       </Row>
     </Form>
   )

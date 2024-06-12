@@ -1,3 +1,5 @@
+import type { TDialogStatus } from 'core/types/main'
+
 export interface IAgataState {
   isLoading: boolean
   isLoadingCreateDialogs: boolean
@@ -28,8 +30,6 @@ export interface IDialog {
   companyAvatar: null
   status: TDialogStatus
 }
-
-export type TDialogStatus = 'NOT_STARTED' | 'WAITING' | 'ANALYSIS' | 'COMPLETED'
 
 export interface IResDataGetDialogInfoById {
   startDate: string // TODO: дата начала и конца

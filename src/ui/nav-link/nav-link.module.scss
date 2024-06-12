@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  border-radius: 50%;
+
+  box-shadow: none;
 }
 
 .active {
-  color: var(--color-link);
-  background: var(--color-special-accient);
-
-  &:hover {
-    color: var(--color-link-hover) !important;
-  }
+  cursor: default;
+  pointer-events: none;
 }

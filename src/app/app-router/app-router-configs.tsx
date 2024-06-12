@@ -1,5 +1,6 @@
 import { AgataInterviewListPage } from 'pages/agata-interview-list-page'
 import { AgataInterviewPage } from 'pages/agata-interview-page'
+import { AgataInterviewReportPage } from 'pages/agata-interview-report-page'
 import { ArticlePage } from 'pages/article-page'
 import { AuthPage } from 'pages/auth-page'
 import { CommunityPage } from 'pages/community-page'
@@ -13,6 +14,7 @@ import { ProfilePage } from 'pages/profile-page'
 import { ProfileSkillsPage } from 'pages/profile-skills-page'
 import { TalentsPage } from 'pages/talents-page'
 import { VacanciesPage } from 'pages/vacancies-page'
+import { VacanciesStepsPage } from 'pages/vacancies-steps-page'
 import { VacancyPage } from 'pages/vacancy-page'
 
 import { type RouteConfig } from './app-router-types'
@@ -27,6 +29,7 @@ export enum AppRoutes {
   ARTICLE = 'article',
   COMMUNITY = 'community',
   VACANCIES = 'vacancies',
+  VACANCIES_STEPS = 'vacancies-steps',
   VACANCY = 'vacancy',
   TALENTS = 'talents',
   PROFILE = 'profile',
@@ -34,18 +37,20 @@ export enum AppRoutes {
 
   AGATA_INTERVIEW_LIST = 'agata-interview-list',
   AGATA_INTERVIEW = 'agata-interview',
+  AGATA_INTERVIEW_REPORT = 'agata-interview-report',
 
   NOT_FOUND = 'not-found', // 404
   FORBIDDEN = 'forbidden' // 403
 }
 
+export const goToNewsRoute = () => '/'
 export const goToAuthRoute = () => '/auth'
-export const goToNewsRoute = () => '/news'
 export const goToArticleByIdRoute = (id: string) => `/article/${id}`
 export const goToCommunityRoute = () => '/community'
 
 export const goToVacanciesRoute = () => '/vacancies'
 export const goToVacancyRoute = (id: string) => `/vacancies/${id}`
+export const goToVacanciesStepsRoute = () => '/vacancies-steps'
 
 export const goToTalentsRoute = () => '/talents'
 
@@ -60,6 +65,7 @@ export const goToProfileSkillsRoute = (id: string) => `/profile/${id}/skills`
 
 export const goToAgataInterviewListRoute = () => '/interview'
 export const goToAgataInterviewByIdRoute = (id: string) => `/interview/${id}`
+export const goToAgataInterviewReportRoute = (id: string) => `/interview/${id}/report`
 
 export const goToForbiddenRoute = () => '/forbidden'
 export const goToNotFoundRoute = () => '/not-found'
@@ -78,12 +84,14 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.COMMUNITY]: goToCommunityRoute(),
   [AppRoutes.VACANCIES]: goToVacanciesRoute(),
   [AppRoutes.VACANCY]: goToVacancyRoute(':vacancyId'),
+  [AppRoutes.VACANCIES_STEPS]: goToVacanciesStepsRoute(),
   [AppRoutes.TALENTS]: goToTalentsRoute(),
   [AppRoutes.PROFILE]: goToProfileRoute(':profileId'),
   [AppRoutes.PROFILE_SKILLS]: goToProfileSkillsRoute(':skillId:'),
 
   [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
   [AppRoutes.AGATA_INTERVIEW]: goToAgataInterviewByIdRoute(':dialogId'),
+  [AppRoutes.AGATA_INTERVIEW_REPORT]: goToAgataInterviewReportRoute(':dialogId'),
 
   [AppRoutes.FORBIDDEN]: goToForbiddenRoute(),
   [AppRoutes.NOT_FOUND]: '*'
@@ -125,16 +133,29 @@ export const routes: RouteConfig[] = [
     path: RoutePath.community,
     element: <CommunityPage/>
   },
-
+  {
+    name: AppRoutes.VACANCIES_STEPS,
+    path: RoutePath['vacancies-steps'],
+    element: <VacanciesStepsPage/>,
+    authOnly: true
+  },
   {
     name: AppRoutes.AGATA_INTERVIEW_LIST,
     path: RoutePath['agata-interview-list'],
-    element: <AgataInterviewListPage/>
+    element: <AgataInterviewListPage/>,
+    authOnly: true
   },
   {
     name: AppRoutes.AGATA_INTERVIEW,
     path: RoutePath['agata-interview'],
-    element: <AgataInterviewPage/>
+    element: <AgataInterviewPage/>,
+    authOnly: true
+  },
+  {
+    name: AppRoutes.AGATA_INTERVIEW_REPORT,
+    path: RoutePath['agata-interview-report'],
+    element: <AgataInterviewReportPage/>,
+    authOnly: true
   },
 
   {
