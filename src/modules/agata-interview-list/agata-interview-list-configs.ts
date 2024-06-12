@@ -4,7 +4,7 @@ export const statusToText: Record<TDialogStatus, string> = {
   NOT_STARTED: 'Новое',
   WAITING: 'В процессе',
   ANALYSIS: 'В обработке',
-  COMPLETED: 'Пройдено'
+  COMPLETED: 'Завершено'
 } as const
 
 export const statusToColor: Record<TDialogStatus, string> = {
@@ -18,5 +18,5 @@ export const statusToBtnText: Record<TDialogStatus, string> = {
   NOT_STARTED: 'Начать',
   WAITING: 'Подключиться к интервью',
   ANALYSIS: 'Посмотреть',
-  COMPLETED: 'Посмотреть'
+  COMPLETED: 'История'
 } as const

@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import {
   goToAgataInterviewListRoute,
-  goToProfileRoute,
+  goToProfileRoute, goToSkillsMapRoute,
   goToVacanciesStepsRoute
 } from 'app/app-router/app-router-configs'
 
@@ -26,6 +26,9 @@ export const ProfileNavbarComponent: FC = () => {
   }
   const handleGoToProfile = () => {
     navigate(goToProfileRoute('me'))
+  }
+  const handleGoSkillsMap = () => {
+    navigate(goToSkillsMapRoute('me'))
   }
 
   const isVacancies = location.pathname.includes('vacancies-steps')
@@ -59,6 +62,14 @@ export const ProfileNavbarComponent: FC = () => {
         shape={'round'}
       >
         🙂 Резюме
+      </Button>
+      <Button
+        onClick={handleGoSkillsMap}
+        className={cn(styles.button, { [styles.active]: isProfile })}
+        size={'large'}
+        shape={'round'}
+      >
+        📈 Карта навыков
       </Button>
     </Flex>
   )

@@ -10,6 +10,10 @@
   }
 }
 
+.container {
+  height: calc(100vh - 145px);
+}
+
 .rec {
   border-radius: 50%;
   height: 10px;

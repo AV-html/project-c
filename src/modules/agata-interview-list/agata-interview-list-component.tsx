@@ -1,9 +1,11 @@
 import { type FC } from 'react'
 
-import { Button, Flex, Typography } from 'antd'
+import {
+  Alert, Button, Flex, Typography
+} from 'antd'
 import { useNavigate } from 'react-router-dom'
 
-import { goToAgataInterviewByIdRoute } from 'app/app-router/app-router-configs'
+import { goToAgataInterviewByIdRoute, goToAgataInterviewReportRoute } from 'app/app-router/app-router-configs'
 
 import { ProfileNavbar } from 'components/profile-navbar'
 
@@ -12,6 +14,7 @@ import { Icon } from 'ui/icon'
 
 import { agataInterviewApi } from './agata-interview-list-api'
 import { statusToBtnText, statusToColor, statusToText } from './agata-interview-list-configs'
+import { gradeToColor } from '../agata-interview-report/agata-interview-report-component'
 
 import styles from './agata-interview-list.module.scss'
 
@@ -20,15 +23,32 @@ export const AgataInterviewListComponent: FC = () => {
 
   const navigation = useNavigate()
 
+  const isAnalysis = data.some(({ status }) => status === 'ANALYSIS')
+
   const cards = data.map(({
     companyAvatar,
     companyName,
     dialogId,
-    status
+    status,
+    reportInfo
   }) => {
     const handleGoToInterview = () => {
       navigation(goToAgataInterviewByIdRoute(dialogId))
     }
+
+    const handleGoToReport = () => {
+      navigation(goToAgataInterviewReportRoute(dialogId))
+    }
+
+    const total = Number((reportInfo.scoreSum / (reportInfo.countQuestion * 10) * 100).toFixed(0))
+
+    let color = gradeToColor.bottom
+    if (total > 30 && total < 60) {
+      color = gradeToColor.middle
+    } else if (total > 30) {
+      color = gradeToColor.top
+    }
+
     return (
       <Flex className={styles.card} gap={16} key={dialogId}>
         <div className={styles.preview}>
@@ -51,7 +71,7 @@ export const AgataInterviewListComponent: FC = () => {
                   {companyName}
                 </Typography.Text>
               </Flex>
-              <Flex gap={8} >
+              <Flex gap={8}>
                 <div style={{ background: statusToColor[status] }} className={styles.status}>
                   {statusToText[status]}
                 </div>
@@ -70,13 +90,27 @@ export const AgataInterviewListComponent: FC = () => {
               </Typography.Text>
             </Flex>
             <Flex align={'end'} justify={'space-between'} gap={16}>
-              <div>
-
-              </div>
+              {
+                status === 'COMPLETED'
+                  ? <div>
+                    {status === 'COMPLETED' && <Button
+                      size={'large'}
+                      type={'primary'}
+                      shape={'round'}
+                      icon={<Icon name={'post'} size={16}/>}
+                      onClick={handleGoToReport}
+                      style={{ background: color }}
+                    >
+                        Результат {total} %
+                    </Button>}
+                  </div>
+                  : <div/>
+              }
               <Button
                 size={'large'}
                 shape={'round'}
                 type={'primary'}
+                icon={<Icon name={'play'} size={16}/>}
                 onClick={handleGoToInterview}
               >
                 {statusToBtnText[status]}
@@ -92,6 +126,12 @@ export const AgataInterviewListComponent: FC = () => {
     <Container>
       <Flex vertical gap={24}>
         <ProfileNavbar/>
+        {isAnalysis && <Alert
+          showIcon
+          icon={<Icon name={'error'} size={16}/>}
+          type={'warning'}
+          message={'Вы недавно завершили интервью. Обработка займёт пару минут и можно будет посмотреть результаты'}
+        />}
         <Flex vertical gap={8}>
           {cards}
         </Flex>

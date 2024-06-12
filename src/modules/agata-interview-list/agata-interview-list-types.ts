@@ -6,4 +6,9 @@ export interface IDialogItem {
   companyId: string
   companyName: string
   companyAvatar: string
+  reportInfo: {
+    countQuestion: number
+    scoreSum: number
+    countError: number
+  }
 }

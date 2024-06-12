@@ -124,7 +124,7 @@ export const AgataInterviewComponent = () => {
   const lastQuestions = dialogHistory[dialogHistory.length - 1]?.message ?? ''
 
   return (
-    <Container>
+    <Container className={styles.container}>
       <Flex
         vertical
         gap={24}
