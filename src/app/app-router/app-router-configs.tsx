@@ -61,7 +61,7 @@ export const goToEventsConferenceRoute = () => '/events/conference'
 export const goToEventsHackathonRoute = () => '/events/hackathon'
 
 export const goToProfileRoute = (id: string) => `/profile/${id}`
-export const goToProfileSkillsRoute = (id: string) => `/profile/${id}/skills`
+export const goToSkillsMapRoute = (id: string) => `/skills-map/${id}`
 
 export const goToAgataInterviewListRoute = () => '/interview'
 export const goToAgataInterviewByIdRoute = (id: string) => `/interview/${id}`
@@ -87,7 +87,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.VACANCIES_STEPS]: goToVacanciesStepsRoute(),
   [AppRoutes.TALENTS]: goToTalentsRoute(),
   [AppRoutes.PROFILE]: goToProfileRoute(':profileId'),
-  [AppRoutes.PROFILE_SKILLS]: goToProfileSkillsRoute(':skillId:'),
+  [AppRoutes.PROFILE_SKILLS]: goToSkillsMapRoute(':userId'),
 
   [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
   [AppRoutes.AGATA_INTERVIEW]: goToAgataInterviewByIdRoute(':dialogId'),
@@ -159,11 +159,6 @@ export const routes: RouteConfig[] = [
   },
 
   {
-    name: AppRoutes.NOT_FOUND,
-    path: RoutePath['not-found'],
-    element: <NotFoundPage/>
-  },
-  {
     name: AppRoutes.FORBIDDEN,
     path: RoutePath.forbidden,
     element: <ForbiddenPage/>
@@ -192,5 +187,11 @@ export const routes: RouteConfig[] = [
     name: AppRoutes.PROFILE_SKILLS,
     path: RoutePath['profile-skills'],
     element: <ProfileSkillsPage/>
+  },
+
+  {
+    name: AppRoutes.NOT_FOUND,
+    path: RoutePath['not-found'],
+    element: <NotFoundPage/>
   }
 ]

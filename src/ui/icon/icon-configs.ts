@@ -11,6 +11,7 @@ import camera from './svg/camera.svg'
 import chat from './svg/chat.svg'
 import checkCircle from './svg/check-circle.svg'
 import check from './svg/check.svg'
+import circleIcon from './svg/circleIcon.svg'
 import clock from './svg/clock.svg'
 import close from './svg/close.svg'
 import copy from './svg/copy.svg'
@@ -70,6 +71,7 @@ export const icons = {
   check,
   checkCircle,
   call,
+  circleIcon,
   close,
   clock,
   copy,
