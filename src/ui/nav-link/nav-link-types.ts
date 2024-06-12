@@ -7,4 +7,5 @@ export interface INavLinkProps extends LinkProps {
   to: string
   icon?: ReactNode
   type?: ButtonType
+  activeClassName?: string
 }

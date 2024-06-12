@@ -1,3 +1,4 @@
+import arrowLongLeft from './svg/arrow-long-left.svg'
 import arrowShortDown from './svg/arrow-short-down.svg'
 import arrowShortLeft from './svg/arrow-short-left.svg'
 import arrowShortRight from './svg/arrow-short-right.svg'
@@ -7,6 +8,7 @@ import ban from './svg/ban.svg'
 import calendar from './svg/calendar.svg'
 import call from './svg/call.svg'
 import camera from './svg/camera.svg'
+import chat from './svg/chat.svg'
 import checkCircle from './svg/check-circle.svg'
 import check from './svg/check.svg'
 import clock from './svg/clock.svg'
@@ -45,11 +47,15 @@ import star from './svg/star.svg'
 import stars from './svg/stars.svg'
 import stop from './svg/stop.svg'
 import textFormattingImage from './svg/text-formatting-image.svg'
+import textFormattingList from './svg/text-formatting-list.svg'
 import trash from './svg/trash.svg'
 import unlock from './svg/unlock.svg'
 
 export const icons = {
   crown,
+  arrowLongLeft,
+  textFormattingList,
+  chat,
   play,
   stop,
   stars,

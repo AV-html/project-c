@@ -249,7 +249,7 @@ export const NewsComponent = () => {
               filterButtonHandler('front')
             }}
           >
-            ‍💻 Фронт
+            Фронт
           </button>
           <button
             className={`${styles.filter} ${filter === 'back' ? styles.active : ''}`}
