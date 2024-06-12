@@ -8,17 +8,24 @@ import type { ILazyVideoProps } from './lazy-video-types'
 
 import styles from './lazy-video.module.css'
 
-export const LazyVideoComponent: FC<ILazyVideoProps> = ({ url }) => {
+export const LazyVideoComponent: FC<ILazyVideoProps> = ({
+  url, width, height
+}) => {
   const [isPlayerVisible, setIsPlayerVisible] = useState(false)
 
   const handlePlayerClick = () => {
     setIsPlayerVisible(true)
   }
 
+  const styleGeometry = {
+    width,
+    height
+  }
+
   return (
-    <div onClick={handlePlayerClick}>
+    <div onClick={handlePlayerClick} className={styles.lazy}>
       {isPlayerVisible && (
-        <div className={styles.playerWrapper}>
+        <div className={styles.playerWrapper} style={styleGeometry}>
           <ReactPlayer
             url={url}
             className={styles.player}
@@ -30,7 +37,7 @@ export const LazyVideoComponent: FC<ILazyVideoProps> = ({ url }) => {
       )}
       {
         !isPlayerVisible && (
-          <div className={styles.preview}>
+          <div className={styles.preview} style={styleGeometry}>
             <Icon name={'play'} size={24}/>
             Нажмите, чтобы загрузить видео
           </div>

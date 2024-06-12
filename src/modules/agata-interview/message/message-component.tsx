@@ -2,6 +2,8 @@ import { type FC } from 'react'
 
 import { Flex, Typography } from 'antd'
 
+import { LazyVideoComponent } from 'components/lazy-video/lazy-video-component'
+
 import agataAvatar from 'core/assets/images/agata-avatar.png'
 import { useAppSelector } from 'core/hooks/rtk'
 import { getUserInfo } from 'core/user/user-selectors'
@@ -9,7 +11,6 @@ import { cn } from 'core/utils/class-names'
 
 import { type IMessageProps } from './message-types'
 import { getFormattedDate } from './message-utils'
-import { LazyVideoComponent } from '../lazy-video/lazy-video-component'
 
 import styles from './message.module.css'
 

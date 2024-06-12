@@ -21,7 +21,6 @@ export const AgataInterviewListComponent: FC = () => {
   const navigation = useNavigate()
 
   const cards = data.map(({
-    companyId,
     companyAvatar,
     companyName,
     dialogId,
@@ -31,7 +30,7 @@ export const AgataInterviewListComponent: FC = () => {
       navigation(goToAgataInterviewByIdRoute(dialogId))
     }
     return (
-      <Flex className={styles.card} gap={40} key={dialogId}>
+      <Flex className={styles.card} gap={16} key={dialogId}>
         <div className={styles.preview}>
           <div className={styles.play} onClick={handleGoToInterview}>
             <Icon name={'play'} size={24}/>

@@ -14,3 +14,9 @@ interface errorsMessages {
 }
 
 export type TDialogStatus = 'NOT_STARTED' | 'WAITING' | 'ANALYSIS' | 'COMPLETED'
+
+export interface IReportInfo {
+  countQuestion: number
+  scoreSum: number
+  countErrors: number
+}
