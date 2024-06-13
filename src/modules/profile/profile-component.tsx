@@ -205,13 +205,13 @@ export const ProfileComponent: FC = () => {
                 </div>
                 <div className={styles.card}>
                   <Typography.Title level={4} className={styles.title}>
-                    Добавить навыки
+                    Карта навыков
                   </Typography.Title>
                   <GoButton className={styles.btn} path={goToSkillsMapRoute('me')}/>
                 </div>
                 <div className={styles.card}>
                   <Typography.Title level={4} className={styles.title}>
-                    Написать пост
+                    Посты
                   </Typography.Title>
                   <GoButton className={styles.btn} path={goToNewsRoute()}/>
                 </div>
