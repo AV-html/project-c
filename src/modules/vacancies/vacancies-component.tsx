@@ -7,8 +7,8 @@ import {
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
 
-import ReksoftLogo from 'core/assets/images/reksoft-logo.svg'
-
+import { VacancyCard } from './components/vacancy-card'
+import { VacancyItem } from './components/vacancy-item'
 import { vacanciesApi } from './vacancies-api'
 
 import styles from './vacancies.module.scss'
@@ -17,33 +17,29 @@ export const VacanciesComponent: FC = () => {
   const { data: vacancies = [] } = vacanciesApi.useGetVacanciesQuery()
   const { data: vacanciesRNT = [] } = vacanciesApi.useGetVacanciesRNTGroupQuery()
 
-  console.log(vacancies, vacanciesRNT)
+  const allVacancies = vacancies.concat(vacanciesRNT)
 
   const handleVacanciesMe = () => {
-
+    // FIXME: Установить фильтры на фронт
   }
 
-  const card = <div className={styles.card}>
-    <Flex vertical gap={16}>
-      <Flex justify={'space-between'}>
-        <ReksoftLogo width={103} height={20}/>
-        <Icon name={'heart'}/>
-      </Flex>
-      <Flex vertical gap={8}>
-        <Typography.Title level={4}>
-          Frontend-разработчик
-        </Typography.Title>
-        <Flex gap={24} wrap>
-          <span>📍 Москва</span>
-          <span>🏢 Гибрид</span>
-          <span>👨‍🦰 Middle-Senior</span>
-        </Flex>
-      </Flex>
-      <div>
-        <div className={styles.tag}>Фронт</div>
-      </div>
-    </Flex>
-  </div>
+  const mainVacancy = allVacancies.filter((vacancy) => {
+    const conditions = vacancy.title.includes('react') ||
+      vacancy.title.includes('Фронт') ||
+      vacancy.title.includes('React') ||
+      vacancy.title.includes('Front-end') ||
+      vacancy.title.includes('Frontend')
+
+    return conditions
+  })
+    .slice(0, 3)
+    .map((vacancy) => <VacancyCard key={vacancy.vacancyId} {...vacancy}/>)
+
+  const filteredVacancies = allVacancies
+  const vacanciesList = filteredVacancies.map((vacancy) => <VacancyItem
+    key={vacancy.vacancyId}
+    {...vacancy}
+  />)
 
   return (
     <>
@@ -67,7 +63,7 @@ export const VacanciesComponent: FC = () => {
           <Flex gap={16}>
             <Flex vertical gap={24}>
               <Typography.Title level={3} style={{ color: '#fff' }}>
-                Вакансии подходящие <br/> Вам на 100%
+                Вакансии подходящие <br/> Вам на 90%
               </Typography.Title>
               <Button
                 size={'large'}
@@ -80,9 +76,7 @@ export const VacanciesComponent: FC = () => {
                 Смотреть все
               </Button>
             </Flex>
-            {card}
-            {card}
-            {card}
+            {mainVacancy}
           </Flex>
         </Container>
       </div>
@@ -93,7 +87,7 @@ export const VacanciesComponent: FC = () => {
           </Typography.Title>
           <Flex gap={40}>
             <Flex vertical gap={8} className={styles.vacancies}>
-              Список вакансий
+              {vacanciesList}
             </Flex>
             <Flex vertical gap={24} className={styles.filter}>
               Фильтры

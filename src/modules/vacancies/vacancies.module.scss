@@ -12,6 +12,11 @@
   margin-bottom: 40px;
 }
 
+.body {
+  height: 100%;
+  flex: 1 1 auto;
+}
+
 .lineInner {
   display: flex;
   align-items: center;
@@ -34,10 +39,16 @@
   height: 32px;
   border-radius: 40px;
   padding: 6px 16px;
-  width: 75px;
-  color: #fff;
+  width: 73px;
+
   cursor: pointer;
-  background-color: #31BBF2;
+  color: #000;
+  background-color: #0000000D;
+
+  &:first-child {
+    color: #fff;
+    background-color: #31BBF2;
+  }
 }
 
 .vacancies {
