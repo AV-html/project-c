@@ -176,7 +176,7 @@ export const ProfileComponent: FC = () => {
                     🏢 {work?.format}
                   </div>
                   <div>
-                    👨‍🦰 Senior
+                    👨‍🦰 Middle
                   </div>
                 </Flex>
               </Flex>

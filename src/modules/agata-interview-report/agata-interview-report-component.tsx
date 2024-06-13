@@ -24,7 +24,7 @@ export const AgataInterviewReportComponent: FC = () => {
 
   const { data: reportData } = agataInterviewReportApi.useGetReportByIdQuery(dialogId)
 
-  const totalCount = reportData?.answersCount ?? 0
+  const totalCount = reportData?.questionsCount ?? 0
   const sumGrade = reportData?.questions.reduce((curr, question) => {
     return curr + question.grade
   }, 0) ?? 0
