@@ -171,11 +171,13 @@ export const routes: RouteConfig[] = [
     path: RoutePath.forbidden,
     element: <ForbiddenPage/>
   },
+
   {
     name: AppRoutes.VACANCIES,
     path: RoutePath.vacancies,
     element: <VacanciesPage/>
   },
+
   {
     name: AppRoutes.VACANCY,
     path: RoutePath.vacancy,

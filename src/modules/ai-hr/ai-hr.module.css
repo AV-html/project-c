@@ -42,13 +42,15 @@
 .wrapImg {
   margin-bottom: 30px;
 }
-
+.start {
+  position: relative;
+  z-index: 2;
+}
 .wrapProblemBlock {
   background-color: #F2F2F2;
   border-radius: 40px 40px 0 0;
   padding: 25px 25px 100px 25px;
   position: relative;
-  z-index: -1;
   top: -60px;
 }
 

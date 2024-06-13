@@ -3,6 +3,10 @@
 @import "variables";
 @import "scroll";
 
+html, body {
+  scrollbar-gutter: stable;
+}
+
 .app {
   height: 100%;
   .ant-collapse-header {

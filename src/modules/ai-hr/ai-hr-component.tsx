@@ -1,27 +1,30 @@
 import React, { type FC } from 'react'
 
 import { Button, Flex } from 'antd'
+import { useNavigate } from 'react-router-dom'
+
+import { goToAgataInterviewListRoute } from 'app/app-router/app-router-configs'
 
 import { Container } from 'ui/container'
 
-import Block1 from './../../core/assets/images/block_1.svg'
-import Block2 from './../../core/assets/images/block_2.svg'
-import Block3 from './../../core/assets/images/block_3.svg'
-import Block4 from './../../core/assets/images/block_4.svg'
-import BlockRecruter from './../../core/assets/images/blockRecruter.svg'
-import ProblemBlock from './../../core/assets/images/problem-block.svg'
-import TrackAgata from './../../core/assets/images/trackAgata.svg'
-import TrackRecruter from './../../core/assets/images/trackRecruter.svg'
+import Block1234 from 'core/assets/images/block1234.png'
+import BlockRecruter from 'core/assets/images/blockRecruter.svg'
+import ProblemBlock from 'core/assets/images/problem-block.svg'
+import TrackAgata from 'core/assets/images/trackAgata.svg'
+import TrackRecruter from 'core/assets/images/trackRecruter.svg'
 
 import styles from './ai-hr.module.css'
 
 export const AiHrComponent: FC = () => {
-  const handleRegistration = () => {}
+  const navigation = useNavigate()
+  const handleRegistration = () => {
+    navigation(goToAgataInterviewListRoute())
+  }
 
   return (
     <Container>
 
-      <Flex align={'center'} justify={'space-between'}>
+      <Flex align={'center'} justify={'space-between'} className={styles.start}>
         <div>
           <h1 className={styles.heading}>AI HR поможет быстро нанять профессионалов</h1>
           <p className={styles.subHeading}>Сопровождает на всех этапах найма, учитывая персональные потребности бизнеса
@@ -36,14 +39,7 @@ export const AiHrComponent: FC = () => {
           </Button>
         </div>
         <div>
-          <div className={styles.wrapBlock12}>
-            <Block1 className={styles.block1}/>
-            <Block2 className={styles.block2}/>
-          </div>
-          <div>
-            <Block3 className={styles.block3}/>
-            <Block4 className={styles.block4}/>
-          </div>
+          <img src={Block1234} alt="Block" />
         </div>
       </Flex>
 
