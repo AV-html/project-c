@@ -55,7 +55,7 @@ export const ProfileSkillsComponent: FC = () => {
   const skillsListJunior = skillsJunior.map(([skill, checked]) => {
     const handleChangeChecked = () => { handleCheckSkill(skill, !checked) }
     return (
-      <div className={styles.wrapButton} key={userSkills?.userId}>
+      <div className={styles.wrapButton} key={skill}>
         <button
           onClick={handleChangeChecked}
           className={cn(
@@ -79,7 +79,7 @@ export const ProfileSkillsComponent: FC = () => {
   const skillsListMiddle = skillsMiddle.map(([skill, checked]) => {
     const handleChangeChecked = () => { handleCheckSkill(skill, !checked) }
     return (
-      <div className={styles.wrapButton} key={userSkills?.userId}>
+      <div className={styles.wrapButton} key={skill}>
         <button
           onClick={handleChangeChecked}
           className={cn(
@@ -103,7 +103,7 @@ export const ProfileSkillsComponent: FC = () => {
   const skillsListSenior = skillsSenior.map(([skill, checked]) => {
     const handleChangeChecked = () => { handleCheckSkill(skill, !checked) }
     return (
-      <div className={styles.wrapButton} key={userSkills?.userId}>
+      <div className={styles.wrapButton} key={skill}>
         <button
           onClick={handleChangeChecked}
           className={cn(
@@ -124,6 +124,15 @@ export const ProfileSkillsComponent: FC = () => {
     )
   })
 
+  const countCheckedSkills = (skills: Array<[string, boolean]>): number => {
+    return skills.filter(([, checked]) => checked).length
+  }
+
+  const checkedJuniorCount: number = countCheckedSkills(skillsJunior)
+  const checkedMiddleCount: number = countCheckedSkills(skillsMiddle)
+  const checkedSeniorCount: number = countCheckedSkills(skillsSenior)
+  const allCheckedSkills = checkedJuniorCount + checkedMiddleCount + checkedSeniorCount
+
   return (
     <Container>
       <Flex vertical gap={20}>
@@ -134,14 +143,15 @@ export const ProfileSkillsComponent: FC = () => {
         >
           <Title>Карта навыков </Title>
           <Flex gap={20}>
-            <Button type={'primary'} size={'large'} shape={'round'} icon={<Icon name={'share'} size={16}/>} iconPosition={'end'} className={styles.button} onClick={handleShareSkillsMap}>Поделиться</Button>
+            <Button
+              type={'primary'}
+              size={'large'}
+              shape={'round'}
+              icon={<Icon name={'share'} size={16}/>}
+              iconPosition={'end'}
+              className={styles.button} onClick={handleShareSkillsMap}>Поделиться
+            </Button>
           </Flex>
-          <button
-            className={styles.roundButton}
-            // onClick={handleBack}
-          >
-            <Icon name={'arrowShortLeft'}/>
-          </button>
         </Flex>
         <Flex
           className={styles.wrapSkills}
@@ -169,7 +179,7 @@ export const ProfileSkillsComponent: FC = () => {
                 align={'center'}
                 className={styles.skillBorder}
               >
-                <Title level={4}>24</Title>
+                <Title level={4}>{allCheckedSkills}</Title>
                 <div>Навыки</div>
               </Flex>
               <Flex vertical align={'center'}>

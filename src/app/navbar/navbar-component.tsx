@@ -22,7 +22,7 @@ import {
   goToNewsRoute, goToProfileRoute, goToTalentsRoute, goToVacanciesRoute, goToVacanciesStepsRoute
 } from '../app-router/app-router-configs'
 
-import styles from './navbar.module.css'
+import styles from './navbar.module.scss'
 
 export const NavbarComponent: FC<INavbarProps> = () => {
   const userInfo = useAppSelector(getUserInfo)

@@ -1,7 +1,9 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import { Flex } from 'antd'
 import { useLocation } from 'react-router-dom'
+
+import { goToEventsRoute } from 'app/app-router/app-router-configs'
 
 import { eventApi } from '../../events-api'
 
@@ -11,7 +13,7 @@ export const HackathonComponent: FC = () => {
   const { data: events } = eventApi.useGetEventsQuery()
 
   const location = useLocation()
-  const isConferencePath = location.pathname === '/conference'
+  const isConferencePath = location.pathname === goToEventsRoute()
 
   const hackathonList = events?.hakaton
     .slice(0, isConferencePath ? events.hakaton.length : 3)
@@ -29,7 +31,7 @@ export const HackathonComponent: FC = () => {
     ))
 
   return (
-    <Flex wrap={ "wrap" } gap={23}>
+    <Flex wrap={ 'wrap' } gap={23}>
       {hackathonList}
     </Flex>
   )
