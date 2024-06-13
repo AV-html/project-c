@@ -34,6 +34,7 @@ export const ProfileNavbarComponent: FC = () => {
   const isVacancies = location.pathname.includes('vacancies-steps')
   const isInterview = location.pathname.includes('interview')
   const isProfile = location.pathname.includes('profile')
+  const isSkillMap = location.pathname.includes('skills-map')
 
   return (
     <Flex gap={16}>
@@ -65,7 +66,7 @@ export const ProfileNavbarComponent: FC = () => {
       </Button>
       <Button
         onClick={handleGoSkillsMap}
-        className={cn(styles.button, { [styles.active]: isProfile })}
+        className={cn(styles.button, { [styles.active]: isSkillMap })}
         size={'large'}
         shape={'round'}
       >

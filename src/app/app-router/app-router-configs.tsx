@@ -86,7 +86,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.VACANCY]: goToVacancyRoute(':vacancyId'),
   [AppRoutes.VACANCIES_STEPS]: goToVacanciesStepsRoute(),
   [AppRoutes.TALENTS]: goToTalentsRoute(),
-  [AppRoutes.PROFILE]: goToProfileRoute(':profileId'),
+  [AppRoutes.PROFILE]: goToProfileRoute(':userId'),
   [AppRoutes.PROFILE_SKILLS]: goToSkillsMapRoute(':userId'),
 
   [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
