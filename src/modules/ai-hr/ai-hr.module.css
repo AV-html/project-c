@@ -1,0 +1,136 @@
+.heading {
+  font-size: 54px;
+  font-weight: 600;
+  line-height: 50px;
+  text-align: left;
+  width: 522px;
+  margin-bottom: 50px;
+}
+
+.subHeading {
+  margin-bottom: 50px;
+  width: 400px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.button {
+  height: 56px !important;
+  width: 150px !important;
+}
+
+.wrapBlock12 {
+  z-index: 2;
+}
+
+.block1 {
+  margin: 0 16px 16px 0;
+  z-index: 2;
+}
+
+.block3 {
+  margin: 0 20px 20px 0;
+  z-index: 2;
+}
+
+.block4 {
+  margin-bottom: 100px;
+  z-index: 2;
+}
+
+.wrapImg {
+  margin-bottom: 30px;
+}
+
+.wrapProblemBlock {
+  background-color: #F2F2F2;
+  border-radius: 40px 40px 0 0;
+  padding: 25px 25px 100px 25px;
+  position: relative;
+  z-index: -1;
+  top: -60px;
+}
+
+.problemTitle {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 60px;
+  text-align: left;
+  margin: 30px 0 30px 0;
+}
+
+.problemSubTitle {
+  font-size: 54px;
+  background: linear-gradient(90deg, #F07DED, #F780A9, #FFCE9C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.wrapRecruter {
+  border-radius: 40px 40px 0 0;
+  position: relative;
+  top: -100px;
+  background-color: white;
+}
+
+.recHeader {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 60px;
+  margin: 20px 0 0 20px;
+}
+
+.recSubHeader {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 60px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.recSubTitle {
+  font-size: 34px;
+  background: linear-gradient(90deg, #F07DED, #F780A9, #FFCE9C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.recText {
+  font-size: 54px;
+  background: linear-gradient(90deg, #F07DED, #F780A9, #FFCE9C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.wrapButton {
+  text-align: center;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.recButton {
+  height: 56px !important;
+  width: 150px !important;
+}
+
+.agataBizImg {
+  position: relative;
+  top: -200px;
+}
