@@ -1,6 +1,7 @@
 import { AgataInterviewListPage } from 'pages/agata-interview-list-page'
 import { AgataInterviewPage } from 'pages/agata-interview-page'
 import { AgataInterviewReportPage } from 'pages/agata-interview-report-page'
+import { AiHrPage } from 'pages/ai-hr-page'
 import { ArticlePage } from 'pages/article-page'
 import { AuthPage } from 'pages/auth-page'
 import { CommunityPage } from 'pages/community-page'
@@ -35,6 +36,7 @@ export enum AppRoutes {
   PROFILE = 'profile',
   PROFILE_SKILLS = 'profile-skills',
 
+  AI_HR = 'ai-hr',
   AGATA_INTERVIEW_LIST = 'agata-interview-list',
   AGATA_INTERVIEW = 'agata-interview',
   AGATA_INTERVIEW_REPORT = 'agata-interview-report',
@@ -89,6 +91,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.PROFILE]: goToProfileRoute(':userId'),
   [AppRoutes.PROFILE_SKILLS]: goToSkillsMapRoute(':userId'),
 
+  [AppRoutes.AI_HR]: goToAiHrRoute(),
   [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
   [AppRoutes.AGATA_INTERVIEW]: goToAgataInterviewByIdRoute(':dialogId'),
   [AppRoutes.AGATA_INTERVIEW_REPORT]: goToAgataInterviewReportRoute(':dialogId'),
@@ -138,6 +141,11 @@ export const routes: RouteConfig[] = [
     path: RoutePath['vacancies-steps'],
     element: <VacanciesStepsPage/>,
     authOnly: true
+  },
+  {
+    name: AppRoutes.AI_HR,
+    path: RoutePath['ai-hr'],
+    element: <AiHrPage/>
   },
   {
     name: AppRoutes.AGATA_INTERVIEW_LIST,
