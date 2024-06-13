@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import { Flex, Typography } from 'antd'
 
-import { LazyVideoComponent } from 'components/lazy-video/lazy-video-component'
+import { LazyVideo } from 'components/lazy-video'
 
 import agataAvatar from 'core/assets/images/agata-avatar.png'
 import { useAppSelector } from 'core/hooks/rtk'
@@ -17,6 +17,7 @@ import styles from './message.module.css'
 export const MessageComponent: FC<IMessageProps> = ({
   author,
   video,
+  preview,
   message,
   createdDate,
   questionIndex,
@@ -75,7 +76,7 @@ export const MessageComponent: FC<IMessageProps> = ({
           </div>
         }
         {
-          video && <LazyVideoComponent url={video}/>
+          video && <LazyVideo url={video} preview={preview}/>
         }
       </Flex>
     </Flex>

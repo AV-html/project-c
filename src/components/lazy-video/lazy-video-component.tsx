@@ -9,7 +9,7 @@ import type { ILazyVideoProps } from './lazy-video-types'
 import styles from './lazy-video.module.css'
 
 export const LazyVideoComponent: FC<ILazyVideoProps> = ({
-  url, width, height
+  url, width, height, preview
 }) => {
   const [isPlayerVisible, setIsPlayerVisible] = useState(false)
 
@@ -37,9 +37,12 @@ export const LazyVideoComponent: FC<ILazyVideoProps> = ({
       )}
       {
         !isPlayerVisible && (
-          <div className={styles.preview} style={styleGeometry}>
-            <Icon name={'play'} size={24}/>
-            Нажмите, чтобы загрузить видео
+          <div className={styles.wrapPreview} style={styleGeometry}>
+            <div className={styles.preview} style={styleGeometry}>
+              <Icon name={'play'} size={24}/>
+              Нажмите, чтобы загрузить видео
+            </div>
+            {preview && <img src={preview} alt="" className={styles.previewImg} />}
           </div>
         )
       }

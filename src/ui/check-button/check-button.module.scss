@@ -1,0 +1,23 @@
+.label{
+
+}
+.input{
+
+  &:checked +.span{
+    background-color: #31BBF2;
+    color: #fff;
+  }
+
+  &:hover +.span{
+    background-color: #31BBF2;
+  }
+}
+
+.span{
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #0000000D;
+  padding: 6px 16px;
+  height: 32px;
+  border-radius: 20px;
+}

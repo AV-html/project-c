@@ -18,6 +18,7 @@ import { agataInterviewApi } from '../../../agata-interview-list/agata-interview
 import styles from './vacancy-item.module.scss'
 
 export const VacancyItemComponent: FC<IComponentsProps> = ({
+  tags,
   company,
   namespace,
   vacancyId,
@@ -110,9 +111,9 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
               }
             </Flex>
             <Flex gap={24}>
-              <span>📍 {city}</span>
-              <span>🏢 {format}</span>
-              <span>👨‍🦰 {position}</span>
+              {city && <span>📍 {city}</span>}
+              {format && <span>🏢 {format}</span>}
+              {position && <span>👨‍🦰 {position}</span>}
             </Flex>
           </Flex>
           <ul className={styles.tasks}>
@@ -130,7 +131,7 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
           </ul>
           <Flex gap={8} wrap className={styles.tags}>
             {
-              skills.map((skill, idx) => {
+              [...tags, ...skills].map((skill, idx) => {
                 return (
                   <div className={styles.tag} key={idx}>
                     {skill}

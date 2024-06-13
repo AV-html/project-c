@@ -16,3 +16,7 @@ export interface IDialogItem {
 export interface ICreateResData {
   dialogId: string
 }
+
+export interface ITestCompany {
+  id: string
+}

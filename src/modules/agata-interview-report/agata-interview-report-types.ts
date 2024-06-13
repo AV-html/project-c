@@ -12,6 +12,7 @@ export interface IReportData {
 export interface IQuestion {
   questionId: string
   question: string
+  preview: string
   answer: string
   audio: string
   video: string

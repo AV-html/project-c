@@ -20,6 +20,7 @@ import styles from './agata-interview-list.module.scss'
 
 export const AgataInterviewListComponent: FC = () => {
   const { data = [] } = agataInterviewApi.useGetAgataDialogsQuery()
+  const { data: testCompany } = agataInterviewApi.useGetTestCompanyIdQuery()
   const [createInterview] = agataInterviewApi.useCreateAgataDialogMutation()
 
   const navigation = useNavigate()
@@ -124,16 +125,23 @@ export const AgataInterviewListComponent: FC = () => {
   })
 
   const handleCreateInterview = () => {
-    const testCompanyId = '6c1a4ac9-bd17-4ff5-b472-760f7e614c16' // FIXME:
+    const testCompanyId = testCompany?.id
 
-    createInterview(testCompanyId)
-      .unwrap()
-      .then(({ dialogId }) => {
-        navigation(goToAgataInterviewByIdRoute(dialogId))
+    if (testCompanyId) {
+      createInterview(testCompanyId)
+        .unwrap()
+        .then(({ dialogId }) => {
+          navigation(goToAgataInterviewByIdRoute(dialogId))
+        })
+        .catch(() => {
+          notification.error({ message: 'Не удалось создать тестовое интревью' })
+        })
+    } else {
+      notification.error({
+        description: 'Тестовая среда не развёрнута',
+        message: 'Не удалось создать тестовое интревью'
       })
-      .catch(() => {
-        notification.error({ message: 'Не удалось создать тестовое интревью' })
-      })
+    }
   }
 
   return (
@@ -147,6 +155,7 @@ export const AgataInterviewListComponent: FC = () => {
             type={'default'}
             className={styles.create}
             onClick={handleCreateInterview}
+            disabled={!testCompany?.id}
           >
             Создать тестовое интервью
           </Button>

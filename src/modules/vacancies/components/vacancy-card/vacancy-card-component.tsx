@@ -11,7 +11,7 @@ import CommitLogo from 'core/assets/images/commit-logo.svg'
 import ReksoftLogo from 'core/assets/images/reksoft-logo.svg'
 
 import type { IVacancyCardProps } from './vacancy-card-types'
-import styles from '../../vacancies.module.scss'
+import styles from '../vacancies-list/vacancies-list.module.scss'
 
 export const VacancyCardComponent: FC<IVacancyCardProps> = ({
   vacancyId,

@@ -52,7 +52,12 @@ export const AgataInterviewReportComponent: FC = () => {
 
     return <Flex gap={16} className={styles.card} key={question.questionId}>
       <div className={styles.wrapVideo}>
-        <LazyVideo url={question.video} width={'100%'} height={'100%'} />
+        <LazyVideo
+          url={question.video}
+          width={'100%'}
+          height={'100%'}
+          preview={question.preview}
+        />
       </div>
       <div className={styles.body}>
         <Typography.Title level={4} className={styles.mb}>

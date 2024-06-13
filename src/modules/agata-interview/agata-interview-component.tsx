@@ -171,6 +171,7 @@ export const AgataInterviewComponent = () => {
                   createdDate={history.createdDate}
                   questionIndex={history.questionIndex}
                   video={history?.video?.link}
+                  preview={history?.video?.preview}
                 />
               })
             }
