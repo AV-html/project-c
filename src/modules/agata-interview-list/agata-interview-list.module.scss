@@ -70,3 +70,14 @@
   padding: 4px 12px;
   border-radius: 20px;
 }
+
+.create {
+  background:  linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.7;
+    background:  linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
+    color: #fff !important;
+  }
+}

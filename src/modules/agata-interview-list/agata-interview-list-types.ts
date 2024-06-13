@@ -12,3 +12,7 @@ export interface IDialogItem {
     countError: number
   }
 }
+
+export interface ICreateResData {
+  dialogId: string
+}

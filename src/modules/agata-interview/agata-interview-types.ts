@@ -32,7 +32,7 @@ export interface IDialog {
 }
 
 export interface IResDataGetDialogInfoById {
-  startDate: string // TODO: дата начала и конца
+  startDate: string
 
   dialogId: string
   description: string

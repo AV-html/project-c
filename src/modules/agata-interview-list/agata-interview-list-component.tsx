@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import {
-  Alert, Button, Flex, Typography
+  Alert, Button, Flex, notification, Typography
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
@@ -20,6 +20,7 @@ import styles from './agata-interview-list.module.scss'
 
 export const AgataInterviewListComponent: FC = () => {
   const { data = [] } = agataInterviewApi.useGetAgataDialogsQuery()
+  const [createInterview] = agataInterviewApi.useCreateAgataDialogMutation()
 
   const navigation = useNavigate()
 
@@ -122,10 +123,34 @@ export const AgataInterviewListComponent: FC = () => {
     )
   })
 
+  const handleCreateInterview = () => {
+    const testCompanyId = '6c1a4ac9-bd17-4ff5-b472-760f7e614c16' // FIXME:
+
+    createInterview(testCompanyId)
+      .unwrap()
+      .then(({ dialogId }) => {
+        navigation(goToAgataInterviewByIdRoute(dialogId))
+      })
+      .catch(() => {
+        notification.error({ message: 'Не удалось создать тестовое интревью' })
+      })
+  }
+
   return (
     <Container>
       <Flex vertical gap={24}>
-        <ProfileNavbar/>
+        <ProfileNavbar>
+          <Button
+            icon={<Icon name={'plus'} size={16}/>}
+            size={'large'}
+            shape={'round'}
+            type={'default'}
+            className={styles.create}
+            onClick={handleCreateInterview}
+          >
+            Создать тестовое интервью
+          </Button>
+        </ProfileNavbar>
         {isAnalysis && <Alert
           showIcon
           icon={<Icon name={'error'} size={16}/>}

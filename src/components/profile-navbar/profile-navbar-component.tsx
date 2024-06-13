@@ -13,9 +13,11 @@ import { Icon } from 'ui/icon'
 
 import { cn } from 'core/utils/class-names'
 
+import type { IProfileNavbarProps } from './profile-navbar-types'
+
 import styles from './profile-navbar.module.scss'
 
-export const ProfileNavbarComponent: FC = () => {
+export const ProfileNavbarComponent: FC<IProfileNavbarProps> = ({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const handleGoToVacancies = () => {
@@ -37,41 +39,44 @@ export const ProfileNavbarComponent: FC = () => {
   const isSkillMap = location.pathname.includes('skills-map')
 
   return (
-    <Flex gap={16}>
-      <Button
-        onClick={handleGoToVacancies}
-        className={cn(styles.button, { [styles.active]: isVacancies })}
-        size={'large'}
-        shape={'round'}
-      >
-        🧑‍💻Вакансии
-      </Button>
-      <Button
-        onClick={handleGoToInterview}
-        icon={<Icon name={'stars'} size={16}/>}
-        className={cn(styles.button, [styles.ai], { [styles.active]: isInterview })}
-        size={'large'}
-        shape={'round'}
+    <Flex gap={16} justify={'space-between'}>
+      <Flex gap={16}>
+        <Button
+          onClick={handleGoToVacancies}
+          className={cn(styles.button, { [styles.active]: isVacancies })}
+          size={'large'}
+          shape={'round'}
+        >
+          🧑‍💻Вакансии
+        </Button>
+        <Button
+          onClick={handleGoToInterview}
+          icon={<Icon name={'stars'} size={16}/>}
+          className={cn(styles.button, [styles.ai], { [styles.active]: isInterview })}
+          size={'large'}
+          shape={'round'}
 
-      >
-        AI интервью
-      </Button>
-      <Button
-        onClick={handleGoToProfile}
-        className={cn(styles.button, { [styles.active]: isProfile })}
-        size={'large'}
-        shape={'round'}
-      >
-        🙂 Резюме
-      </Button>
-      <Button
-        onClick={handleGoSkillsMap}
-        className={cn(styles.button, { [styles.active]: isSkillMap })}
-        size={'large'}
-        shape={'round'}
-      >
-        📈 Карта навыков
-      </Button>
+        >
+          AI интервью
+        </Button>
+        <Button
+          onClick={handleGoToProfile}
+          className={cn(styles.button, { [styles.active]: isProfile })}
+          size={'large'}
+          shape={'round'}
+        >
+          🙂 Резюме
+        </Button>
+        <Button
+          onClick={handleGoSkillsMap}
+          className={cn(styles.button, { [styles.active]: isSkillMap })}
+          size={'large'}
+          shape={'round'}
+        >
+          📈 Карта навыков
+        </Button>
+      </Flex>
+      {children}
     </Flex>
   )
 }

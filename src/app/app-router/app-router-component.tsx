@@ -7,6 +7,8 @@ import {
 
 import { Route, Routes } from 'react-router-dom'
 
+import { PageLoader } from 'ui/page-loader'
+
 import { routes } from './app-router-configs'
 import { type RouteConfig } from './app-router-types'
 import { ProtectRoute } from './protect-route'
@@ -18,7 +20,7 @@ export const AppRouterComponent: FC = () => {
     authOnly,
     permissions
   }) => {
-    const wrapElement = <Suspense fallback={<div>Loading...</div>}>
+    const wrapElement = <Suspense fallback={<PageLoader/>}>
       {element}
     </Suspense>
 
