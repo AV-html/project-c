@@ -1,0 +1,74 @@
+.card{
+  display: flex;
+  align-items: center;
+  height: 266px;
+  padding: 24px;
+  border: 1px solid #00000026;
+  border-radius: 40px;
+
+  ul {
+    padding-left: 25px;
+    li {
+      list-style: initial;
+    }
+  }
+}
+
+.body {
+  flex: 1 1 auto;
+  height: 100%;
+  border-right: 1px solid #0000001A;
+  display: flex;
+  flex-direction: column;
+}
+.innerBody {
+  height: 100%;
+}
+
+.tasks {
+  height: 120px;
+  overflow-y: hidden;
+}
+
+.tags {
+  height: 34px;
+  overflow: hidden;
+}
+.tag {
+  padding: 4px 16px;
+  border-radius: 32px;
+  background-color: #0000000D;
+  cursor: pointer;
+  white-space: nowrap;
+
+
+  &:first-child {
+    background: #31BBF2;
+    color: #fff;
+  }
+}
+
+.company {
+  flex: 0 0 148px;
+  padding-left: 24px;
+}
+
+.btnInterview {
+  background: linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
+  color: #fff;
+  margin-right: 16px;
+
+  &:hover {
+    color: #fff !important;
+    opacity: 0.7;
+  }
+}
+
+.link {
+  color: var(--color-link);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+}

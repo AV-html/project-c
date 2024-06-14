@@ -1,0 +1,62 @@
+.vacancy {
+  position: relative;
+
+  ul {
+    padding-left: 25px;
+
+    li {
+      list-style: initial;
+    }
+  }
+}
+
+.backBtn {
+  position: absolute;
+  left: calc(-80px - 36px);
+}
+
+button.checked {
+  background-color: #71CB3E !important;
+  color: #fff !important;
+
+  &:hover {
+    color: #fff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+.frame {
+  height: 208px;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}
+.tag {
+  padding: 4px 16px;
+  border-radius: 32px;
+  background-color: #0000000D;
+  cursor: pointer;
+  white-space: nowrap;
+
+
+  &:first-child {
+    background: #31BBF2;
+    color: #fff;
+  }
+}
+
+.steps {
+  margin: 0 -40px;
+}
+.line {
+  margin: 40px 0;
+  padding: 32px 0 40px 0;
+  width: 100%;
+
+  background: url("core/assets/images/big-bg.png") 50% / cover no-repeat;
+}

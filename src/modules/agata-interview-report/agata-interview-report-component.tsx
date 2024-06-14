@@ -13,26 +13,51 @@ import { agataInterviewReportApi } from './agata-interview-report-api'
 
 import styles from './agata-interview-report.module.scss'
 
-export const gradeToColor = { 30: 'Ошибка' }
+export const gradeToColor = {
+  top: '#71CB3E',
+  middle: '#FB814D',
+  bottom: '#FF5574'
+}
 
 export const AgataInterviewReportComponent: FC = () => {
   const { dialogId = 'null' } = useParams()
 
   const { data: reportData } = agataInterviewReportApi.useGetReportByIdQuery(dialogId)
 
-  const totalCount = reportData?.answersCount ?? 0
+  const totalCount = reportData?.questionsCount ?? 0
+  const sumGrade = reportData?.questions.reduce((curr, question) => {
+    return curr + question.grade
+  }, 0) ?? 0
+
+  let color = gradeToColor.bottom
+  const total = Number((sumGrade / (totalCount * 10) * 100).toFixed(0))
+  if (total > 30 && total < 60) {
+    color = gradeToColor.middle
+  } else if (total > 30) {
+    color = gradeToColor.top
+  }
+
   const list = reportData?.questions.map((question, idx) => {
     let textGrade = '% ошибка'
+    let color = gradeToColor.bottom
+
     const grade = question.grade / 10 * 100
     if (grade > 30 && grade < 60) {
       textGrade = '% средне'
+      color = gradeToColor.middle
     } else if (grade > 30) {
       textGrade = '% правильно'
+      color = gradeToColor.top
     }
 
     return <Flex gap={16} className={styles.card} key={question.questionId}>
       <div className={styles.wrapVideo}>
-        <LazyVideo url={question.video} width={'100%'} height={'100%'} />
+        <LazyVideo
+          url={question.video}
+          width={'100%'}
+          height={'100%'}
+          preview={question.preview}
+        />
       </div>
       <div className={styles.body}>
         <Typography.Title level={4} className={styles.mb}>
@@ -42,7 +67,7 @@ export const AgataInterviewReportComponent: FC = () => {
           <Typography.Text type={'secondary'}>
             Оценка AI
           </Typography.Text>
-          <div className={styles.tag}>
+          <div className={styles.tag} style={{ background: color }}>
             {grade} {textGrade}
           </div>
         </Flex>
@@ -64,9 +89,16 @@ export const AgataInterviewReportComponent: FC = () => {
     <div className={styles.report}>
       <BackButton path={goToAgataInterviewListRoute()} className={styles.backBtn}/>
       <Flex vertical gap={16}>
-        <Typography.Title level={2}>
-          Отчёт интервью (Всего вопросов: {totalCount})
-        </Typography.Title>
+        <Flex justify={'space-between'} align={'center'}>
+          <Typography.Title level={2}>
+            Отчёт интервью (Всего вопросов: {totalCount})
+          </Typography.Title>
+          {
+            total && <Typography.Title level={4} style={{ background: color }} className={styles.tag}>
+            Результат {total}%
+            </Typography.Title>
+          }
+        </Flex>
         {list}
       </Flex>
     </div>

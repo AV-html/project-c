@@ -1,0 +1,14 @@
+.button {
+  height: 80px;
+  width: 80px !important;
+  border: 2px solid #FFFFFF !important;
+  color: #FFFFFF!important;
+  background-color: transparent !important;
+  transition: all 0.3s ease-in-out !important;
+
+  &:hover {
+    border: 2px solid var(--color-control-primary) !important;
+    color: var(--color-control-primary) !important;
+    background-color: transparent !important;
+  }
+}

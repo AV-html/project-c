@@ -1,10 +1,13 @@
 import React, { type FC } from 'react'
 
-import { Button, Flex, notification } from 'antd'
-import Title from 'antd/lib/typography/Title'
+import {
+  Button, Flex, notification, Typography
+} from 'antd'
 import { useParams } from 'react-router-dom'
 
 import { goToSkillsMapRoute } from 'app/app-router/app-router-configs'
+
+import { ProfileNavbar } from 'components/profile-navbar'
 
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
@@ -23,7 +26,6 @@ export const ProfileSkillsComponent: FC = () => {
 
   const { data: userSkills } = skillsApi.useGetSkillsByIdQuery(userId, { skip: !userId })
 
-  console.log(userSkills)
   const [updateSkill] = skillsApi.useUpdateSkillsByIdMutation()
 
   const isEditable = userId === 'me'
@@ -135,85 +137,87 @@ export const ProfileSkillsComponent: FC = () => {
 
   return (
     <Container>
-      <Flex vertical gap={20}>
-        <Flex
-          justify={'space-between'}
-          align={'center'}
-          className={styles.wrapHeader}
-        >
-          <Title>Карта навыков </Title>
-          <Flex gap={20}>
-            <Button
-              type={'primary'}
-              size={'large'}
-              shape={'round'}
-              icon={<Icon name={'share'} size={16}/>}
-              iconPosition={'end'}
-              className={styles.button} onClick={handleShareSkillsMap}>Поделиться
-            </Button>
-          </Flex>
-        </Flex>
-        <Flex
-          className={styles.wrapSkills}
-          justify={'space-between'}
-          align={'center'}
-        >
-          <div>
-            <img className={styles.avatar} src={avatar} alt=""/>
-          </div>
-          <Flex vertical align={'center'} gap={5}>
-            <Title level={3}>Иван Иванов</Title>
-            <div>Продуктовый дизайнер</div>
-            <div>Рексофт</div>
-            <Flex gap={10}>
-              <div>👨‍🦰  Сеньор</div>
-              <div>📍  Москва</div>
-            </Flex>
-            <Flex gap={10}>
-              <Flex vertical align={'center'}>
-                <Title level={4}>98%</Title>
-                <div>Мэтч</div>
-              </Flex>
-              <Flex
-                vertical
-                align={'center'}
-                className={styles.skillBorder}
-              >
-                <Title level={4}>{allCheckedSkills}</Title>
-                <div>Навыки</div>
-              </Flex>
-              <Flex vertical align={'center'}>
-                <Title level={4}>4</Title>
-                <div>Опыт</div>
-              </Flex>
+      <Flex vertical gap={24}>
+        <ProfileNavbar/>
+        <Flex vertical gap={20}>
+          <Flex
+            justify={'space-between'}
+            align={'center'}
+            className={styles.wrapHeader}
+          >
+            <Typography.Title>Карта навыков</Typography.Title>
+            <Flex gap={20}>
+              <Button
+                type={'primary'}
+                size={'large'}
+                shape={'round'}
+                icon={<Icon name={'share'} size={16}/>}
+                iconPosition={'end'}
+                className={styles.button} onClick={handleShareSkillsMap}>Поделиться
+              </Button>
             </Flex>
           </Flex>
-          <div>
-            <img draggable={false} src={skills} alt=""/>
-          </div>
-        </Flex>
+          <Flex
+            className={styles.wrapSkills}
+            justify={'space-between'}
+            align={'center'}
+          >
+            <div>
+              <img className={styles.avatar} src={avatar} alt=""/>
+            </div>
+            <Flex vertical align={'center'} gap={5}>
+              <Typography.Title level={3}>Иван Иванов</Typography.Title>
+              <div>Продуктовый дизайнер</div>
+              <div>Рексофт</div>
+              <Flex gap={10}>
+                <div>👨‍🦰  Мидл</div>
+                <div>📍  Москва</div>
+              </Flex>
+              <Flex gap={10}>
+                <Flex vertical align={'center'}>
+                  <Typography.Title level={4}>98%</Typography.Title>
+                  <div>Мэтч</div>
+                </Flex>
+                <Flex
+                  vertical
+                  align={'center'}
+                  className={styles.skillBorder}
+                >
+                  <Typography.Title level={4}>{allCheckedSkills}</Typography.Title>
+                  <div>Навыки</div>
+                </Flex>
+                <Flex vertical align={'center'}>
+                  <Typography.Title level={4}>4</Typography.Title>
+                  <div>Опыт</div>
+                </Flex>
+              </Flex>
+            </Flex>
+            <div>
+              <img draggable={false} src={skills} alt=""/>
+            </div>
+          </Flex>
 
-        <Flex justify={'space-between'}>
-          <Flex vertical gap={20}>
-            <Title level={4}>Джуниор</Title>
-            <div className={styles.wrapJun}>
-              {skillsListJunior}
-            </div>
-          </Flex>
-          <Flex vertical gap={20}>
-            <Title level={4}>Мидл</Title>
-            <div className={styles.wrapJun}>
-              {skillsListMiddle}
-            </div>
-          </Flex>
-          <Flex vertical gap={20}>
-            <Title level={4}>Сеньор</Title>
-            <div className={styles.wrapJun}>
-              {skillsListSenior}
-            </div>
+          <Flex justify={'space-between'}>
+            <Flex vertical gap={20}>
+              <Typography.Title level={4}>Джуниор</Typography.Title>
+              <div className={styles.wrapJun}>
+                {skillsListJunior}
+              </div>
+            </Flex>
+            <Flex vertical gap={20}>
+              <Typography.Title level={4}>Мидл</Typography.Title>
+              <div className={styles.wrapJun}>
+                {skillsListMiddle}
+              </div>
+            </Flex>
+            <Flex vertical gap={20}>
+              <Typography.Title level={4}>Сеньор</Typography.Title>
+              <div className={styles.wrapJun}>
+                {skillsListSenior}
+              </div>
+            </Flex>
           </Flex>
         </Flex>
-
       </Flex>
     </Container>
   )

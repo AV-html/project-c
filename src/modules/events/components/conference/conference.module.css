@@ -42,18 +42,20 @@
 }
 
 .wrapLink {
-  background-color: #22292F;
-  border-radius: 40px;
-  width: 160px;
+
+
 }
 
 .link {
+  background-color: #22292F;
+  border-radius: 40px;
+
   color: white;
-  display: block;
+  display: inline-block;
   padding: 18px 20px;
 }
 
 .link:hover, .link:focus, .link:active {
-  color: white;
+  color: var(--text-inverse-secondary);
   text-decoration: none;
 }

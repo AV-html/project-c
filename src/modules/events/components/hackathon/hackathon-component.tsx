@@ -20,18 +20,16 @@ export const HackathonComponent: FC = () => {
     .map(hac => (
       <div key={hac.id}>
         <div className={styles.wrapImg}>
-          <img className={styles.img} src={hac.preview} alt="" />
-          <button className={styles.button}>
-            <a href={hac.link} target="_blank" rel="noreferrer" className={styles.link}>
-              Перейти
-            </a>
-          </button>
+          <img className={styles.img} src={hac.preview} alt=""/>
+          <a href={hac.link} target="_blank" rel="noreferrer" className={styles.link}>
+            Перейти
+          </a>
         </div>
       </div>
     ))
 
   return (
-    <Flex wrap={ 'wrap' } gap={23}>
+    <Flex wrap={'wrap'} gap={23}>
       {hackathonList}
     </Flex>
   )

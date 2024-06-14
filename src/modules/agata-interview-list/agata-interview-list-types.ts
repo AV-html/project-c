@@ -6,4 +6,17 @@ export interface IDialogItem {
   companyId: string
   companyName: string
   companyAvatar: string
+  reportInfo: {
+    countQuestion: number
+    scoreSum: number
+    countError: number
+  }
+}
+
+export interface ICreateResData {
+  dialogId: string
+}
+
+export interface ITestCompany {
+  id: string
 }

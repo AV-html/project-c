@@ -9,5 +9,6 @@ export interface IMessageProps {
   message?: ReactNode
   questionIndex?: number | null
   video?: string
+  preview?: string
   totalQuestions?: number
 }

@@ -1,7 +1,6 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
-import { Flex } from 'antd'
-import Title from 'antd/lib/typography/Title'
+import { Flex, Typography } from 'antd'
 
 import { eventApi } from '../../events-api'
 
@@ -28,7 +27,7 @@ export const ConferenceComponent: FC = () => {
         </div>
         <div className={styles.wrapConf}>
           <Flex gap={20} vertical>
-            <Title>{conf.title}</Title>
+            <Typography.Title>{conf.title}</Typography.Title>
             <Flex gap={10}>
               <div className={styles.date}>{formattedDate}</div>
               <div className={styles.date}>{conf.position}</div>
@@ -42,8 +41,10 @@ export const ConferenceComponent: FC = () => {
             </div>
             <div>{conf.description}</div>
           </Flex>
-          <div className={styles.wrapLink}>
-            <a className={styles.link} href={conf.link} target="_blank" rel="noreferrer">Присоединиться</a>
+          <div>
+            <a className={styles.link} href={conf.link} target="_blank" rel="noreferrer">
+              Присоединиться
+            </a>
           </div>
         </div>
       </Flex>

@@ -57,7 +57,7 @@ export const startInterview = createAsyncThunk<string, string>(
     try {
       const res = await agataInterviewApi.startInterview(dialogId)
       await thunkAPI.dispatch(getNextQuestion(dialogId))
-      return res.data.startDate // TODO: Здесь можно создать момент начала интервью
+      return res.data.startDate
     } catch (e) {
       await message.error('Не удалось начать интервью с Агатой')
       return e

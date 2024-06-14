@@ -8,6 +8,14 @@
 .status {
   padding: 6px 16px;
   border-radius: 16px;
+  cursor: pointer;
+}
+
+.trash {
+  &:hover {
+    color: darkred !important;
+    border-color: darkred !important;
+  }
 }
 
 .preview {
@@ -31,6 +39,11 @@
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--text-inverse-secondary);
+    }
   }
 }
 
@@ -63,8 +76,20 @@
 }
 
 .aihr {
+  cursor: pointer;
   color: #fff;
   background:  linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%);
   padding: 4px 12px;
   border-radius: 20px;
+}
+
+.create {
+  background:  linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  &:not(:disabled):hover {
+    opacity: 0.7;
+    background:  linear-gradient(90deg, #F07DED -3.26%, #F780A9 33.4%, #FFCE9C 100%) !important;
+    color: #fff !important;
+  }
 }

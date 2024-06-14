@@ -19,7 +19,7 @@ import {
   goToAgataInterviewListRoute,
   goToAiHrRoute, goToAuthRoute, goToCommunityRoute,
   goToEventsRoute,
-  goToNewsRoute, goToProfileRoute, goToTalentsRoute, goToVacanciesRoute, goToVacanciesStepsRoute
+  goToNewsRoute, goToProfileRoute, goToSkillsMapRoute, goToTalentsRoute, goToVacanciesRoute, goToVacanciesStepsRoute
 } from '../app-router/app-router-configs'
 
 import styles from './navbar.module.scss'
@@ -41,6 +41,10 @@ export const NavbarComponent: FC<INavbarProps> = () => {
 
   const handleGoToProfile = () => {
     navigation(goToProfileRoute('me'))
+  }
+
+  const handleGoToSkillsMap = () => {
+    navigation(goToSkillsMapRoute('me'))
   }
 
   const handleLogout = () => {
@@ -67,10 +71,16 @@ export const NavbarComponent: FC<INavbarProps> = () => {
       icon: <Icon name={'profile'} size={16}/>,
       onClick: handleGoToProfile
     },
+    {
+      label: 'Карта навыков',
+      key: '4',
+      icon: <Icon name={'check'} size={16}/>,
+      onClick: handleGoToSkillsMap
+    },
     { type: 'divider' },
     {
       label: 'Выход',
-      key: '4',
+      key: '5',
       icon: <Icon name={'logOut'} size={16}/>,
       onClick: handleLogout
     }

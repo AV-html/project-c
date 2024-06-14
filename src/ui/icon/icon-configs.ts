@@ -1,4 +1,5 @@
 import arrowLongLeft from './svg/arrow-long-left.svg'
+import arrowLongRight from './svg/arrow-long-right.svg'
 import arrowShortDown from './svg/arrow-short-down.svg'
 import arrowShortLeft from './svg/arrow-short-left.svg'
 import arrowShortRight from './svg/arrow-short-right.svg'
@@ -18,6 +19,7 @@ import copy from './svg/copy.svg'
 import crown from './svg/crown.svg'
 import dayChecked from './svg/day-checked.svg'
 import day from './svg/day.svg'
+import download from './svg/download.svg'
 import edit from './svg/edit.svg'
 import error from './svg/error.svg'
 import eyeOff from './svg/eye-off.svg'
@@ -31,6 +33,7 @@ import info from './svg/info.svg'
 import lock from './svg/lock.svg'
 import logIn from './svg/log-in.svg'
 import logOut from './svg/log-out.svg'
+import mail from './svg/mail.svg'
 import minusCircle from './svg/minus-circle.svg'
 import moreVertical from './svg/more-vertical.svg'
 import notificationsUnread from './svg/notifications-unread.svg'
@@ -53,7 +56,10 @@ import trash from './svg/trash.svg'
 import unlock from './svg/unlock.svg'
 
 export const icons = {
+  download,
   crown,
+  mail,
+  arrowLongRight,
   arrowLongLeft,
   textFormattingList,
   chat,

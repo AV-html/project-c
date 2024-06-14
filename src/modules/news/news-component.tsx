@@ -7,9 +7,10 @@ import { goToAiHrRoute } from 'app/app-router/app-router-configs'
 
 import { dataArticle } from 'ui/configs/news-configs'
 import { Container } from 'ui/container/'
+import { GoButton } from 'ui/go-button'
 import { Icon } from 'ui/icon'
 
-import HRImage from 'core/assets/images/hr-background.svg'
+import HRImage from 'core/assets/images/hr-background.png'
 
 import { PreviewArticle } from './components/preview-article'
 import { TwitArticleComponent } from './components/twit-article/twit-article-component'
@@ -193,11 +194,12 @@ export const NewsComponent = () => {
           <Flex gap={16}>
             <div className={styles.mainArticle}>
               <div className={styles.wrapImage}>
-                <HRImage className={styles.laptopDeskImage}/>
+                <img src={HRImage} alt="" className={styles.laptopDeskImage}/>
               </div>
               <div className={styles.imgText} onClick={onClickChangePage}>
                 Как AI HR <br/> помогает<br/>улучшить найм
               </div>
+              <GoButton className={styles.goTo} path={goToAiHrRoute()}/>
             </div>
             <Flex gap={16}
               vertical>

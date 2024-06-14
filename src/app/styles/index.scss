@@ -3,6 +3,10 @@
 @import "variables";
 @import "scroll";
 
+html, body {
+  scrollbar-gutter: stable;
+}
+
 .app {
   height: 100%;
   .ant-collapse-header {
@@ -86,11 +90,34 @@
   .ant-table-wrapper .ant-table-tbody > tr:last-child > td {
     border-bottom: none !important;
   }
+
+  .ant-alert {
+    padding: 16px 24px;
+    border-radius: 40px;
+  }
 }
 
 .ant-popover-inner {
   padding: 16px !important;
   border-radius: 24px !important;
+
+  .ant-btn {
+    font-size: 14px;
+    border-radius: 12px;
+    &.ant-btn-default {
+      border: none;
+    }
+    &.ant-btn-primary {
+      background-color: var(--color-control-primary);
+      &:hover {
+        background-color: var(--color-control-primary);
+        color: var(--text-inverse-secondary);
+      }
+      &:disabled {
+        color: var(--text-inverse-secondary);
+      }
+    }
+  }
 }
 
 .ant-select-selector {

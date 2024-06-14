@@ -33,7 +33,6 @@ export const UserCardComponent: FC<IUserCardProps> = (props) => {
           <p>Прошла более 100 собеседований, пишу что думаю, делюсь опытом</p>
           <br/>
           <p>✨️   Суперсила</p>
-          <br/>
           <p>Нахожу красоту в простых вещах</p>
           <Flex className={styles.tagWrap}>
             <div className={styles.tag} style={{ backgroundColor: '#FF5574' }}>Дизайн</div>

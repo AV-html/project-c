@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { goToAgataInterviewListRoute } from 'app/app-router/app-router-configs'
+import { goToAgataInterviewListRoute, goToAgataInterviewReportRoute } from 'app/app-router/app-router-configs'
 
 import { Icon } from 'ui/icon'
 
@@ -74,8 +74,8 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
 
   const isCompleted = status === 'COMPLETED'
 
-  const handleGoToBack = () => {
-    navigation(goToAgataInterviewListRoute())
+  const handleGoToReport = () => {
+    dialogId && navigation(goToAgataInterviewReportRoute(dialogId))
   }
 
   return (
@@ -144,9 +144,9 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
           type={'primary'}
           size={'large'}
           shape={'round'}
-          onClick={handleGoToBack}
+          onClick={handleGoToReport}
         >
-              К списку интервью
+              Перейти к результатам
         </Button>
       }
     </div>
