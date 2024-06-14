@@ -3,7 +3,6 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import { type BuildOptions } from './types/config'
 
@@ -42,10 +41,10 @@ export const buildPlugins = ({
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css'
     }))
-    plugins.push(new BundleAnalyzerPlugin({
-      openAnalyzer: true,
-      analyzerPort: 9999
-    }))
+    // plugins.push(new BundleAnalyzerPlugin({
+    //   openAnalyzer: true,
+    //   analyzerPort: 9999
+    // }))
   }
 
   return plugins
