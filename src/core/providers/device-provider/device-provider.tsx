@@ -20,7 +20,7 @@ export const DeviceProvider: FC<IDeviceProviderProps> = ({ children }) => {
       const microphoneDevicesOptions: SelectProps['options'] = []
       const webcamDevicesOptions: SelectProps['options'] = []
 
-      mediaDevices.forEach((device, idx) => {
+      mediaDevices?.forEach((device, idx) => {
         const option = {
           value: device.deviceId,
           label: device.label || `Device ${idx + 1}`

@@ -5,7 +5,7 @@ export const rtkQueryErrorMiddleware: Middleware = () => {
   return (next) => {
     return (action) => {
       if (isRejectedWithValue(action)) {
-        console.log(action)
+        console.warn(action)
         notification.error({ message: 'Ошибка', description: action.error.message })
       }
 

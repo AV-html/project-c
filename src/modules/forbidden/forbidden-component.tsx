@@ -1,14 +1,9 @@
 import { type FC } from 'react'
 
-export interface IForbiddenProps {
-}
-
-export const ForbiddenComponent: FC<IForbiddenProps> = (props) => {
-  console.log('Forbidden')
-
+export const ForbiddenComponent: FC = () => {
   return (
     <>
-      Forbidden
+      403 Forbidden
     </>
   )
 }
