@@ -35,6 +35,7 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
       senior: true,
       hybrid: true
     }
+    form.resetFields()
     form.setFieldsValue(filters)
     setValues(Object.entries(filters))
   }
@@ -56,7 +57,10 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
 
     filteredVacancies = allVacancies
       .filter((vacancy) => isAiHr ? vacancy.namespace === 'commit' : true)
-      .filter((vacancy) => jobList.length > 0 ? jobList.includes(vacancy.tags[0]) : true)
+      .filter((vacancy) => {
+        const isTrueTags = jobList.some((job) => vacancy.tags.includes(job))
+        return jobList.length > 0 ? isTrueTags : true
+      })
       .filter((vacancy) => {
         const isTruePosition = positionList.some((position) => vacancy.position.includes(position))
         return positionList.length > 0 ? isTruePosition : true
@@ -89,6 +93,10 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
       top: 400,
       behavior: 'smooth'
     })
+  }
+
+  const handleResetClick = () => {
+    setValues([])
   }
 
   return (
@@ -130,15 +138,17 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
                 vacanciesList.length
                   ? vacanciesList
                   : <Typography.Title level={3}>
-                    Нет подходящих вакансий
+                    Нет подходящих вакансий 😐
                   </Typography.Title>
               }
-              <Pagination
-                defaultCurrent={1}
-                current={page}
-                total={filteredVacancies.length}
-                onChange={handleChangePage}
-              />
+              {
+                vacanciesList.length > 0 && <Pagination
+                  defaultCurrent={1}
+                  current={page}
+                  total={filteredVacancies.length}
+                  onChange={handleChangePage}
+                />
+              }
             </Flex>
 
             <Form
@@ -154,7 +164,7 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
                   </Typography.Title>
 
                   <Form.Item name={'commit'} valuePropName={'checked'} initialValue={false} >
-                    <CheckButton> AI интервью</CheckButton>
+                    <CheckButton>AI интервью</CheckButton>
                   </Form.Item>
                 </Flex>
 
@@ -207,6 +217,7 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
                   className={styles.reset}
                   htmlType={'reset'}
                   shape={'round'}
+                  onClick={handleResetClick}
                 >
                   Сброс
                 </Button>

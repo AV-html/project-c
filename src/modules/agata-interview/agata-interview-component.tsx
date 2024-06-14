@@ -9,8 +9,6 @@ import {
 import { useParams } from 'react-router-dom'
 import Webcam from 'react-webcam'
 
-import { goToAgataInterviewListRoute } from 'app/app-router/app-router-configs'
-
 import { BackButton } from 'ui/back-button'
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
@@ -132,7 +130,7 @@ export const AgataInterviewComponent = () => {
       >
 
         <Flex gap={24}>
-          <BackButton path={goToAgataInterviewListRoute()}/>
+          <BackButton/>
           <Flex
             vertical
             gap={8}

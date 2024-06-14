@@ -11,6 +11,13 @@
   cursor: pointer;
 }
 
+.trash {
+  &:hover {
+    color: darkred !important;
+    border-color: darkred !important;
+  }
+}
+
 .preview {
   flex: 0 0 359px;
   width: 359px;

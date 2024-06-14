@@ -22,6 +22,7 @@ export const AgataInterviewListComponent: FC = () => {
   const { data = [] } = agataInterviewApi.useGetAgataDialogsQuery()
   const { data: testCompany } = agataInterviewApi.useGetTestCompanyIdQuery()
   const [createInterview] = agataInterviewApi.useCreateAgataDialogMutation()
+  const [removeInterview] = agataInterviewApi.useRemoveAgataDialogMutation()
 
   const navigation = useNavigate()
 
@@ -36,6 +37,10 @@ export const AgataInterviewListComponent: FC = () => {
   }) => {
     const handleGoToInterview = () => {
       navigation(goToAgataInterviewByIdRoute(dialogId))
+    }
+
+    const handleRemove = () => {
+      void removeInterview(dialogId)
     }
 
     const handleGoToReport = () => {
@@ -81,6 +86,13 @@ export const AgataInterviewListComponent: FC = () => {
                   <Icon name={'stars'} size={16}/>
                   AI HR
                 </Flex>
+                <Button
+                  shape={'circle'}
+                  icon={<Icon name={'trash'} size={16}/>}
+                  type={'dashed'}
+                  className={styles.trash}
+                  onClick={handleRemove}
+                />
               </Flex>
             </Flex>
             <Flex gap={24} align={'center'} className={styles.body}>

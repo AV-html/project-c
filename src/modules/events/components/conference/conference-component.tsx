@@ -41,8 +41,10 @@ export const ConferenceComponent: FC = () => {
             </div>
             <div>{conf.description}</div>
           </Flex>
-          <div className={styles.wrapLink}>
-            <a className={styles.link} href={conf.link} target="_blank" rel="noreferrer">Присоединиться</a>
+          <div>
+            <a className={styles.link} href={conf.link} target="_blank" rel="noreferrer">
+              Присоединиться
+            </a>
           </div>
         </div>
       </Flex>

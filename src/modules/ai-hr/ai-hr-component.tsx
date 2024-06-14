@@ -27,7 +27,8 @@ export const AiHrComponent: FC = () => {
       <Flex align={'center'} justify={'space-between'} className={styles.start}>
         <div>
           <h1 className={styles.heading}>AI HR поможет быстро нанять профессионалов</h1>
-          <p className={styles.subHeading}>Сопровождает на всех этапах найма, учитывая персональные потребности бизнеса
+          <p className={styles.subHeading}>
+            Сопровождает на всех этапах найма, учитывая персональные потребности бизнеса
           </p>
           <Button
             type={'primary'}

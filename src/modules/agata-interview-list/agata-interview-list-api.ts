@@ -28,6 +28,14 @@ export const agataInterviewApi = rtkQueryApi
           body: { companyId }
         }),
         invalidatesTags: ['interview']
+      }),
+
+      removeAgataDialog: builder.mutation<void, string>({
+        query: (dialogId) => ({
+          url: `/agata/dialogs/${dialogId}`,
+          method: 'DELETE'
+        }),
+        invalidatesTags: ['interview']
       })
     })
   })
