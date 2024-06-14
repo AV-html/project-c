@@ -38,7 +38,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
 
   const handleStartInterview = async () => {
     try {
-      await navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      await navigator.mediaDevices?.getUserMedia({ video: true, audio: true })
       if (dialogId) {
         void dispatch(startInterview(dialogId))
       }

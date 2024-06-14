@@ -15,7 +15,7 @@ export const DeviceProvider: FC<IDeviceProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const getDevices = async () => {
-      const mediaDevices = await navigator.mediaDevices.enumerateDevices()
+      const mediaDevices = await navigator.mediaDevices?.enumerateDevices()
 
       const microphoneDevicesOptions: SelectProps['options'] = []
       const webcamDevicesOptions: SelectProps['options'] = []
