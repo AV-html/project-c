@@ -31,6 +31,8 @@ import styles from './profile.module.scss'
 export const ProfileComponent: FC = () => {
   const { userId = '' } = useParams()
 
+  const isMe = userId === 'me'
+
   const { data: profileData } = profileApi.useGetProfileQuery(userId, { skip: !userId })
 
   const contact = profileData?.contact
@@ -207,7 +209,7 @@ export const ProfileComponent: FC = () => {
                   <Typography.Title level={4} className={styles.title}>
                     Карта навыков
                   </Typography.Title>
-                  <GoButton className={styles.btn} path={goToSkillsMapRoute('me')}/>
+                  <GoButton className={styles.btn} path={goToSkillsMapRoute(isMe ? 'me' : userId)}/>
                 </div>
                 <div className={styles.card}>
                   <Typography.Title level={4} className={styles.title}>

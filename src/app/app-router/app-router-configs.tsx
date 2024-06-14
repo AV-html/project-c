@@ -52,7 +52,7 @@ export const goToCommunityRoute = () => '/community'
 
 export const goToVacanciesRoute = () => '/vacancies'
 export const goToVacancyRoute = (id: string) => `/vacancies/${id}`
-export const goToVacanciesStepsRoute = () => '/vacancies-steps'
+export const goToVacanciesStepsRoute = (id = 'me') => `/vacancies-steps/${id}`
 
 export const goToTalentsRoute = () => '/talents'
 
@@ -65,7 +65,7 @@ export const goToEventsHackathonRoute = () => '/events/hackathon'
 export const goToProfileRoute = (id: string) => `/profile/${id}`
 export const goToSkillsMapRoute = (id: string) => `/skills-map/${id}`
 
-export const goToAgataInterviewListRoute = () => '/interview'
+export const goToAgataInterviewListRoute = (id = 'me') => `/interview/${id}`
 export const goToAgataInterviewByIdRoute = (id: string) => `/interview/${id}`
 export const goToAgataInterviewReportRoute = (id: string) => `/interview/${id}/report`
 
@@ -86,13 +86,13 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.COMMUNITY]: goToCommunityRoute(),
   [AppRoutes.VACANCIES]: goToVacanciesRoute(),
   [AppRoutes.VACANCY]: goToVacancyRoute(':vacancyId'),
-  [AppRoutes.VACANCIES_STEPS]: goToVacanciesStepsRoute(),
+  [AppRoutes.VACANCIES_STEPS]: goToVacanciesStepsRoute(':userId'),
   [AppRoutes.TALENTS]: goToTalentsRoute(),
   [AppRoutes.PROFILE]: goToProfileRoute(':userId'),
   [AppRoutes.PROFILE_SKILLS]: goToSkillsMapRoute(':userId'),
 
   [AppRoutes.AI_HR]: goToAiHrRoute(),
-  [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(),
+  [AppRoutes.AGATA_INTERVIEW_LIST]: goToAgataInterviewListRoute(':userId'),
   [AppRoutes.AGATA_INTERVIEW]: goToAgataInterviewByIdRoute(':dialogId'),
   [AppRoutes.AGATA_INTERVIEW_REPORT]: goToAgataInterviewReportRoute(':dialogId'),
 
