@@ -65,7 +65,7 @@ export const goToEventsHackathonRoute = () => '/events/hackathon'
 export const goToProfileRoute = (id: string) => `/profile/${id}`
 export const goToSkillsMapRoute = (id: string) => `/skills-map/${id}`
 
-export const goToAgataInterviewListRoute = (id = 'me') => `/interview/${id}`
+export const goToAgataInterviewListRoute = (id = 'me') => `/interview-list/${id}`
 export const goToAgataInterviewByIdRoute = (id: string) => `/interview/${id}`
 export const goToAgataInterviewReportRoute = (id: string) => `/interview/${id}/report`
 
