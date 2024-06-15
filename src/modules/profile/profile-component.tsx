@@ -39,7 +39,6 @@ export const ProfileComponent: FC = () => {
   const info = profileData?.info
   const location = profileData?.location
   const work = profileData?.work
-  const skills = Object.entries(profileData?.skills?.junior ?? {})
   const workplace = profileData?.workplace?.[0]
 
   const [_, copy] = useCopyToClipboard()

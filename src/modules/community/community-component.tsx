@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Flex } from 'antd'
 
-import { ContainerComponent } from 'ui/container/container-component'
+import { Container } from 'ui/container'
 
 import { UserCard } from './components/user-card'
 import { UserHelp } from './components/user-help'
@@ -14,7 +14,7 @@ export const CommunityComponent = () => {
   const filter = 'all' // убрать
 
   return (
-    <ContainerComponent >
+    <Container >
       <Flex gap={40} vertical>
         <Flex >
           <button
@@ -105,6 +105,6 @@ export const CommunityComponent = () => {
           <UserMiniCard/>
         </Flex>
       </Flex>
-    </ContainerComponent>
+    </Container>
   )
 }

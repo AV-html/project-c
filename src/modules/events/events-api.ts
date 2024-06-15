@@ -1,6 +1,6 @@
 import { rtkQueryApi } from 'core/api/rtk-query-api'
 
-import { IEvents } from './events-types'
+import { type IEvents } from './events-types'
 
 export const eventApi = rtkQueryApi.injectEndpoints({
   endpoints: (builder) => ({

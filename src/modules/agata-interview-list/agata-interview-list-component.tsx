@@ -1,11 +1,14 @@
 import { type FC } from 'react'
 
 import {
-  Alert, Button, Flex, notification, Typography
+  Alert, Button, Flex, Modal, notification, Typography
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
-import { goToAgataInterviewByIdRoute, goToAgataInterviewReportRoute } from 'app/app-router/app-router-configs'
+import {
+  goToAgataInterviewByIdRoute,
+  goToAgataInterviewReportRoute
+} from 'app/app-router/app-router-configs'
 
 import { ProfileNavbar } from 'components/profile-navbar'
 
@@ -40,7 +43,17 @@ export const AgataInterviewListComponent: FC = () => {
     }
 
     const handleRemove = () => {
-      void removeInterview(dialogId)
+      Modal.confirm({
+        width: 500,
+        title: 'Вы уверены, что хотите безвозвратно удалить интервью?',
+        icon: <span className={styles.warn}><Icon name={'error'} size={24}/></span>,
+        cancelText: 'Отмена',
+        maskClosable: true,
+        okText: 'Удалить',
+        onOk: () => {
+          void removeInterview(dialogId)
+        }
+      })
     }
 
     const handleGoToReport = () => {

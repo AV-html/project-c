@@ -62,6 +62,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
           icon: <span className={styles.warn}><Icon name={'error'} size={24}/></span>,
           content: 'Оставшиеся вопросы будут оценены в 0 баллов',
           cancelText: 'Отмена',
+          maskClosable: true,
           okText: 'Заверишть',
           onOk: () => {
             void dispatch(finishInterview({ dialogId }))
