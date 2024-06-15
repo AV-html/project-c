@@ -1,32 +1,37 @@
-# РЎС‚Р°РґРёСЏ СЃР±РѕСЂРєРё РєР»РёРµРЅС‚СЃРєРѕР№ С‡Р°СЃС‚Рё РЅР° Node.js
+# Стадия сборки клиентской части на Node.js
 FROM node:21-alpine3.18 as build-stage
 WORKDIR /client1
 
-# РЈСЃС‚Р°РЅРѕРІРєР° pnpm
+# Установка pnpm
 RUN npm install -g pnpm
 
-# РљРѕРїРёСЂРѕРІР°РЅРёРµ package.json Рё СѓСЃС‚Р°РЅРѕРІРєР° Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№
+# Копирование package.json и установка зависимостей
 COPY package.json .
 RUN pnpm install
 
-# РљРѕРїРёСЂРѕРІР°РЅРёРµ РѕСЃС‚Р°Р»СЊРЅС‹С… С„Р°Р№Р»РѕРІ РїСЂРѕРµРєС‚Р° Рё СЃР±РѕСЂРєР°
+# Копирование остальных файлов проекта и сборка
 COPY . .
 RUN pnpm "build:prod"
 
-# Р¤РёРЅР°Р»СЊРЅР°СЏ СЃС‚Р°РґРёСЏ СЃ Nginx
+# Финальная стадия с Nginx
 FROM nginx:1.17.0-alpine
 
-# РљРѕРїРёСЂРѕРІР°РЅРёРµ СЃРѕР±СЂР°РЅРЅС‹С… С„Р°Р№Р»РѕРІ РІ РїР°РїРєСѓ, РѕС‚РєСѓРґР° Nginx Р±СѓРґРµС‚ СЂР°Р·РґР°РІР°С‚СЊ СЃС‚Р°С‚РёС‡РµСЃРєРёРµ С„Р°Р№Р»С‹
+# Копирование собранных файлов в папку, откуда Nginx будет раздавать статические файлы
 COPY --from=build-stage /client1/build /usr/share/nginx/html
 
-# РљРѕРїРёСЂРѕРІР°РЅРёРµ РёР·РјРµРЅРµРЅРЅРѕРіРѕ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРіРѕ С„Р°Р№Р»Р° nginx.conf РІ РєРѕРЅС‚РµР№РЅРµСЂ
+# Копирование измененного конфигурационного файла nginx.conf в контейнер
 COPY --from=build-stage /client1/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# РљРѕРїРёСЂРѕРІР°РЅРёРµ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРіРѕ С„Р°Р№Р»Р° СЃРµСЂРІРµСЂР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РІ /etc/nginx/conf.d/
+# Копирование конфигурационного файла сервера по умолчанию в /etc/nginx/conf.d/
 COPY --from=build-stage /client1/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# РћС‚РєСЂС‹С‚РёРµ РїРѕСЂС‚РѕРІ 80 Рё 3000
-EXPOSE 80
+# Копирование SSL сертификатов и ключей
+COPY ssl/certificate.crt /etc/nginx/ssl/certificate.crt
+COPY ssl/private.key /etc/nginx/ssl/private.key
+COPY ssl/ca_bundle.crt /etc/nginx/ssl/ca_bundle.crt
 
-# Р—Р°РїСѓСЃРє Nginx РІ СЂРµР¶РёРјРµ foreground
+# Открытие портов 80 и 443
+EXPOSE 80 443
+
+# Запуск Nginx в режиме foreground
 CMD ["nginx", "-g", "daemon off;"]
