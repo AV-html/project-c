@@ -17,7 +17,7 @@ export default (env: BuildEnv): webpack.Configuration => {
   const port = env.port || 3000
   const isDev = mode === 'development'
   const apiUrl = isDev
-    ? 'http://95.163.230.192:3001'
+    ? 'http://vm4743732.34ssd.had.wf:3001'
     : 'https://commit-ai.ru/api'
 
   const webpackConfig: BuildOptions = {
