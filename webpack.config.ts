@@ -18,7 +18,7 @@ export default (env: BuildEnv): webpack.Configuration => {
   const isDev = mode === 'development'
   const apiUrl = isDev
     ? 'http://95.163.230.192:3001'
-    : 'http://api:3001'
+    : 'https://api:3001'
 
   const webpackConfig: BuildOptions = {
     mode,
