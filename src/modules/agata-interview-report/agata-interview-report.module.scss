@@ -2,12 +2,13 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+  box-sizing: content-box;
   position: relative;
 }
 
 .backBtn {
   position: absolute;
-  left: -80px;
+  left: -96px;
 }
 
 .card {

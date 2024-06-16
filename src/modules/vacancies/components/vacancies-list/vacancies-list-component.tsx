@@ -8,6 +8,9 @@ import { CheckButton } from 'ui/check-button'
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
 
+import { useAppSelector } from 'core/hooks/rtk'
+import { getUserInfo } from 'core/user/user-selectors'
+
 import { formatToText, positionToText, tagsToText } from './vacancies-list-configs'
 import type { IVacancy } from '../../vacancies-types'
 import { callbackMainVacancies } from '../../vacancies-utils'
@@ -26,6 +29,8 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
   const [page, setPage] = useState(1)
   const [values, setValues] =
     useState<Array<[string, boolean]>>([])
+
+  const userInfo = useAppSelector(getUserInfo)
 
   const handleVacanciesMe = () => {
     const filters = {
@@ -77,7 +82,7 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
   const vacanciesList = filteredVacancies
     .slice(startIndex, endIndex)
     .map((vacancy) => <VacancyItem
-      key={vacancy.vacancyId}
+      key={String(vacancy.vacancyId) + vacancy.company.id}
       {...vacancy}
     />)
 
@@ -115,6 +120,8 @@ export const VacanciesListComponent: FC<IVacanciesListProps> = memo(({ allVacanc
                 icon={<Icon name={'search'}/>}
                 onClick={handleVacanciesMe}
                 className={styles.startBtn}
+                disabled={!userInfo}
+                title={!userInfo ? 'Доступно только авторизованным пользователям' : undefined}
               >
                 Смотреть все
               </Button>
