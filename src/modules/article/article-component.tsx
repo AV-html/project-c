@@ -1,13 +1,17 @@
-import React, { type FC } from 'react'
+import React, { type FC, useState } from 'react'
 
-import { Flex } from 'antd'
+import { Button, Flex, notification } from 'antd'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
-import { goToNewsRoute, goToNotFoundRoute } from 'app/app-router/app-router-configs'
+import { goToArticleByIdRoute, goToNewsRoute, goToNotFoundRoute } from 'app/app-router/app-router-configs'
 
+import { BackButton } from 'ui/back-button'
 import { dataArticle } from 'ui/configs/news-configs'
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
+
+import { useCopyToClipboard } from 'core/hooks/use-copy-to-clipboard'
+import { cn } from 'core/utils/class-names'
 
 import styles from './article.module.css'
 
@@ -25,8 +29,38 @@ export const ArticleComponent: FC = () => {
     navigate(goToNewsRoute())
   }
 
+  const [_, copy] = useCopyToClipboard()
+  const handleShareArticle = () => {
+    copy(`${window.location.origin}${goToArticleByIdRoute(String(articleId))}`)
+      .then(() => {
+        notification.success({ message: 'Ссылка успешно скопирована' })
+      })
+      .catch(() => {
+        notification.error({ message: 'Ошибки копирования!' })
+      })
+  }
+
+  const [subscribe, setSubscribe] = useState(false)
+
+  const handleSubscribe = () => {
+    if (subscribe) {
+      notification.warning({ message: `Вы отписались от ${currentArticle.article.name ?? ''} и больше не будете получать новостей` })
+    } else {
+      notification.success({ message: `Вы успешно подписались на ${currentArticle.article.name ?? ''}` })
+    }
+
+    setSubscribe(prev => !prev)
+  }
+
+  const like = currentArticle.article.like
+  const [likeCount, setLikeCount] = useState(like ?? 0)
+  const handleLike = () => {
+    setLikeCount(prev => like === likeCount ? prev + 1 : prev - 1)
+  }
+
   return (
-    <Container>
+    <Container className={styles.container} maxWidth={1000}>
+      <BackButton path={goToNewsRoute()} className={styles.backBtn}/>
       <div className={styles.wrapArticle}>
         <Flex justify={'space-between'}>
           <Flex className={styles.wrapHeader}>
@@ -43,13 +77,14 @@ export const ArticleComponent: FC = () => {
               </div>
             </Flex>
           </Flex>
-          <button
-            className={styles.roundButton}
-            onClick={handleBack}
+          <Button
+            size={'large'}
+            shape={'round'}
+            className={cn(styles.likeCounter, { [styles.active]: subscribe })}
+            onClick={handleSubscribe}
           >
-            <Icon name={'arrowShortLeft'}/>
-          </button>
-          <button className={styles.subscribe} disabled={true}>Подписаться</button>
+            {subscribe ? 'Вы подписаны' : 'Подписаться'}
+          </Button>
         </Flex>
         <h1>
           {currentArticle.article.title}
@@ -67,6 +102,7 @@ export const ArticleComponent: FC = () => {
             />
             : ''
         }
+
         <p className={styles.p}>
           {currentArticle.article.content_1}
         </p>
@@ -77,42 +113,28 @@ export const ArticleComponent: FC = () => {
           {currentArticle.article.content_3}
         </p>
         <Flex justify={'space-between'}>
-          <Flex className={styles.likeWrap}
-            align={'center'}>
-            <Icon name={'heart'}
-              color={'#1A1A1AB2'}/>
-            <div className={styles.likeCounter}>
-              {currentArticle.article.like}
-            </div>
-          </Flex>
+          <Button
+            size={'large'}
+            shape={'round'}
+            icon={<Icon name={likeCount === like ? 'heart' : 'heartChecked'} size={16}/>}
+            onClick={handleLike}
+            className={styles.likeCounter}
+          >
+            {likeCount}
+          </Button>
           <Flex align={'center'}>
             <Icon name={'eye'}
               color={'#1A1A1AB2'}/>
             <div className={styles.viewCounter}>{currentArticle.article.view}</div>
-            <div className={styles.share}>
-              <Icon className={styles.shareIcon}
-                name={'share'}/>
-            </div>
+            <Button
+              className={styles.share}
+              icon={<Icon name={'share'} size={16} />}
+              size={'large'}
+              shape={'circle'}
+              onClick={handleShareArticle}
+            />
           </Flex>
         </Flex>
-        {/* <Flex> */}
-        {/*     <div> */}
-        {/*         <img className={styles.avatarOne} */}
-        {/*             src={avatarOne}/> */}
-        {/*     </div> */}
-        {/*     <div className={styles.comment}> */}
-        {/*         <div className={styles.nameComment}> */}
-        {/*         Максим, HR-директор */}
-        {/*         </div> */}
-        {/*         <p> */}
-        {/*         Расскажите, пожалуйста, человеку далёкому от ML почему это не простенький классификатор? Кажется, что задача бьётся на две довольно базовые для ml задачи: определить машину и отнести ее цвет к одному из 13 */}
-        {/*         </p> */}
-        {/*         <br/> */}
-        {/*         <p> */}
-        {/*         Или тут дело не в технологиях, а в том что дешевле размечать через людей? */}
-        {/*         </p> */}
-        {/*     </div> */}
-        {/* </Flex> */}
       </div>
     </Container>
   )

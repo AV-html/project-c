@@ -1,3 +1,4 @@
+
 .wrapArticle{
   border: 1px solid gainsboro;
   border-radius: 40px;
@@ -8,11 +9,14 @@
   margin-bottom: 20px;
 }
 
+.title,
 .mb {
   cursor: pointer;
+
+  color: var(--color-link) !important;
   transition: all 0.3s ease-in-out;
   &:hover {
-    color: var(--color-link-hover)
+    color: var(--color-link-hover) !important;
   }
 }
 
@@ -62,21 +66,41 @@
   border-radius: 40px;
 }
 
-.likeWrap {
-  padding: 10px 16px;
+.subscribe {
+  font-size: 16px;
+  color: #1A1A1AB2;
+
   background-color: #1A1A1A0D;
-  color: #292929;
-  border-radius: 20px;
-  gap: 10px;
+
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--color-control-primary) !important;
+    color: #fff !important;
+  }
 }
 
+
 .likeCounter {
-  font-size: 18px;
+  font-size: 16px;
   color: #1A1A1AB2;
+
+  background-color: #1A1A1A0D;
+
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--color-control-primary) !important;
+    color: #fff !important;
+  }
+
+  &.active {
+    background-color: #71CB3E !important;
+    color: #fff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .viewCounter {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   margin-right: 20px;
@@ -85,15 +109,19 @@
 }
 
 .share {
-  position: relative;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
   background-color: #1A1A1A0D;
   border-radius: 50%;
   color: #1A1A1AB2;
+
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--color-control-primary) !important;
+    color: #fff !important;
+  }
 }
 
-.shareIcon {
-  position: absolute;
-  bottom: 8px;
-  right: 10px;
-}
