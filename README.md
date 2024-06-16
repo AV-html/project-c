@@ -8,7 +8,7 @@
 
 [Документация](https://www.figma.com/board/WRMBZox9dMFge7AjjGIfRq/commit---документация?node-id=12-6437&t=bNGZ0J3OKhEHM0U6-1)
 
-[Swagger](http://95.163.230.192:3001/swagger)
+[Swagger](https://commit-ai.ru/api/swagger#/)
 
 Для прохождения AI интервью и полного доступа следует авторизоваться:
 ## 
@@ -29,7 +29,7 @@ Passwords: ```12345```
 
 ### Команда
 
-🜲 Роман Лебедев - Product / Front-end<br>
-Александр Волков - Solution Architect / Full-stack<br>
+🜲 Роман Лебедев - Product / Front-end <br>
+Александр Волков - Solution Architect / Full-stack <br>
 Владислав Кравченко - Back-end / DevOps <br>
 Анастасия Лебедева - UI/UX-designer 
