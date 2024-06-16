@@ -33,6 +33,5 @@ export const authApi = rtkQueryApi.injectEndpoints({
         body
       })
     })
-    // TODO: Подумать, как авторизовать пользователя
   })
 })
