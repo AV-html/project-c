@@ -1,6 +1,8 @@
 import React, { type FC } from 'react'
 
-import { Flex, Input, Typography } from 'antd'
+import {
+  Avatar, Flex, Input, Typography
+} from 'antd'
 import { Link } from 'react-router-dom'
 
 import { goToProfileRoute } from 'app/app-router/app-router-configs'
@@ -8,7 +10,6 @@ import { goToProfileRoute } from 'app/app-router/app-router-configs'
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
 
-import avatar from 'core/assets/images/agata-avatar.png'
 import TalentsSets from 'core/assets/images/sets-tenats.svg'
 import TalentsList from 'core/assets/images/talents.png'
 
@@ -38,7 +39,12 @@ export const TalentsComponent: FC = () => {
     return <div className={styles.card} key={talent.id}>
       <Flex justify={'center'} vertical style={{ textAlign: 'center' }}>
         <div className={styles.wrapAvatar}>
-          <img className={styles.avatar} src={avatar} alt=""/>
+          {/* <img className={styles.avatar} src={avatar} alt=""/> */}
+          <Avatar
+            size={100}
+            src={talent.avatar}
+            icon={<Icon name={'profile'} size={16} color={'#000'}/>}
+          />
         </div>
 
         <Typography.Title level={3}>
