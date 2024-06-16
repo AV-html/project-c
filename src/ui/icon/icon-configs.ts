@@ -42,6 +42,7 @@ import play from './svg/play.svg'
 import plus from './svg/plus.svg'
 import post from './svg/post.svg'
 import profile from './svg/profile.svg'
+import refresh from './svg/refresh.svg'
 import search from './svg/search.svg'
 import send from './svg/send.svg'
 import settings from './svg/settings.svg'
@@ -56,6 +57,7 @@ import trash from './svg/trash.svg'
 import unlock from './svg/unlock.svg'
 
 export const icons = {
+  refresh,
   download,
   crown,
   mail,

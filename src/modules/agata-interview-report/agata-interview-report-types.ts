@@ -11,6 +11,7 @@ export interface IReportData {
 
 export interface IQuestion {
   questionId: string
+  questionIndex: number
   question: string
   preview: string
   answer: string

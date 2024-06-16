@@ -11,7 +11,7 @@ export const agataInterviewApi = rtkQueryApi
           url: '/agata/dialogs',
           method: 'GET'
         }),
-        keepUnusedDataFor: 5,
+        keepUnusedDataFor: 0,
         providesTags: ['interview']
       }),
 
@@ -19,7 +19,8 @@ export const agataInterviewApi = rtkQueryApi
         query: () => ({
           url: '/agata/dialogs/test',
           method: 'GET'
-        })
+        }),
+        keepUnusedDataFor: 0
       }),
 
       createAgataDialog: builder.mutation<ICreateResData, string>({

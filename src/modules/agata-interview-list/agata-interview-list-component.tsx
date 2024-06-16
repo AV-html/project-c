@@ -22,7 +22,7 @@ import { gradeToColor } from '../agata-interview-report/agata-interview-report-c
 import styles from './agata-interview-list.module.scss'
 
 export const AgataInterviewListComponent: FC = () => {
-  const { data = [] } = agataInterviewApi.useGetAgataDialogsQuery()
+  const { data = [], refetch } = agataInterviewApi.useGetAgataDialogsQuery()
   const { data: testCompany } = agataInterviewApi.useGetTestCompanyIdQuery()
   const [createInterview] = agataInterviewApi.useCreateAgataDialogMutation()
   const [removeInterview] = agataInterviewApi.useRemoveAgataDialogMutation()
@@ -30,6 +30,10 @@ export const AgataInterviewListComponent: FC = () => {
   const navigation = useNavigate()
 
   const isAnalysis = data.some(({ status }) => status === 'ANALYSIS')
+
+  const handleRefresh = () => {
+    void refetch()
+  }
 
   const cards = data.map(({
     companyAvatar,
@@ -189,7 +193,19 @@ export const AgataInterviewListComponent: FC = () => {
           showIcon
           icon={<Icon name={'error'} size={16}/>}
           type={'warning'}
-          message={'Вы недавно завершили интервью. Обработка займёт пару минут и можно будет посмотреть результаты'}
+          message={<Flex justify={'space-between'} gap={8} align={'center'}>
+            <Typography.Text>
+              Вы недавно завершили интервью. Обработка займёт пару минут и можно будет посмотреть результаты
+
+            </Typography.Text>
+            <Button
+              icon={<Icon name={'refresh'} size={16}/>}
+              shape={'round'}
+              size={'middle'}
+              type={'primary'}
+              onClick={handleRefresh}
+            />
+          </Flex>}
         />}
         <Flex vertical gap={8}>
           {cards}

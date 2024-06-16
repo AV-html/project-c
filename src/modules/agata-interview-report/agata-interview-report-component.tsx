@@ -37,53 +37,55 @@ export const AgataInterviewReportComponent: FC = () => {
     color = gradeToColor.top
   }
 
-  const list = reportData?.questions.map((question, idx) => {
-    let textGrade = '% ошибка'
-    let color = gradeToColor.bottom
+  const list = [...reportData?.questions ?? []]
+    .sort((a, b) => a?.questionIndex - b?.questionIndex)
+    .map((question, idx) => {
+      let textGrade = '% ошибка'
+      let color = gradeToColor.bottom
 
-    const grade = question.grade / 10 * 100
-    if (grade > 30 && grade < 60) {
-      textGrade = '% средне'
-      color = gradeToColor.middle
-    } else if (grade > 30) {
-      textGrade = '% правильно'
-      color = gradeToColor.top
-    }
+      const grade = question.grade / 10 * 100
+      if (grade > 30 && grade < 60) {
+        textGrade = '% средне'
+        color = gradeToColor.middle
+      } else if (grade > 30) {
+        textGrade = '% правильно'
+        color = gradeToColor.top
+      }
 
-    return <Flex gap={16} className={styles.card} key={question.questionId}>
-      <div className={styles.wrapVideo}>
-        <LazyVideo
-          url={question.video}
-          width={'100%'}
-          height={'100%'}
-          preview={question.preview}
-        />
-      </div>
-      <div className={styles.body}>
-        <Typography.Title level={4} className={styles.mb}>
-          {`${idx + 1}. ${question.question}`}
-        </Typography.Title>
-        <Flex justify={'space-between'} align={'center'} className={styles.mb}>
-          <Typography.Text type={'secondary'}>
-            Оценка AI
-          </Typography.Text>
-          <div className={styles.tag} style={{ background: color }}>
-            {grade} {textGrade}
-          </div>
-        </Flex>
-        <div className={styles.bodyCard}>
-          <Flex vertical gap={8} className={styles.scroll}>
-            <Typography.Text type={'secondary'}>
-              Наш ответ:
-            </Typography.Text>
-            <Typography.Text className={styles.scroll}>
-              {question.answer}
-            </Typography.Text>
-          </Flex>
+      return <Flex gap={16} className={styles.card} key={question.questionId}>
+        <div className={styles.wrapVideo}>
+          <LazyVideo
+            url={question.video}
+            width={'100%'}
+            height={'100%'}
+            preview={question.preview}
+          />
         </div>
-      </div>
-    </Flex>
-  })
+        <div className={styles.body}>
+          <Typography.Title level={4} className={styles.mb}>
+            {`${idx + 1}. ${question.question}`}
+          </Typography.Title>
+          <Flex justify={'space-between'} align={'center'} className={styles.mb}>
+            <Typography.Text type={'secondary'}>
+            Оценка AI
+            </Typography.Text>
+            <div className={styles.tag} style={{ background: color }}>
+              {grade} {textGrade}
+            </div>
+          </Flex>
+          <div className={styles.bodyCard}>
+            <Flex vertical gap={8} className={styles.scroll}>
+              <Typography.Text type={'secondary'}>
+              Наш ответ:
+              </Typography.Text>
+              <Typography.Text className={styles.scroll}>
+                {question.answer}
+              </Typography.Text>
+            </Flex>
+          </div>
+        </div>
+      </Flex>
+    })
 
   return (
     <div className={styles.report}>
