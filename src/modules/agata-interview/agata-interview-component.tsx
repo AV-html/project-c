@@ -52,7 +52,7 @@ export const AgataInterviewComponent = () => {
   const isLoading = useAppSelector(getIsLoading)
 
   const webcamRef = useRef<any>(null)
-  const mediaRecorderRef = useRef<any>(null)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const [rec, setRec] = useState(false)
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([])
 
@@ -61,7 +61,7 @@ export const AgataInterviewComponent = () => {
   const handleStartCaptureClick = useCallback(() => {
     setRec(true)
 
-    mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, { mimeType })
+    mediaRecorderRef.current = new MediaRecorder(webcamRef?.current?.stream, { mimeType })
     mediaRecorderRef.current.addEventListener('dataavailable', ({ data }: BlobEvent) => {
       if (data.size > 0) {
         setRecordedChunks((prev) => prev.concat(data))
@@ -72,7 +72,9 @@ export const AgataInterviewComponent = () => {
 
   const handleStopCaptureClick = useCallback(async () => {
     setRec(false)
-    await mediaRecorderRef.current.stop()
+    if (mediaRecorderRef?.current) {
+      mediaRecorderRef?.current?.stop()
+    }
   }, [mediaRecorderRef, webcamRef, setRec])
 
   const handleEnableWebcam = useCallback(() => {
@@ -155,17 +157,19 @@ export const AgataInterviewComponent = () => {
         </Flex>
         <Card className={styles.card}>
           <Flex vertical gap={8} className={styles.bodyMessages}>
-            <Message
-              author={'agata'}
-              message={dialogInfo?.description
-                .split('+++')
-                .map((desc, idx, array) => {
-                  return <div key={idx}>
-                    {desc.split('---').map((d, idx) => <span key={idx}>{d}<br/></span>)}
-                    {array.length - 1 !== idx && <br/>}
-                  </div>
-                }) }
-            />
+            {
+              dialogInfo?.description && <Message
+                author={'agata'}
+                message={dialogInfo?.description
+                  .split('+++')
+                  .map((desc, idx, array) => {
+                    return <div key={idx}>
+                      {desc.split('---').map((d, idx) => <span key={idx}>{d}<br/></span>)}
+                      {array.length - 1 !== idx && <br/>}
+                    </div>
+                  })}
+              />
+            }
             {
               dialogHistory?.map((history) => {
                 return <Message

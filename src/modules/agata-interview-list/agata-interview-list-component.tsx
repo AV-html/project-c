@@ -24,7 +24,7 @@ import { gradeToColor } from '../agata-interview-report/agata-interview-report-c
 import styles from './agata-interview-list.module.scss'
 
 export const AgataInterviewListComponent: FC = () => {
-  const { data = [], refetch } = agataInterviewApi.useGetAgataDialogsQuery()
+  const { data = [], refetch } = agataInterviewApi.useGetAgataDialogsQuery(undefined, { refetchOnMountOrArgChange: true })
   const { data: testCompany } = agataInterviewApi.useGetTestCompanyIdQuery()
   const [createInterview] = agataInterviewApi.useCreateAgataDialogMutation()
   const [removeInterview] = agataInterviewApi.useRemoveAgataDialogMutation()

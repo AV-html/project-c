@@ -1,4 +1,3 @@
-import { Alert } from 'antd'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -12,9 +11,7 @@ root.render(
   <BrowserRouter>
     <StoreProvider>
       <DeviceProvider>
-        <Alert.ErrorBoundary>
-          <App/>
-        </Alert.ErrorBoundary>
+        <App/>
       </DeviceProvider>
     </StoreProvider>
   </BrowserRouter>
