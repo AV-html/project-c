@@ -224,7 +224,7 @@ export const AgataInterviewComponent = () => {
                           size={'large'}
                           shape={'circle'}
                           onClick={handleStartCaptureClick}
-                          disabled={rec}
+                          disabled={rec && !!recordedChunks.length}
                           className={styles.btn}
                         />
                         <Button
