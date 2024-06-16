@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from 'core/hooks/rtk'
 import { type IDialogBottomMenuProps } from './dialog-bottom-menu-types'
 import {
   getHasHistory,
-  getIsBeforeFinishInterview,
+  getIsBeforeFinishInterview, getIsLoading,
   getStatusDialog
 } from '../agata-interview-selectors'
 import { finishInterview, startInterview } from '../agata-interview-thunk'
@@ -26,6 +26,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
   const { dialogId } = useParams()
   const status = useAppSelector(getStatusDialog)
   const isBeforeFinishInterview = useAppSelector(getIsBeforeFinishInterview)
+  const isLoading = useAppSelector(getIsLoading)
   const hasHistory = useAppSelector(getHasHistory)
   const dispatch = useAppDispatch()
   const navigation = useNavigate()
@@ -136,6 +137,7 @@ export const DialogBottomMenuComponent: FC<IDialogBottomMenuProps> = ({ handleEn
           size={'large'}
           shape={'round'}
           onClick={handleFinishInterview}
+          disabled={isLoading}
         >
               Завершить интервью
         </Button>

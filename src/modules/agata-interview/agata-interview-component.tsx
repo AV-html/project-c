@@ -22,7 +22,7 @@ import {
   getCurrentNumberQuestion,
   getDialogHistory,
   getDialogInfo,
-  getIsBeforeFinishInterview
+  getIsBeforeFinishInterview, getIsLoading
 } from './agata-interview-selectors'
 import { getDialogHistoryById, getDialogInfoById, sendVideoAnswer } from './agata-interview-thunk'
 import { DialogBottomMenu } from './dialog-bottom-menu'
@@ -50,6 +50,7 @@ export const AgataInterviewComponent = () => {
   const dialogHistory = useAppSelector(getDialogHistory)
   const currentNumberQuestion = useAppSelector(getCurrentNumberQuestion)
   const isBeforeFinishInterview = useAppSelector(getIsBeforeFinishInterview)
+  const isLoading = useAppSelector(getIsLoading)
 
   const webcamRef = useRef<any>(null)
   const mediaRecorderRef = useRef<any>(null)
@@ -172,6 +173,11 @@ export const AgataInterviewComponent = () => {
                   preview={history?.video?.preview}
                 />
               })
+            }
+            {
+              isLoading && <Flex justify={'center'}>
+                <Icon name={'simpleLoader'} size={50} color={'#FF8A9C'}/>
+              </Flex>
             }
             {
               dialogInfo?.status !== 'COMPLETED' && isBeforeFinishInterview && <Message
