@@ -35,7 +35,7 @@ export const getIsBeforeFinishInterview = createSelector(
   getAgataSelector,
   (agata) => {
     const questions = agata?.dialogInfo?.questions
-    return questions && (questions.completed === questions.total)
+    return questions && (questions.completed === questions.total) && questions.total > 0
   }
 )
 

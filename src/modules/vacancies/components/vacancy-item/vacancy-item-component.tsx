@@ -76,7 +76,7 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
                 }
                 {
                   namespace === 'reksoft' &&
-                    <a className={styles.link} href={link} target="_blank" rel="noreferrer">
+                    <a title={title} className={styles.link} href={link} target="_blank" rel="noreferrer">
                       {title}
                     </a>
                 }

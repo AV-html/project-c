@@ -27,9 +27,9 @@ export const TalentsComponent: FC = () => {
       return skills.filter(([, checked]) => checked).length
     }
 
-    const skillsJunior = talent.skills?.junior ? Object.entries(talent.skills.junior) : []
-    const skillsMiddle = talent.skills?.middle ? Object.entries(talent.skills.middle) : []
-    const skillsSenior = talent.skills?.senior ? Object.entries(talent.skills.senior) : []
+    const skillsJunior = talent.skills.skills?.junior ? Object.entries(talent.skills.skills.junior) : []
+    const skillsMiddle = talent.skills.skills?.middle ? Object.entries(talent.skills.skills.middle) : []
+    const skillsSenior = talent.skills.skills?.senior ? Object.entries(talent.skills.skills.senior) : []
 
     const checkedJuniorCount: number = countCheckedSkills(skillsJunior)
     const checkedMiddleCount: number = countCheckedSkills(skillsMiddle)

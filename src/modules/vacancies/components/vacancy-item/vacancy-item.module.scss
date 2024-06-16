@@ -65,6 +65,13 @@
 }
 
 .link {
+  width: 530px;
+
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
   color: var(--color-link);
   transition: all 0.3s ease-in-out;
 

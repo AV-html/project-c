@@ -96,7 +96,7 @@ export const AgataInterviewReportComponent: FC = () => {
             Отчёт интервью (Всего вопросов: {totalCount})
           </Typography.Title>
           {
-            total && <Typography.Title level={4} style={{ background: color }} className={styles.tag}>
+            !isNaN(total) && <Typography.Title level={4} style={{ background: color }} className={styles.tag}>
             Результат {total}%
             </Typography.Title>
           }

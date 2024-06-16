@@ -3,8 +3,7 @@ import {
 } from 'react'
 
 import {
-  Button,
-  Card, Flex, Modal, Typography
+  Button, Card, Flex, Modal, Typography
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import Webcam from 'react-webcam'
@@ -158,7 +157,14 @@ export const AgataInterviewComponent = () => {
           <Flex vertical gap={8} className={styles.bodyMessages}>
             <Message
               author={'agata'}
-              message={dialogInfo?.description}
+              message={dialogInfo?.description
+                .split('+++')
+                .map((desc, idx, array) => {
+                  return <div key={idx}>
+                    {desc.split('---').map((d, idx) => <span key={idx}>{d}<br/></span>)}
+                    {array.length - 1 !== idx && <br/>}
+                  </div>
+                }) }
             />
             {
               dialogHistory?.map((history) => {
@@ -274,6 +280,7 @@ export const AgataInterviewComponent = () => {
             {/*  </> */}
             {/* } */}
           </Flex>
+
         </Card>
       </Flex>
     </Container>

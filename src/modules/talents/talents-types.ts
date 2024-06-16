@@ -15,8 +15,10 @@ export interface ITalentData {
   }
   experience: string
   skills: {
-    junior: Record<string, boolean>
-    middle: Record<string, boolean>
-    senior: Record<string, boolean>
+    skills: {
+      junior: Record<string, boolean>
+      middle: Record<string, boolean>
+      senior: Record<string, boolean>
+    }
   }
 }

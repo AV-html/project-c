@@ -3,7 +3,7 @@ import { rtkQueryApi } from 'core/api/rtk-query-api'
 import type { ICreateResData, IDialogItem, ITestCompany } from './agata-interview-list-types'
 
 export const agataInterviewApi = rtkQueryApi
-  .enhanceEndpoints({ addTagTypes: ['interview'] })
+  .enhanceEndpoints({ addTagTypes: ['interview', 'vacancies', 'vacancy'] })
   .injectEndpoints({
     endpoints: (builder) => ({
       getAgataDialogs: builder.query<IDialogItem[], void>({
@@ -29,7 +29,7 @@ export const agataInterviewApi = rtkQueryApi
           method: 'POST',
           body: { companyId }
         }),
-        invalidatesTags: ['interview']
+        invalidatesTags: ['interview', 'vacancies', 'vacancy']
       }),
 
       removeAgataDialog: builder.mutation<void, string>({

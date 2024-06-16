@@ -3,7 +3,6 @@ import { type FC } from 'react'
 import {
   Avatar, Button, Flex, notification, Typography
 } from 'antd'
-import dayjs from 'dayjs'
 import { useParams } from 'react-router-dom'
 
 import {
@@ -218,44 +217,50 @@ export const ProfileComponent: FC = () => {
                 </div>
               </Flex>
             </Flex>
-            <Flex vertical gap={16}>
-              <Flex align={'center'} gap={16}>
-                <Avatar icon={<Icon name={'star'} size={16}/>} shape={'circle'} size={40}/>
-                <Typography.Title level={4}>
-                  {workplace?.name}
-                </Typography.Title>
-              </Flex>
-              <Typography.Title level={3}>
-                {workplace?.position}
-              </Typography.Title>
-              <Typography.Text type={'secondary'}>
-                {dayjs(workplace?.period[0]).format('MM.YYYY')}
-                {' — '}
-                {dayjs(workplace?.period[1]).format('MM.YYYY')}
-              </Typography.Text>
-              <Typography.Title level={5}>
-                Задачи
-              </Typography.Title>
-              <ul>
+            {
+              profileData?.workplace?.map((workplace) => {
+                return (
+                  <Flex vertical gap={16}>
+                    <Flex align={'center'} gap={16}>
+                      <Avatar icon={<Icon name={'star'} size={16}/>} shape={'circle'} size={40}/>
+                      <Typography.Title level={4}>
+                        {workplace?.name}
+                      </Typography.Title>
+                    </Flex>
+                    <Typography.Title level={3}>
+                      {workplace?.position}
+                    </Typography.Title>
+                    <Typography.Text type={'secondary'}>
+                      {workplace?.period[0]}
+                      {', '}
+                      {workplace?.period[1]}
+                    </Typography.Text>
+                    <Typography.Title level={5}>
+                      Задачи
+                    </Typography.Title>
+                    <ul>
 
-                {workplace?.tasks.map((task, idx) => {
-                  return <li key={idx}>
-                    <Typography.Text key={idx}>{task}</Typography.Text>
-                  </li>
-                })}
+                      {workplace?.tasks.map((task, idx) => {
+                        return <li key={idx}>
+                          <Typography.Text key={idx}>{task}</Typography.Text>
+                        </li>
+                      })}
 
-              </ul>
-              <Typography.Title level={5}>
-                Результат
-              </Typography.Title>
-              <ul>
-                {workplace?.result.map((result, idx) => {
-                  return <li key={idx}>
-                    <Typography.Text>{result}</Typography.Text>
-                  </li>
-                })}
-              </ul>
-            </Flex>
+                    </ul>
+                    <Typography.Title level={5}>
+                      Результат
+                    </Typography.Title>
+                    <ul>
+                      {workplace?.result.map((result, idx) => {
+                        return <li key={idx}>
+                          <Typography.Text>{result}</Typography.Text>
+                        </li>
+                      })}
+                    </ul>
+                  </Flex>
+                )
+              }) ?? []
+            }
           </Flex>
         </Flex>
       </Flex>
