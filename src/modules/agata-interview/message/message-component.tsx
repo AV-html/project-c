@@ -1,8 +1,10 @@
 import { type FC } from 'react'
 
-import { Flex, Typography } from 'antd'
+import { Avatar, Flex, Typography } from 'antd'
 
 import { LazyVideo } from 'components/lazy-video'
+
+import { Icon } from 'ui/icon'
 
 import agataAvatar from 'core/assets/images/agata-avatar.png'
 import { useAppSelector } from 'core/hooks/rtk'
@@ -27,7 +29,7 @@ export const MessageComponent: FC<IMessageProps> = ({
   const userInfo = useAppSelector(getUserInfo)
 
   const name = isUser
-    ? `${userInfo?.firstName ?? ''} ${userInfo?.secondName ?? ''}`
+    ? `${userInfo?.firstName ?? 'Имя'} ${userInfo?.secondName ?? 'Фамилия'}`
     : 'Агата, AI HR'
 
   const avatar = isUser
@@ -42,12 +44,11 @@ export const MessageComponent: FC<IMessageProps> = ({
       align={'start'}
     >
       <div className={styles.avatar}>
-        {
-          avatar && <img
-            src={avatar}
-            alt="avatar"
-          />
-        }
+        <Avatar
+          size={40}
+          src={avatar}
+          icon={<Icon name={'profile'} size={16} color={'#000'}/>}
+        />
       </div>
       <Flex
         className={cn(styles.message, { [styles.user]: isUser })}
