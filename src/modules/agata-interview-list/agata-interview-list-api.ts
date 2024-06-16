@@ -11,6 +11,7 @@ export const agataInterviewApi = rtkQueryApi
           url: '/agata/dialogs',
           method: 'GET'
         }),
+        keepUnusedDataFor: 5,
         providesTags: ['interview']
       }),
 
