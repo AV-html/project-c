@@ -8,6 +8,7 @@ export interface IVacancy {
     name: string
     logo: string
   }
+  dialogId: string
   namespace: 'reksoft' | 'commit'
   vacancyId: number
   title: string

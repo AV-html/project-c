@@ -15,6 +15,8 @@ import { ProfileNavbar } from 'components/profile-navbar'
 import { Container } from 'ui/container'
 import { Icon } from 'ui/icon'
 
+import AgataAvatar from 'core/assets/images/agata-avatar.png'
+
 import { agataInterviewApi } from './agata-interview-list-api'
 import { statusToBtnText, statusToColor, statusToText } from './agata-interview-list-configs'
 import { gradeToColor } from '../agata-interview-report/agata-interview-report-component'
@@ -73,6 +75,8 @@ export const AgataInterviewListComponent: FC = () => {
       color = gradeToColor.top
     }
 
+    const isAgata = companyName === 'Тестовое интервью'
+
     return (
       <Flex className={styles.card} gap={16} key={dialogId}>
         <div className={styles.preview}>
@@ -85,11 +89,17 @@ export const AgataInterviewListComponent: FC = () => {
             <Flex justify={'space-between'} align={'center'}>
               <Flex gap={8} align={'center'}>
                 {
-                  companyAvatar
-                    ? <img src={companyAvatar} alt="companyAvatar" width={32} height={32}/>
-                    : <div className={styles.emptyLogo}>
-                      <Icon name={'crown'} size={16}/>
-                    </div>
+                  isAgata
+                    ? <img src={AgataAvatar} alt="" width={32} height={32}/>
+                    : <>
+                      {
+                        companyAvatar
+                          ? <img src={companyAvatar} alt="" width={32} height={32}/>
+                          : <div className={styles.emptyLogo}>
+                            <Icon name={'crown'} size={16}/>
+                          </div>
+                      }
+                    </>
                 }
                 <Typography.Text>
                   {companyName}

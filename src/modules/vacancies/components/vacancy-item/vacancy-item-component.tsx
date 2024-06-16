@@ -28,7 +28,8 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
   skills,
   title,
   tasks,
-  city
+  city,
+  dialogId
 }) => {
   const navigation = useNavigate()
   const [open, setOpen] = useState(false)
@@ -41,15 +42,23 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
   const handleCreateInterview = () => {
     const companyId = company.id
 
-    createInterview(companyId)
-      .unwrap()
-      .then(({ dialogId }) => {
-        setOpen(false)
-        navigation(goToAgataInterviewByIdRoute(dialogId))
-      })
-      .catch(() => {
-        notification.error({ message: 'Не удалось создать тестовое интревью' })
-      })
+    if (!dialogId) {
+      createInterview(companyId)
+        .unwrap()
+        .then(({ dialogId: newDialogId }) => {
+          setOpen(false)
+          navigation(goToAgataInterviewByIdRoute(newDialogId))
+        })
+        .catch(() => {
+          notification.error({ message: 'Не удалось создать тестовое интревью' })
+        })
+    }
+  }
+
+  const handleGoInterview = () => {
+    if (dialogId) {
+      navigation(goToAgataInterviewByIdRoute(dialogId))
+    }
   }
 
   return (
@@ -75,27 +84,53 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
               {
                 namespace === 'commit' && <Popover
 
-                  content={<Flex vertical gap={16}>
-                    <Flex vertical gap={8}>
-                      <Typography.Title level={4}>
+                  content={!dialogId
+                    ? (
+                      <Flex vertical gap={16}>
+                        <Flex vertical gap={8}>
+                          <Typography.Title level={4}>
                           Пройдите интервью с AI HR
-                      </Typography.Title>
-                      <Typography.Text>
+                          </Typography.Title>
+                          <Typography.Text>
                           В любое удобное время, видео-интервью на 30 минут, несколько вопросов об опыте, профессии и целям.
-                      </Typography.Text>
-                    </Flex>
-                    <Flex justify={'end'}>
-                      <Button
-                        size={'large'}
-                        shape={'round'}
-                        type={'primary'}
-                        style={{ width: 200 }}
-                        onClick={handleCreateInterview}
-                      >
+                          </Typography.Text>
+                        </Flex>
+                        <Flex justify={'end'}>
+                          <Button
+                            size={'large'}
+                            shape={'round'}
+                            type={'primary'}
+                            style={{ width: 200 }}
+                            onClick={handleCreateInterview}
+                          >
                           Пройти интервью
-                      </Button>
-                    </Flex>
-                  </Flex>}
+                          </Button>
+                        </Flex>
+                      </Flex>)
+                    : (
+                      <Flex vertical gap={16}>
+                        <Flex vertical gap={8}>
+                          <Typography.Title level={4}>
+                            Интервью с AI HR
+                          </Typography.Title>
+                          <Typography.Text>
+                            У вас уже есть созданное AI-интервью с этой вакансией
+                          </Typography.Text>
+                        </Flex>
+                        <Flex justify={'end'}>
+                          <Button
+                            size={'large'}
+                            shape={'round'}
+                            type={'primary'}
+                            style={{ width: 200 }}
+                            onClick={handleGoInterview}
+                          >
+                            Перейти к интервью
+                          </Button>
+                        </Flex>
+                      </Flex>
+                    )
+                  }
                   trigger="click"
                   open={open}
                   onOpenChange={handleOpenChange}
