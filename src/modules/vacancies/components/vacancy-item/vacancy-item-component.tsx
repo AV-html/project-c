@@ -140,7 +140,7 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
                     icon={<Icon name={'stars'} size={16}/>}
                     className={styles.btnInterview}
                   >
-                        AI интервью
+                        Откликнуться
                   </Button>
                 </Popover>
               }
