@@ -43,7 +43,14 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
   }
   const [createInterview] = agataInterviewApi.useCreateAgataDialogMutation()
 
+  const hasLogin = !!userInfo
+
   const handleCreateInterview = () => {
+    if (!hasLogin) {
+      navigation(goToAuthRoute())
+      return
+    }
+
     const companyId = company.id
 
     if (!dialogId) {
@@ -65,8 +72,6 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
     }
   }
 
-  const hasLogin = !!userInfo
-
   return (
     <div className={styles.card}>
       <div className={styles.body}>
@@ -76,13 +81,7 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
               <Typography.Title level={4}>
                 {
                   namespace === 'commit' &&
-                    <Link to={
-                      namespace === 'commit'
-                        ? hasLogin
-                          ? goToVacancyRoute(String(vacancyId))
-                          : goToAuthRoute()
-                        : link}
-                    >
+                    <Link to={namespace === 'commit' ? goToVacancyRoute(String(vacancyId)) : link}>
                       {title}
                     </Link>
                 }
