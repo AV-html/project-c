@@ -5,12 +5,14 @@ import {
 } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { goToAgataInterviewByIdRoute, goToVacancyRoute } from 'app/app-router/app-router-configs'
+import { goToAgataInterviewByIdRoute, goToAuthRoute, goToVacancyRoute } from 'app/app-router/app-router-configs'
 
 import { Icon } from 'ui/icon'
 
 import CommitLogo from 'core/assets/images/commit-logo.svg'
 import ReksoftLogo from 'core/assets/images/reksoft-logo.svg'
+import { useAppSelector } from 'core/hooks/rtk'
+import { getUserInfo } from 'core/user/user-selectors'
 
 import type { IComponentsProps } from './vacancy-item-types'
 import { agataInterviewApi } from '../../../agata-interview-list/agata-interview-list-api'
@@ -33,6 +35,8 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
 }) => {
   const navigation = useNavigate()
   const [open, setOpen] = useState(false)
+
+  const userInfo = useAppSelector(getUserInfo)
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen)
@@ -61,6 +65,8 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
     }
   }
 
+  const hasLogin = !!userInfo
+
   return (
     <div className={styles.card}>
       <div className={styles.body}>
@@ -70,7 +76,13 @@ export const VacancyItemComponent: FC<IComponentsProps> = ({
               <Typography.Title level={4}>
                 {
                   namespace === 'commit' &&
-                    <Link to={namespace === 'commit' ? goToVacancyRoute(String(vacancyId)) : link}>
+                    <Link to={
+                      namespace === 'commit'
+                        ? hasLogin
+                          ? goToVacancyRoute(String(vacancyId))
+                          : goToAuthRoute()
+                        : link}
+                    >
                       {title}
                     </Link>
                 }
